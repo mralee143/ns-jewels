@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 const QUICK_LINKS: ReadonlyArray<{ href: string; label: string }> = [
   { href: "/#products", label: "Shipping Policy" },
@@ -6,7 +7,7 @@ const QUICK_LINKS: ReadonlyArray<{ href: string; label: string }> = [
   { href: "/#contact", label: "Contact" },
 ] as const;
 
-const SOCIAL_LINKS: ReadonlyArray<{ href: string; label: string; icon: JSX.Element }> = [
+const SOCIAL_LINKS: ReadonlyArray<{ href: string; icon: ReactNode; label: string }> = [
   {
     href: "https://www.facebook.com",
     icon: (
