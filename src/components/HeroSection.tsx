@@ -35,12 +35,12 @@ export function HeroSection() {
           {HERO_LEDE}
         </p>
         <h1
-          className="font-display mt-8 text-4xl font-semibold leading-tight tracking-tight text-[#1c1917] sm:text-5xl md:text-6xl"
+          className="font-display mt-8 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl"
           id="hero-heading"
         >
           {HERO_TITLE}
         </h1>
-        <p className="mt-4 font-sans text-sm italic text-[#44403c] sm:text-base">
+        <p className="mt-4 font-sans text-sm italic text-white/85 sm:text-base">
           {HERO_TAGLINE}
         </p>
         <Link
