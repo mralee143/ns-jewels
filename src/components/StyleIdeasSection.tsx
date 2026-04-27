@@ -97,8 +97,8 @@ export function StyleIdeasSection() {
               </span>
             </div>
             <div className="pt-3">
-              <h4 className="font-mono text-[1rem] font-medium text-[#1f2937]">{product.title}</h4>
-              <p className="mt-1 text-sm font-medium text-[#374151]">{product.price}</p>
+              <h4 className="font-mono text-[1rem] font-bold text-[#111827]">{product.title}</h4>
+              <p className="mt-1 text-sm font-semibold text-[#1f2937]">{product.price}</p>
             </div>
           </article>
         ))}

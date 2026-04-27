@@ -11,12 +11,12 @@ export function HeroSection() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative flex min-h-[min(92vh,880px)] w-full items-center justify-center overflow-hidden bg-[#e8e0d4]"
+      className="relative flex min-h-[min(92vh,880px)] w-full items-center justify-center overflow-hidden bg-[#f3e8ff]"
     >
       <div className="pointer-events-none absolute inset-0">
         <Image
           alt="Gold necklaces with gemstones arranged in a circle on a cream ceramic tray"
-          className="hero-image-float object-cover object-center"
+          className="hero-image-float object-cover object-center saturate-125 hue-rotate-[300deg] brightness-95 contrast-110"
           fill
           priority
           sizes="100vw"
@@ -25,7 +25,7 @@ export function HeroSection() {
       </div>
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#fdfbf8]/55 via-[#2c2419]/10 to-[#1c1917]/35"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#faf5ff]/62 via-[#7e22ce]/12 to-[#581c87]/38"
       />
       <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 py-24 text-center sm:py-28">
         <p className="font-display text-xs font-semibold uppercase tracking-[0.28em] text-[#a68b5b] sm:text-sm">

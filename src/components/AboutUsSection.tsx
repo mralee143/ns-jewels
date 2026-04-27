@@ -40,7 +40,7 @@ export function AboutUsSection() {
       <div className="relative mt-12 h-[min(76vh,720px)] w-full overflow-hidden lg:h-screen">
         <Image
           alt="NS Jewels loyalty rewards banner"
-          className="hero-image-float object-cover object-[72%_center] lg:object-center"
+          className="hero-image-float object-cover object-[72%_center] saturate-125 hue-rotate-[300deg] brightness-95 contrast-110 lg:object-center"
           fill
           priority
           sizes="100vw"
@@ -48,7 +48,7 @@ export function AboutUsSection() {
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-r from-[#00000066] via-[#0000002a] to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-[#1e1b4bcc] via-[#6b21a899] to-[#faf5ff26]"
         />
         <div className="absolute inset-0 z-10">
           <div className="mx-auto flex h-full w-full max-w-[1320px] items-center px-6 sm:px-10 lg:px-12">

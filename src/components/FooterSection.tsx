@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -39,15 +40,17 @@ const SOCIAL_LINKS: ReadonlyArray<{ href: string; icon: ReactNode; label: string
 
 export function FooterSection() {
   return (
-    <footer className="mt-8 bg-[#c9a8a8] text-[#1c1917]">
-      <div className="mx-auto grid w-full max-w-[1320px] grid-cols-1 gap-8 px-5 py-12 sm:px-8 md:grid-cols-2 md:gap-x-10 lg:grid-cols-4 lg:gap-x-8 lg:px-12">
+    <footer className="mt-8 bg-[#efe1ff] text-[#111827]">
+      <div className="grid w-full grid-cols-1 gap-8 px-5 py-12 sm:px-8 md:grid-cols-2 md:gap-x-10 lg:grid-cols-4 lg:gap-x-8 lg:px-12">
         <div className="text-left">
-          <p className="font-display text-4xl font-semibold italic tracking-wide text-[#111827] sm:text-5xl">NS Jewels</p>
-          <div className="mt-5 flex items-center gap-4 text-[#111827]">
+          <Link className="inline-block" href="/">
+            <Image alt="NS Jewels logo" className="h-auto w-[200px] sm:w-[220px]" height={300} src="/ns-logo-final.png" width={600} />
+          </Link>
+          <div className="mt-5 flex items-center gap-4 text-[#1f2937]">
             {SOCIAL_LINKS.map((item) => (
               <Link
                 aria-label={item.label}
-                className="transition-opacity duration-200 hover:opacity-70"
+                className="transition-colors duration-200 hover:text-[#111827]"
                 href={item.href}
                 key={item.label}
                 rel="noopener noreferrer"
@@ -63,7 +66,7 @@ export function FooterSection() {
           <ul className="mt-4 flex flex-col gap-2">
             {QUICK_LINKS.map((link) => (
               <li key={link.label}>
-                <Link className="text-sm text-[#4b5563] transition-colors duration-200 hover:text-[#111827]" href={link.href}>
+                <Link className="text-sm text-[#374151] transition-colors duration-200 hover:text-[#111827]" href={link.href}>
                   {link.label}
                 </Link>
               </li>
@@ -72,7 +75,7 @@ export function FooterSection() {
         </div>
         <div className="text-left">
           <h2 className="font-display text-lg font-semibold text-[#111827]">Contact Information</h2>
-          <ul className="mt-4 flex flex-col gap-2 text-sm text-[#4b5563]">
+          <ul className="mt-4 flex flex-col gap-2 text-sm text-[#374151]">
             <li>
               <a className="transition-colors duration-200 hover:text-[#111827]" href="tel:+923000000000">
                 +92 300 0000000
@@ -87,13 +90,13 @@ export function FooterSection() {
         </div>
         <div className="text-left">
           <h2 className="font-display text-lg font-semibold text-[#111827]">Our Story</h2>
-          <p className="mt-4 text-sm leading-relaxed text-[#4b5563]">
+          <p className="mt-4 text-sm leading-relaxed text-[#374151]">
             We started NS Jewels with the hope of creating timeless, luxury-focused pieces built on quality and contemporary design at approachable prices.
           </p>
         </div>
       </div>
-      <div className="border-t border-[#b89898] py-6 text-center">
-        <p className="text-xs text-[#5c4a4a]">© {new Date().getFullYear()} NS Jewels. All rights reserved.</p>
+      <div className="border-t border-[#d8b4fe] py-6 text-center">
+        <p className="text-xs text-[#1f2937]">© {new Date().getFullYear()} NS Jewels. All rights reserved.</p>
       </div>
     </footer>
   );
