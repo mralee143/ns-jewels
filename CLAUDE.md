@@ -88,6 +88,7 @@ Use these as **design tokens** (map to CSS variables in `globals.css` and/or Tai
 | **brand-700** | `#7e22ce` | Headings on light backgrounds |
 | **brand-800** | `#6b21a8` | Dark UI surfaces (light mode text on pale bg) |
 | **brand-900** | `#581c87` | Hero text, dark cards |
+| **brand-picked** | `#600080` | User-selected primary purple from approved swatch |
 
 #### Warm pink highlights (jewelry warmth)
 
@@ -122,6 +123,7 @@ Use these as **design tokens** (map to CSS variables in `globals.css` and/or Tai
 ### 5.3 How to apply the palette in code
 
 1. **Prefer CSS variables** in `:root` (and a `[data-theme="dark"]` or `prefers-color-scheme` block) mirroring the table above, e.g. `--color-brand-500`, `--color-surface-0`.
+   - Use `--color-brand-picked: #600080` as the current campaign accent where a stronger purple is needed.
 2. **Expose tokens in Tailwind v4** via `@theme inline { ... }` so utilities read `bg-brand-500`, `text-ink-900`, etc.
 3. **Contrast**: Body text on `brand-50`–`brand-200` should use **ink-900** or **brand-900**; white or `brand-50` text on **brand-600+** for buttons.
 4. **Metals / gems** in imagery: keep UI chrome in brand neutrals; let photography carry gold/silver sparkle.

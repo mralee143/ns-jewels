@@ -19,7 +19,6 @@ const NAV_ITEMS: ReadonlyArray<{ href: string; label: string }> = [
 export function Navbar() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
   const trimmedSearchValue = useMemo(() => searchValue.trim(), [searchValue]);
@@ -32,7 +31,6 @@ export function Navbar() {
     }
 
     router.push(`/?q=${encodeURIComponent(trimmedSearchValue)}`);
-    setIsSearchOpen(false);
   };
 
   return (
@@ -68,7 +66,7 @@ export function Navbar() {
             className="h-auto w-[110px] scale-125 transition-transform duration-300 hover:scale-135 sm:w-[130px]"
             height={300}
             priority
-            src="/ns-logo-final.png"
+            src="/ns-logo-latest.png"
             width={600}
           />
         </Link>
@@ -94,27 +92,24 @@ export function Navbar() {
         {/* Actions - Third on Mobile */}
         <div className="ml-auto flex items-center gap-3 text-[#292524] sm:gap-5">
           <form className="flex items-center gap-2" onSubmit={handleSearchSubmit}>
-            {isSearchOpen ? (
-              <input
-                aria-label="Search products"
-                className="w-20 border border-[#d6d3d1] bg-white px-2 py-1 text-[10px] font-black tracking-[0.05em] text-[#000000] outline-none ring-0 placeholder:text-[#78716c] focus:border-[#a68b5b] sm:w-32 sm:text-xs"
-                onChange={(event) => setSearchValue(event.target.value)}
-                placeholder="Search..."
-                type="search"
-                value={searchValue}
-              />
-            ) : null}
+            <input
+              aria-label="Search products"
+              className="w-20 border border-[#d6d3d1] bg-white px-2 py-1 text-[10px] font-black tracking-[0.05em] text-[#000000] outline-none ring-0 placeholder:text-[#78716c] focus:border-[#a68b5b] sm:w-32 sm:text-xs"
+              onChange={(event) => setSearchValue(event.target.value)}
+              placeholder="Search..."
+              type="search"
+              value={searchValue}
+            />
             <button
               aria-label="Search"
               className="flex items-center gap-2 transition-colors duration-200 hover:text-[#1c1917] font-black"
-              onClick={() => setIsSearchOpen((isOpen) => !isOpen)}
-              type={isSearchOpen ? "submit" : "button"}
+              type="submit"
             >
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M10.5 3a7.5 7.5 0 1 1 0 15 7.5 7.5 0 0 1 0-15Zm0 2a5.5 5.5 0 1 0 3.7 9.6l3.6 3.6 1.4-1.4-3.6-3.6A5.5 5.5 0 0 0 10.5 5Z" />
               </svg>
               <span className="hidden text-xs font-black uppercase tracking-[0.14em] sm:inline">
-                {isSearchOpen ? "Go" : "Search"}
+                Search
               </span>
             </button>
           </form>
