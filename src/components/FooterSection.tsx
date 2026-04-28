@@ -40,17 +40,23 @@ const SOCIAL_LINKS: ReadonlyArray<{ href: string; icon: ReactNode; label: string
 
 export function FooterSection() {
   return (
-    <footer className="mt-8 bg-[#efe1ff] text-[#111827]">
+    <footer className="mt-8 bg-[#efe1ff] text-[#581c87]">
       <div className="grid w-full grid-cols-1 gap-8 px-5 py-12 sm:px-8 md:grid-cols-2 md:gap-x-10 lg:grid-cols-4 lg:gap-x-8 lg:px-12">
         <div className="text-left">
           <Link className="inline-block" href="/">
-            <Image alt="NS Jewels logo" className="h-auto w-[200px] sm:w-[220px]" height={300} src="/ns-logo-final.png" width={600} />
+            <Image
+              alt="NS Jewels logo"
+              className="h-auto w-[200px] mix-blend-multiply sm:w-[220px]"
+              height={300}
+              src="/brand__logo.jpeg"
+              width={600}
+            />
           </Link>
-          <div className="mt-5 flex items-center gap-4 text-[#1f2937]">
+          <div className="mt-5 flex items-center gap-4 text-[#581c87]">
             {SOCIAL_LINKS.map((item) => (
               <Link
                 aria-label={item.label}
-                className="transition-colors duration-200 hover:text-[#111827]"
+                className="transition-colors duration-200 hover:text-[#7e22ce]"
                 href={item.href}
                 key={item.label}
                 rel="noopener noreferrer"
@@ -62,41 +68,41 @@ export function FooterSection() {
           </div>
         </div>
         <div className="text-left">
-          <h2 className="font-display text-lg font-semibold text-[#111827]">Quick links</h2>
+          <h2 className="font-display text-lg font-semibold text-[#581c87]">Quick links</h2>
           <ul className="mt-4 flex flex-col gap-2">
             {QUICK_LINKS.map((link) => (
               <li key={link.label}>
-                <Link className="text-sm text-[#374151] transition-colors duration-200 hover:text-[#111827]" href={link.href}>
+                <Link className="text-sm text-[#581c87] transition-colors duration-200 hover:text-[#7e22ce]" href={link.href}>
                   {link.label}
                 </Link>
               </li>
             ))}
           </ul>
         </div>
-        <div className="text-left">
-          <h2 className="font-display text-lg font-semibold text-[#111827]">Contact Information</h2>
-          <ul className="mt-4 flex flex-col gap-2 text-sm text-[#374151]">
+        <div className="text-left" id="contact">
+          <h2 className="font-display text-lg font-semibold text-[#581c87]">Contact Information</h2>
+          <ul className="mt-4 flex flex-col gap-2 text-sm text-[#581c87]">
             <li>
-              <a className="transition-colors duration-200 hover:text-[#111827]" href="tel:+923000000000">
+              <a className="transition-colors duration-200 hover:text-[#7e22ce]" href="tel:+923000000000">
                 +92 300 0000000
               </a>
             </li>
             <li>
-              <a className="transition-colors duration-200 hover:text-[#111827]" href="mailto:hello@nsjewels.com">
+              <a className="transition-colors duration-200 hover:text-[#7e22ce]" href="mailto:hello@nsjewels.com">
                 hello@nsjewels.com
               </a>
             </li>
           </ul>
         </div>
         <div className="text-left">
-          <h2 className="font-display text-lg font-semibold text-[#111827]">Our Story</h2>
-          <p className="mt-4 text-sm leading-relaxed text-[#374151]">
+          <h2 className="font-display text-lg font-semibold text-[#581c87]">Our Story</h2>
+          <p className="mt-4 text-sm leading-relaxed text-[#581c87]">
             We started NS Jewels with the hope of creating timeless, luxury-focused pieces built on quality and contemporary design at approachable prices.
           </p>
         </div>
       </div>
       <div className="border-t border-[#d8b4fe] py-6 text-center">
-        <p className="text-xs text-[#1f2937]">© {new Date().getFullYear()} NS Jewels. All rights reserved.</p>
+        <p className="text-xs text-[#581c87]">© {new Date().getFullYear()} NS Jewels. All rights reserved.</p>
       </div>
     </footer>
   );
