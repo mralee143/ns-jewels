@@ -13,7 +13,7 @@ export function MadeForHerSection() {
       className="mx-auto flex max-w-[1320px] flex-col items-center pb-12 pt-6 text-center sm:pb-14 sm:pt-8"
       id="products"
     >
-      <h2 className="made-for-her-heading-reveal font-display text-3xl font-semibold italic tracking-[0.12em] text-[#1c1917] sm:text-4xl">
+      <h2 className="made-for-her-heading-reveal font-display text-3xl font-semibold tracking-[0.12em] text-[#1c1917] sm:text-4xl">
         Made For Her
       </h2>
       <div className="mt-6 grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">

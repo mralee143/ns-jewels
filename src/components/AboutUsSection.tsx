@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const TESTIMONIALS: ReadonlyArray<{ name: string; quote: string }> = [
   {
@@ -21,7 +22,7 @@ export function AboutUsSection() {
   return (
     <section className="overflow-x-clip pb-16 pt-6 text-center sm:pb-20">
       <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
-        <h3 className="font-display text-3xl font-semibold italic tracking-[0.12em] text-[#1c1917] sm:text-4xl">
+        <h3 className="font-display text-3xl font-semibold tracking-[0.12em] text-[#1c1917] sm:text-4xl">
           WHAT THEY SAY ABOUT US
         </h3>
         <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -39,29 +40,35 @@ export function AboutUsSection() {
       </div>
       <div className="relative mt-12 h-[min(76vh,720px)] w-full overflow-hidden lg:h-screen">
         <Image
-          alt="NS Jewels loyalty rewards banner"
-          className="hero-image-float object-cover object-[72%_center] saturate-125 hue-rotate-[300deg] brightness-95 contrast-110 lg:object-center"
+          alt="NS Jewels Collection"
+          className="hero-image-float object-cover object-[72%_center] lg:object-center"
           fill
           priority
           sizes="100vw"
-          src="/rewards-pink-banner-no-text.png"
+          src="/hero-section/hero-image-4.jpeg"
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-r from-[#1e1b4bcc] via-[#6b21a899] to-[#faf5ff26]"
+          className="absolute inset-0 bg-black/30"
         />
         <div className="absolute inset-0 z-10">
           <div className="mx-auto flex h-full w-full max-w-[1320px] items-center px-6 sm:px-10 lg:px-12">
             <div className="w-full max-w-[620px] text-left text-white">
-              <p className="font-sans text-xs font-semibold uppercase tracking-[0.28em] sm:text-sm">
-                NS Jewels Loyalty Program
+              <h1 className="mb-4 font-display text-4xl font-semibold tracking-[0.12em] text-white drop-shadow-md sm:text-5xl md:text-6xl lg:text-7xl">
+                NS Jewels
+              </h1>
+              <p className="mb-8 text-sm font-medium leading-relaxed tracking-wide text-white drop-shadow sm:text-base md:text-lg">
+                Discover the essence of elegance with our exclusive collection of
+                fine jewelry. Handcrafted with precision and passion, each piece
+                is designed to celebrate your unique style and unforgettable
+                moments.
               </p>
-              <h3 className="mt-4 font-display text-5xl font-semibold italic leading-[0.95] tracking-[0.06em] sm:text-7xl lg:text-8xl">
-                Rewards
-              </h3>
-              <p className="mt-4 max-w-lg text-sm text-white/90 sm:text-base lg:text-lg">
-                Earn points on every purchase and unlock exclusive offers, early access, and premium gifts.
-              </p>
+              <Link
+                className="inline-block rounded-full bg-white px-8 py-3.5 text-xs font-bold uppercase tracking-[0.16em] text-[#1c1917] shadow-lg transition-all duration-300 hover:scale-105 hover:bg-[#fdfbf8] hover:shadow-xl"
+                href="/#products"
+              >
+                Shop Collection
+              </Link>
             </div>
           </div>
         </div>
