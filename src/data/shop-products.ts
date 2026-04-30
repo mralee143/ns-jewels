@@ -1,7 +1,7 @@
 import type { ProductCategorySlug } from "@/data/product-categories";
 
 export type ShopProduct = {
-  readonly category: "bracelets" | "handchain" | "handcuffs" | "necklace" | "rings";
+  readonly category: ProductCategorySlug;
   readonly description: string;
   readonly id: string;
   readonly imageSrc: string;

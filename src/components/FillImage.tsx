@@ -6,5 +6,6 @@ export type FillImageProps = Omit<ImageProps, "fill" | "sizes"> & {
 
 export function FillImage(props: FillImageProps) {
   const { alt, sizes, ...rest } = props;
-  return <Image {...rest} alt={alt ?? ""} fill sizes={sizes} />;
+  const resolvedSizes = sizes.trim().length > 0 ? sizes : "100vw";
+  return <Image {...rest} alt={alt ?? ""} fill sizes={resolvedSizes} />;
 }

@@ -24,6 +24,7 @@ export function Navbar() {
   const { cartCount } = useCart();
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
   const trimmedSearchValue = useMemo(() => searchValue.trim(), [searchValue]);
@@ -35,9 +36,6 @@ export function Navbar() {
       return;
     }
 
-<<<<<<< HEAD
-    router.push(`/?q=${encodeURIComponent(trimmedSearchValue)}`);
-=======
     const categorySlug = resolveSearchToCategorySlug(trimmedSearchValue);
     if (categorySlug) {
       router.push(productCategoryHref(categorySlug));
@@ -46,17 +44,15 @@ export function Navbar() {
     }
     setIsSearchOpen(false);
     setSearchValue("");
->>>>>>> 1402f39ee4d33810a34f0ea628c1eda85ebf14f2
   };
 
   return (
     <header className="sticky top-0 z-30 border-b border-[#f3e8ff] bg-[#faf5ff]">
       <div className="relative mx-auto flex w-full max-w-[1320px] items-center justify-between gap-3 px-4 py-3 sm:gap-4 sm:px-6 lg:gap-6 lg:px-8 lg:py-4">
-        {/* Mobile Menu Button - First on Mobile */}
         <button
-          aria-label="Open menu"
           aria-controls="mobile-nav-menu"
           aria-expanded={isMobileMenuOpen}
+          aria-label="Open menu"
           className="flex items-center rounded-md text-[#581c87] outline-none transition-colors duration-200 [-webkit-tap-highlight-color:transparent] hover:text-[#7e22ce] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d8b4fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf5ff] lg:hidden"
           onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
           type="button"
@@ -75,7 +71,6 @@ export function Navbar() {
           </span>
         </button>
 
-        {/* Logo — home; closes overlays on click */}
         <Link
           className="absolute left-1/2 z-10 shrink-0 -translate-x-1/2 transition-opacity duration-200 lg:static lg:z-auto lg:translate-x-0"
           href="/"
@@ -89,16 +84,11 @@ export function Navbar() {
             className="h-auto w-[110px] scale-125 mix-blend-multiply transition-transform duration-300 hover:scale-135 sm:w-[130px] lg:w-[170px]"
             height={300}
             priority
-<<<<<<< HEAD
-            src="/ns-logo-latest.png"
-=======
             src="/brand_logo.png"
->>>>>>> 1402f39ee4d33810a34f0ea628c1eda85ebf14f2
             width={600}
           />
         </Link>
 
-        {/* Desktop Navigation — centered between logo and actions */}
         <nav
           aria-label="Primary"
           className="absolute left-1/2 hidden min-w-0 -translate-x-1/2 lg:static lg:flex lg:translate-x-0 lg:flex-1 lg:justify-center"
@@ -114,102 +104,65 @@ export function Navbar() {
           </ul>
         </nav>
 
-<<<<<<< HEAD
-        {/* Actions - Third on Mobile */}
-        <div className="ml-auto flex items-center gap-3 text-[#292524] sm:gap-5">
-          <form className="flex items-center gap-2" onSubmit={handleSearchSubmit}>
-            <input
-              aria-label="Search products"
-              className="w-20 border border-[#d6d3d1] bg-white px-2 py-1 text-[10px] font-black tracking-[0.05em] text-[#000000] outline-none ring-0 placeholder:text-[#78716c] focus:border-[#a68b5b] sm:w-32 sm:text-xs"
-              onChange={(event) => setSearchValue(event.target.value)}
-              placeholder="Search..."
-              type="search"
-              value={searchValue}
-            />
+        <div className="z-10 flex shrink-0 items-center gap-3 text-[#581c87] sm:gap-5 lg:ml-0">
+          {isSearchOpen ? (
             <button
-              aria-label="Search"
-              className="flex items-center gap-2 transition-colors duration-200 hover:text-[#1c1917] font-black"
-              type="submit"
+              aria-label="Close search"
+              className="flex items-center justify-center rounded-md p-1.5 text-xl leading-none text-[#581c87] transition-colors duration-200 hover:bg-[#f3e8ff] hover:text-[#7e22ce]"
+              onClick={() => {
+                setIsSearchOpen(false);
+                setSearchValue("");
+              }}
+              type="button"
+            >
+              ×
+            </button>
+          ) : (
+            <button
+              aria-label="Open search"
+              className="flex items-center gap-2 font-black text-[#581c87] transition-colors duration-200 hover:text-[#7e22ce]"
+              onClick={() => setIsSearchOpen(true)}
+              type="button"
             >
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M10.5 3a7.5 7.5 0 1 1 0 15 7.5 7.5 0 0 1 0-15Zm0 2a5.5 5.5 0 1 0 3.7 9.6l3.6 3.6 1.4-1.4-3.6-3.6A5.5 5.5 0 0 0 10.5 5Z" />
               </svg>
-              <span className="hidden text-xs font-black uppercase tracking-[0.14em] sm:inline">
-                Search
-              </span>
+              <span className="hidden text-xs font-black uppercase tracking-[0.14em] xl:inline">Search</span>
             </button>
-          </form>
-          <button aria-label="Login" className="transition-colors duration-200 hover:text-[#4c1d95]" type="button">
-            <svg className="h-6 w-6 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-            </svg>
-          </button>
-          <button aria-label="Shopping bag" className="transition-colors duration-200 hover:text-[#4c1d95]" type="button">
-            <svg className="h-6 w-6 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-            </svg>
-          </button>
-=======
-        {/* Actions — search opens full-width row below (same on mobile and desktop) */}
-        <div className="z-10 flex shrink-0 items-center gap-3 text-[#581c87] sm:gap-5 lg:ml-0">
-          {isSearchOpen ? (
+          )}
+          {!isSearchOpen ? (
+            <>
               <button
-                aria-label="Close search"
-                className="flex items-center justify-center rounded-md p-1.5 text-xl leading-none text-[#581c87] transition-colors duration-200 hover:bg-[#f3e8ff] hover:text-[#7e22ce]"
-                onClick={() => {
-                  setIsSearchOpen(false);
-                  setSearchValue("");
-                }}
+                aria-label="Login"
+                className="text-[#581c87] transition-colors duration-200 hover:text-[#7e22ce]"
                 type="button"
               >
-                ×
-              </button>
-            ) : (
-              <button
-                aria-label="Open search"
-                className="flex items-center gap-2 font-black text-[#581c87] transition-colors duration-200 hover:text-[#7e22ce]"
-                onClick={() => setIsSearchOpen(true)}
-                type="button"
-              >
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M10.5 3a7.5 7.5 0 1 1 0 15 7.5 7.5 0 0 1 0-15Zm0 2a5.5 5.5 0 1 0 3.7 9.6l3.6 3.6 1.4-1.4-3.6-3.6A5.5 5.5 0 0 0 10.5 5Z" />
+                <svg className="h-6 w-6 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                 </svg>
-                <span className="hidden text-xs font-black uppercase tracking-[0.14em] xl:inline">Search</span>
               </button>
-            )}
-            {!isSearchOpen ? (
-              <>
-                <button aria-label="Login" className="text-[#581c87] transition-colors duration-200 hover:text-[#7e22ce]" type="button">
-                  <svg className="h-6 w-6 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                  </svg>
-                </button>
-                <Link
-                  aria-label="Shopping bag"
-                  className="relative text-[#581c87] transition-colors duration-200 hover:text-[#7e22ce]"
-                  href="/cart"
-                >
-                  <svg className="h-6 w-6 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                  </svg>
-                  {cartCount > 0 ? (
-                    <span className="absolute -right-2 -top-2 rounded-full bg-[#ec4899] px-1.5 py-0.5 text-[0.6rem] font-black leading-none text-white">
-                      {cartCount}
-                    </span>
-                  ) : null}
-                </Link>
-              </>
-            ) : null}
->>>>>>> 1402f39ee4d33810a34f0ea628c1eda85ebf14f2
+              <Link
+                aria-label="Shopping bag"
+                className="relative text-[#581c87] transition-colors duration-200 hover:text-[#7e22ce]"
+                href="/cart"
+              >
+                <svg className="h-6 w-6 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                </svg>
+                {cartCount > 0 ? (
+                  <span className="absolute -right-2 -top-2 rounded-full bg-[#ec4899] px-1.5 py-0.5 text-[0.6rem] font-black leading-none text-white">
+                    {cartCount}
+                  </span>
+                ) : null}
+              </Link>
+            </>
+          ) : null}
         </div>
       </div>
 
       {isSearchOpen ? (
         <div className="border-t border-[#f3e8ff] bg-[#faf5ff] px-4 py-3 sm:px-8 lg:px-10">
-          <form
-            className="mx-auto flex max-w-[1320px] items-center gap-2"
-            onSubmit={handleSearchSubmit}
-          >
+          <form className="mx-auto flex max-w-[1320px] items-center gap-2" onSubmit={handleSearchSubmit}>
             <input
               aria-label="Search products"
               autoFocus
@@ -231,11 +184,7 @@ export function Navbar() {
         </div>
       ) : null}
       {isMobileMenuOpen ? (
-        <nav
-          aria-label="Mobile"
-          className="border-t border-[#f3e8ff] bg-[#faf5ff] lg:hidden"
-          id="mobile-nav-menu"
-        >
+        <nav aria-label="Mobile" className="border-t border-[#f3e8ff] bg-[#faf5ff] lg:hidden" id="mobile-nav-menu">
           <ul className="mx-auto flex w-full max-w-[1320px] flex-col px-5 py-3 sm:px-8">
             {NAV_ITEMS.map((item) => (
               <li key={item.label}>
