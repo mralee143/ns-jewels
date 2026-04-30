@@ -1,7 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+
+import { FillImage } from "@/components/FillImage";
 import { useEffect, useState } from "react";
 
 const HERO_IMAGES = [
@@ -27,13 +28,12 @@ export function HeroSection() {
         {/* Banner Image Container */}
         <div className="relative aspect-[4/5] w-full sm:aspect-[16/9] lg:aspect-[1525/528]">
           {HERO_IMAGES.map((src, index) => (
-            <Image
+            <FillImage
               key={src}
               alt={`NS Jewels Collection ${index + 1}`}
               className={`object-cover transition-opacity duration-1000 ease-in-out ${
                 index === currentIndex ? "opacity-100" : "opacity-0"
               } object-[70%_center] md:object-center`}
-              fill
               priority={index === 0}
               sizes="100vw"
               src={src}

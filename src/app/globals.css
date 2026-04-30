@@ -86,18 +86,52 @@ body {
 }
 
 .product-card-3d {
+  --card-rotate-x: 0deg;
+  --card-rotate-y: 0deg;
+  --shine-x: 50%;
+  --shine-y: 50%;
+  position: relative;
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0);
   transform-style: preserve-3d;
-  transition: transform 320ms ease, box-shadow 320ms ease;
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+
+.product-card-3d-surface {
+  position: relative;
+  z-index: 1;
+  transform: translateZ(22px);
+  transform-style: preserve-3d;
 }
 
 .product-card-3d:hover {
   box-shadow: 0 24px 44px rgba(17, 24, 39, 0.2);
-  transform: perspective(1000px) rotateX(6deg) rotateY(-8deg) translateZ(14px);
+  transform: perspective(1000px) rotateX(var(--card-rotate-x)) rotateY(var(--card-rotate-y))
+    translateZ(12px);
+}
+
+.product-card-3d::before {
+  background: radial-gradient(
+    circle at var(--shine-x) var(--shine-y),
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0) 44%
+  );
+  border-radius: 0.75rem;
+  content: "";
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 240ms ease;
+  z-index: 2;
+}
+
+.product-card-3d:hover::before {
+  opacity: 1;
 }
 
 .product-card-3d:active {
-  transform: perspective(1000px) rotateX(2deg) rotateY(-3deg) translateZ(6px) scale(0.98);
+  transform: perspective(1000px) rotateX(calc(var(--card-rotate-x) * 0.3))
+    rotateY(calc(var(--card-rotate-y) * 0.3)) translateZ(6px) scale(0.985);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -105,6 +139,11 @@ body {
   .product-card-3d:hover,
   .product-card-3d:active {
     transform: none;
+  }
+
+  .product-card-3d::before,
+  .product-card-3d:hover::before {
+    opacity: 0;
   }
 }
 

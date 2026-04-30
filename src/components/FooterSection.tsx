@@ -48,7 +48,7 @@ export function FooterSection() {
               alt="NS Jewels logo"
               className="h-auto w-[200px] mix-blend-multiply sm:w-[220px]"
               height={300}
-              src="/brand__logo.jpeg"
+              src="/brand_logo.png"
               width={600}
             />
           </Link>

@@ -1,5 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
+
+import { FillImage } from "@/components/FillImage";
 
 const TESTIMONIALS: ReadonlyArray<{ name: string; quote: string }> = [
   {
@@ -39,10 +40,9 @@ export function AboutUsSection() {
         </div>
       </div>
       <div className="relative mt-12 h-[min(76vh,720px)] w-full overflow-hidden lg:h-screen">
-        <Image
+        <FillImage
           alt="NS Jewels Collection"
           className="hero-image-float object-cover object-[72%_center] lg:object-center"
-          fill
           priority
           sizes="100vw"
           src="/hero-section/hero-image-4.jpeg"

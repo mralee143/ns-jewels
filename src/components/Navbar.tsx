@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useMemo, useState } from "react";
 
+import { useCart } from "@/components/CartProvider";
 import {
   PRODUCT_CATEGORY_LABELS,
   PRODUCT_CATEGORY_SLUGS,
@@ -20,6 +21,7 @@ const NAV_ITEMS: ReadonlyArray<{ href: string; label: string }> = PRODUCT_CATEGO
 );
 
 export function Navbar() {
+  const { cartCount } = useCart();
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -139,11 +141,20 @@ export function Navbar() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                   </svg>
                 </button>
-                <button aria-label="Shopping bag" className="text-[#581c87] transition-colors duration-200 hover:text-[#7e22ce]" type="button">
+                <Link
+                  aria-label="Shopping bag"
+                  className="relative text-[#581c87] transition-colors duration-200 hover:text-[#7e22ce]"
+                  href="/cart"
+                >
                   <svg className="h-6 w-6 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                   </svg>
-                </button>
+                  {cartCount > 0 ? (
+                    <span className="absolute -right-2 -top-2 rounded-full bg-[#ec4899] px-1.5 py-0.5 text-[0.6rem] font-black leading-none text-white">
+                      {cartCount}
+                    </span>
+                  ) : null}
+                </Link>
               </>
             ) : null}
         </div>
