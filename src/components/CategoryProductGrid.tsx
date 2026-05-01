@@ -13,22 +13,22 @@ type CategoryProductGridProps = {
 export function CategoryProductGrid({ category, categoryLabel, images }: CategoryProductGridProps) {
   return (
     <div>
-      <nav aria-label="Breadcrumb" className="mb-8 text-sm text-[#57534e]">
+      <nav aria-label="Breadcrumb" className="mb-8 text-sm text-black">
         <ol className="flex flex-wrap items-center gap-2">
           <li>
-            <Link className="text-[#581c87] transition-colors duration-200 hover:text-[#7e22ce]" href="/">
+            <Link className="text-black transition-colors duration-200 hover:text-neutral-800" href="/">
               Home
             </Link>
           </li>
-          <li aria-hidden="true" className="text-[#a8a29e]">
+          <li aria-hidden="true" className="text-black/45">
             /
           </li>
-          <li className="font-medium text-[#1c1917]">{categoryLabel}</li>
+          <li className="font-medium text-black">{categoryLabel}</li>
         </ol>
       </nav>
       <header className="mb-10 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#78716c]">NS Jewels</p>
-        <h1 className="mt-2 font-display text-3xl font-semibold italic tracking-[0.08em] text-[#1c1917] sm:text-4xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black">NS Jewels</p>
+        <h1 className="mt-2 font-display text-3xl font-semibold italic tracking-[0.08em] text-black sm:text-4xl">
           {categoryLabel}
         </h1>
       </header>

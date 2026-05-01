@@ -14,10 +14,10 @@ export function CartPageContent() {
   if (items.length === 0) {
     return (
       <div className="rounded-2xl border border-[#f3e8ff] bg-white p-8 text-center">
-        <h2 className="font-display text-2xl font-semibold text-[#1c1917]">Your cart is empty</h2>
-        <p className="mt-2 text-sm text-[#57534e]">Add products to your cart to continue shopping.</p>
+        <h2 className="font-display text-2xl font-semibold text-black">Your cart is empty</h2>
+        <p className="mt-2 text-sm text-black">Add products to your cart to continue shopping.</p>
         <Link
-          className="mt-6 inline-flex rounded-full bg-[#581c87] px-5 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-[#7e22ce]"
+          className="mt-6 inline-flex rounded-full bg-cta px-5 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-cta-hover"
           href="/"
         >
           Continue shopping
@@ -43,30 +43,30 @@ export function CartPageContent() {
               />
             </div>
             <div className="flex-1">
-              <h3 className="font-semibold text-[#1c1917]">{item.product.title}</h3>
-              <p className="mt-1 text-sm text-[#57534e]">{item.product.price} each</p>
-              <p className="mt-1 text-xs font-medium text-[#44403c]">
+              <h3 className="font-semibold text-black">{item.product.title}</h3>
+              <p className="mt-1 text-sm text-black">{item.product.price} each</p>
+              <p className="mt-1 text-xs font-medium text-black">
                 Line total: {formatPkrDetailed(parsePriceToPaisa(item.product.price) * item.quantity)}
               </p>
             </div>
             <div className="flex items-center gap-2">
               <button
-                className="h-8 w-8 rounded-full border border-[#d8b4fe] text-sm text-[#581c87]"
+                className="h-8 w-8 rounded-full border border-[#F0D3DA] text-sm text-black transition-colors duration-200 hover:bg-[#F6C1CC]/35"
                 onClick={() => decreaseItem(item.product.slug)}
                 type="button"
               >
                 -
               </button>
-              <span className="min-w-8 text-center text-sm font-semibold text-[#1c1917]">{item.quantity}</span>
+              <span className="min-w-8 text-center text-sm font-semibold text-black">{item.quantity}</span>
               <button
-                className="h-8 w-8 rounded-full border border-[#d8b4fe] text-sm text-[#581c87]"
+                className="h-8 w-8 rounded-full border border-[#F0D3DA] text-sm text-black transition-colors duration-200 hover:bg-[#F6C1CC]/35"
                 onClick={() => increaseItem(item.product.slug)}
                 type="button"
               >
                 +
               </button>
               <button
-                className="ml-2 text-xs font-semibold uppercase tracking-[0.08em] text-[#db2777]"
+                className="ml-2 text-xs font-semibold uppercase tracking-[0.08em] text-black"
                 onClick={() => removeItem(item.product.id)}
                 type="button"
               >
@@ -77,27 +77,27 @@ export function CartPageContent() {
         ))}
       </div>
       <aside className="h-fit rounded-2xl border border-[#f3e8ff] bg-white p-6">
-        <h3 className="font-display text-xl font-semibold text-[#1c1917]">Order Summary</h3>
+        <h3 className="font-display text-xl font-semibold text-black">Order Summary</h3>
         <div className="mt-4 flex items-center justify-between text-sm">
-          <span className="text-[#57534e]">Subtotal</span>
-          <span className="font-semibold text-[#1c1917]">{formatPkrDetailed(totals.subtotalPaisa)}</span>
+          <span className="text-black">Subtotal</span>
+          <span className="font-semibold text-black">{formatPkrDetailed(totals.subtotalPaisa)}</span>
         </div>
         <div className="mt-2 flex items-center justify-between text-sm">
-          <span className="text-[#57534e]">Estimated taxes ({(TAX_RATE * 100).toFixed(0)}%)</span>
-          <span className="font-semibold text-[#1c1917]">{formatPkrDetailed(totals.taxPaisa)}</span>
+          <span className="text-black">Estimated taxes ({(TAX_RATE * 100).toFixed(0)}%)</span>
+          <span className="font-semibold text-black">{formatPkrDetailed(totals.taxPaisa)}</span>
         </div>
         <div className="mt-2 flex items-center justify-between text-sm">
-          <span className="text-[#57534e]">Shipping</span>
-          <span className="font-semibold text-[#1c1917]">{formatPkrDetailed(totals.deliveryPaisa)}</span>
+          <span className="text-black">Shipping</span>
+          <span className="font-semibold text-black">{formatPkrDetailed(totals.deliveryPaisa)}</span>
         </div>
         <div className="mt-4 border-t border-[#f3e8ff] pt-4">
           <div className="flex items-center justify-between">
-            <span className="text-base font-semibold text-[#1c1917]">Total</span>
-            <span className="text-lg font-bold text-[#581c87]">{formatPkrDetailed(totals.totalPaisa)}</span>
+            <span className="text-base font-semibold text-black">Total</span>
+            <span className="text-lg font-bold text-black">{formatPkrDetailed(totals.totalPaisa)}</span>
           </div>
         </div>
         <Link
-          className="mt-6 block w-full rounded-full bg-[#581c87] px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-[#7e22ce]"
+          className="mt-6 block w-full rounded-full bg-cta px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-cta-hover"
           href="/checkout"
         >
           Checkout

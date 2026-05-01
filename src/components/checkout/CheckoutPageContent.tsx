@@ -13,10 +13,10 @@ export function CheckoutPageContent() {
   if (items.length === 0) {
     return (
       <div className="rounded-2xl border border-[#f3e8ff] bg-white p-8 text-center">
-        <h2 className="text-2xl font-semibold text-[#1c1917]">Your cart is empty</h2>
-        <p className="mt-2 text-sm text-[#57534e]">Add items to continue checkout.</p>
+        <h2 className="text-2xl font-semibold text-black">Your cart is empty</h2>
+        <p className="mt-2 text-sm text-black">Add items to continue checkout.</p>
         <Link
-          className="mt-6 inline-flex rounded-full bg-[#581c87] px-5 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-[#7e22ce]"
+          className="mt-6 inline-flex rounded-full bg-cta px-5 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-cta-hover"
           href="/"
         >
           Continue shopping
@@ -30,8 +30,8 @@ export function CheckoutPageContent() {
       <div className="space-y-6">
         <div>
           <div className="flex items-center justify-between">
-            <h2 className="text-3xl font-semibold text-[#1c1917]">Contact</h2>
-            <button className="text-sm font-medium text-[#2563eb]" type="button">
+            <h2 className="text-3xl font-semibold text-black">Contact</h2>
+            <button className="text-sm font-medium text-black transition-colors duration-200 hover:text-neutral-800" type="button">
               Sign in
             </button>
           </div>
@@ -43,7 +43,7 @@ export function CheckoutPageContent() {
         </div>
 
         <div>
-          <h2 className="text-3xl font-semibold text-[#1c1917]">Delivery</h2>
+          <h2 className="text-3xl font-semibold text-black">Delivery</h2>
           <div className="mt-3 space-y-3">
             <input
               className="w-full rounded-md border border-[#cbd5e1] px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
@@ -105,12 +105,12 @@ export function CheckoutPageContent() {
                   sizes="56px"
                   src={item.product.imageSrc}
                 />
-                <span className="absolute right-1 top-1 rounded-full bg-[#111827] px-1.5 text-[10px] font-semibold text-white">
+                <span className="absolute right-1 top-1 rounded-full bg-[#F6C1CC] px-1.5 text-[10px] font-semibold text-black ring-1 ring-black/10">
                   {item.quantity}
                 </span>
               </div>
-              <p className="flex-1 text-sm text-[#111827]">{item.product.title}</p>
-              <p className="text-sm font-medium text-[#111827]">
+              <p className="flex-1 text-sm text-black">{item.product.title}</p>
+              <p className="text-sm font-medium text-black">
                 {formatPkrDetailed(parsePriceToPaisa(item.product.price) * item.quantity)}
               </p>
             </div>
@@ -119,20 +119,20 @@ export function CheckoutPageContent() {
 
         <div className="mt-6 space-y-2 border-t border-[#e2e8f0] pt-4 text-sm">
           <div className="flex items-center justify-between">
-            <span className="text-[#475569]">Subtotal</span>
-            <span className="text-[#111827]">{formatPkrDetailed(totals.subtotalPaisa)}</span>
+            <span className="text-black">Subtotal</span>
+            <span className="text-black">{formatPkrDetailed(totals.subtotalPaisa)}</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-[#475569]">Shipping</span>
-            <span className="text-[#111827]">{formatPkrDetailed(totals.deliveryPaisa)}</span>
+            <span className="text-black">Shipping</span>
+            <span className="text-black">{formatPkrDetailed(totals.deliveryPaisa)}</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-[#475569]">Estimated taxes ({(TAX_RATE * 100).toFixed(0)}%)</span>
-            <span className="text-[#111827]">{formatPkrDetailed(totals.taxPaisa)}</span>
+            <span className="text-black">Estimated taxes ({(TAX_RATE * 100).toFixed(0)}%)</span>
+            <span className="text-black">{formatPkrDetailed(totals.taxPaisa)}</span>
           </div>
           <div className="mt-4 flex items-center justify-between border-t border-[#e2e8f0] pt-4">
-            <span className="text-2xl font-semibold text-[#111827]">Total</span>
-            <span className="text-3xl font-bold text-[#111827]">{formatPkrDetailed(totals.totalPaisa)}</span>
+            <span className="text-2xl font-semibold text-black">Total</span>
+            <span className="text-3xl font-bold text-black">{formatPkrDetailed(totals.totalPaisa)}</span>
           </div>
         </div>
       </aside>

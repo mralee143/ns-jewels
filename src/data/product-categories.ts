@@ -25,7 +25,7 @@ export const PRODUCT_CATEGORY_LABELS: Record<ProductCategorySlug, string> = {
 };
 
 export const CATALOGED_CATEGORY_IMAGES: Record<CatalogedImageCategory, readonly string[]> = {
-  anklets: ["/anklets/anklet-1.jpeg"],
+  anklets: ["/anklets/anklet-creative-display.png"],
   bracelets: [
     "/bracelets/bracelet-1.jpeg",
     "/bracelets/bracelet-2.jpeg",

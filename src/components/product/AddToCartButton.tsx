@@ -12,7 +12,7 @@ export function AddToCartButton({ product }: AddToCartButtonProps) {
 
   return (
     <button
-      className="rounded-full bg-[#581c87] px-6 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-[#7e22ce]"
+      className="rounded-full bg-cta px-6 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-cta-hover"
       onClick={() => addToCart(product)}
       type="button"
     >

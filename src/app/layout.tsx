@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fdfbf8",
+  themeColor: "#fdf2f5",
   viewportFit: "cover",
 };
 
@@ -40,7 +40,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-full flex-col text-black">
         <CartProvider>{children}</CartProvider>
       </body>
     </html>

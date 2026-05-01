@@ -8,9 +8,24 @@ export type ShopProduct = {
   readonly price: string;
   readonly slug: string;
   readonly title: string;
+  readonly additionalImages?: readonly string[];
 };
 
 export const SHOP_PRODUCTS: readonly ShopProduct[] = [
+  {
+    category: "anklets",
+    description:
+      "A delicate gold snake chain anklet with evenly spaced small round gold beads. Perfect for elegant daily wear or special occasions.",
+    id: "gold-snake-chain-anklet",
+    imageSrc: "/anklets/anklet-creative-display.png",
+    additionalImages: [
+      "/anklets/anklet-model-display.png",
+      "/anklets/anklet-white-bg.png",
+    ],
+    price: "Rs. 499.00 PKR",
+    slug: "gold-snake-chain-anklet",
+    title: "Gold Snake Chain Anklet",
+  },
   {
     category: "rings",
     description:
