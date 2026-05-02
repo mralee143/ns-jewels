@@ -3,6 +3,7 @@ import type { ProductCategorySlug } from "@/data/product-categories";
 export type ShopProduct = {
   readonly category: ProductCategorySlug;
   readonly description: string;
+  readonly featureBullets?: readonly string[];
   readonly id: string;
   readonly imageSrc: string;
   readonly price: string;
@@ -32,6 +33,7 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "A classic emerald-inspired ring with a polished finish that works for both everyday styling and festive looks.",
     id: "emerald-grace-ring",
     imageSrc: "/rings/ring-1.jpeg",
+    additionalImages: ["/rings/ring-2.jpeg", "/rings/ring-3.jpeg"],
     price: "Rs. 599.00 PKR",
     slug: "emerald-grace-ring",
     title: "Emerald Grace Ring",
@@ -42,6 +44,7 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "A watch-style bracelet with a sleek linked pattern, designed to give your wrist stack a premium look.",
     id: "mesh-watch-bracelet",
     imageSrc: "/bracelets/bracelet-1.jpeg",
+    additionalImages: ["/bracelets/bracelet-2.jpeg", "/bracelets/bracelet-3.jpeg"],
     price: "Rs. 599.00 PKR",
     slug: "mesh-watch-bracelet",
     title: "Mesh Watch Bracelet",
@@ -50,8 +53,16 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     category: "handchain",
     description:
       "A delicate handchain silhouette that adds a graceful statement to both casual and occasion wear.",
+    featureBullets: [
+      "High-quality stainless steel material",
+      "Smooth twisted design for a modern look",
+      "Lightweight and easy to wear all day",
+      "Perfect for casual and formal outfits",
+      "Long-lasting shine with low maintenance",
+    ],
     id: "heartlock-ring",
     imageSrc: "/handchain/handchain-1.jpeg",
+    additionalImages: ["/handchain/handchain-2.jpeg"],
     price: "Rs. 350.00 PKR",
     slug: "heartlock-ring",
     title: "HeartLock Ring",

@@ -20,17 +20,17 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative w-full bg-background pt-1 sm:pt-2">
-      <div className="relative flex w-full flex-col items-center justify-center">
-        {/* Banner Image Container */}
-        <div className="relative aspect-[4/5] w-full sm:aspect-[16/9] lg:aspect-[1525/528]">
+    <section className="relative w-full bg-background">
+      <div className="relative flex w-full min-w-0 flex-col items-center justify-center">
+        {/* Banner image */}
+        <div className="relative aspect-[4/5] w-full min-w-0 overflow-hidden sm:aspect-[16/9] lg:aspect-[1525/528]">
           {HERO_IMAGES.map((src, index) => (
             <FillImage
               key={src}
               alt={`NS Jewels Collection ${index + 1}`}
               className={`object-cover transition-opacity duration-1000 ease-in-out ${
                 index === currentIndex ? "opacity-100" : "opacity-0"
-              } object-[70%_center] md:object-center`}
+              } max-md:object-[62%_center] md:object-center`}
               priority={index === 0}
               sizes="100vw"
               src={src}
@@ -43,7 +43,9 @@ export function HeroSection() {
           <div className="max-w-md space-y-5 text-left sm:max-w-xl sm:space-y-6">
             <h1 className="hero-banner-heading font-display text-4xl font-semibold italic tracking-[0.12em] text-black sm:text-5xl md:text-6xl lg:text-7xl">
               Everyday{" "}
-              <span className="hero-banner-dark-pink">Luxury</span>
+              <span className="hero-banner-luxury-white inline-block font-bold not-italic tracking-[0.14em] sm:text-[1.06em] lg:text-[1.1em]">
+                Luxury
+              </span>
             </h1>
             <p className="hero-banner-subtext text-sm font-medium leading-relaxed tracking-wide text-black sm:text-base md:text-lg">
               Bold, beautiful, and built to last. Premium stainless steel jewelry that is 100% waterproof, tarnish-free, and hypoallergenic. Wear it anywhere, anytime.

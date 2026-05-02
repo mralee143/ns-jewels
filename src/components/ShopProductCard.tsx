@@ -3,6 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import {
+  productCardImageFitClass,
+  productImageTileBg,
+} from "@/lib/product-image-display";
 import type { ShopProduct } from "@/data/shop-products";
 
 type ShopProductCardProps = {

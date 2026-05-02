@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useMemo, useState } from "react";
 
+import { useAuthModal } from "@/components/auth/auth-modal-provider";
 import { useCart } from "@/components/CartProvider";
 import {
   PRODUCT_CATEGORY_LABELS,
@@ -21,6 +22,7 @@ const NAV_ITEMS: ReadonlyArray<{ href: string; label: string }> = PRODUCT_CATEGO
 );
 
 export function Navbar() {
+  const { openLogin } = useAuthModal();
   const { cartCount } = useCart();
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -47,7 +49,7 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-30 border-b border-[#F0D3DA] bg-[#FDF2F5]">
+    <header className="sticky top-0 z-30">
       <div
         aria-label="Announcement"
         className="flex items-center justify-center gap-2 border-b border-[#F0D3DA] bg-[#F6C1CC] px-4 py-2 text-center text-sm font-semibold tracking-wide sm:gap-2.5 sm:text-[0.9375rem]"
@@ -75,12 +77,12 @@ export function Navbar() {
           />
         </svg>
       </div>
-      <div className="relative mx-auto flex w-full max-w-[1320px] items-center justify-between gap-3 px-4 py-3 sm:gap-4 sm:px-6 lg:gap-6 lg:px-8 lg:py-4">
+      <div className="relative flex w-full items-center justify-between gap-3 border-b border-[#F0D3DA] bg-white px-4 py-3 sm:gap-4 sm:px-6 lg:gap-6 lg:px-8 lg:py-4">
         <button
           aria-controls="mobile-nav-menu"
           aria-expanded={isMobileMenuOpen}
           aria-label="Open menu"
-          className="flex items-center rounded-md text-black outline-none transition-colors duration-200 [-webkit-tap-highlight-color:transparent] hover:text-neutral-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF2F5] lg:hidden"
+          className="flex items-center rounded-md text-black outline-none transition-colors duration-200 [-webkit-tap-highlight-color:transparent] hover:text-neutral-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white lg:hidden"
           onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
           type="button"
         >
@@ -108,11 +110,11 @@ export function Navbar() {
         >
           <Image
             alt="NS Jewels logo"
-            className="h-auto w-[110px] scale-125 mix-blend-multiply transition-transform duration-300 hover:scale-135 sm:w-[130px] lg:w-[170px]"
-            height={300}
+            className="h-auto w-[140px] transition-transform duration-300 hover:scale-[1.06] sm:w-[160px] lg:w-[200px]"
+            height={307}
             priority
             src="/brand_logo.png"
-            width={600}
+            width={1024}
           />
         </Link>
 
@@ -123,7 +125,10 @@ export function Navbar() {
           <ul className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-[0.65rem] font-black uppercase tracking-[0.14em] text-black sm:gap-x-3.5 xl:gap-x-4 xl:text-[0.75rem]">
             {NAV_ITEMS.map((item) => (
               <li key={item.label}>
-                <Link className="text-black transition-colors duration-200 hover:text-neutral-800" href={item.href}>
+                <Link
+                  className="border-b-2 border-transparent pb-0.5 text-black outline-none transition-colors duration-200 hover:border-cta hover:text-cta focus-visible:border-cta focus-visible:text-cta"
+                  href={item.href}
+                >
                   {item.label}
                 </Link>
               </li>
@@ -160,8 +165,9 @@ export function Navbar() {
           {!isSearchOpen ? (
             <>
               <button
-                aria-label="Login"
+                aria-label="Sign in"
                 className="text-black transition-colors duration-200 hover:text-neutral-800"
+                onClick={() => openLogin()}
                 type="button"
               >
                 <svg className="h-6 w-6 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -188,8 +194,8 @@ export function Navbar() {
       </div>
 
       {isSearchOpen ? (
-        <div className="border-t border-[#F0D3DA] bg-[#FDF2F5] px-4 py-3 sm:px-8 lg:px-10">
-          <form className="mx-auto flex max-w-[1320px] items-center gap-2" onSubmit={handleSearchSubmit}>
+        <div className="border-t border-[#F0D3DA] bg-white px-4 py-3 sm:px-8 lg:px-10">
+          <form className="flex w-full items-center gap-2" onSubmit={handleSearchSubmit}>
             <input
               aria-label="Search products"
               autoFocus
@@ -211,12 +217,12 @@ export function Navbar() {
         </div>
       ) : null}
       {isMobileMenuOpen ? (
-        <nav aria-label="Mobile" className="border-t border-[#F0D3DA] bg-[#FDF2F5] lg:hidden" id="mobile-nav-menu">
-          <ul className="mx-auto flex w-full max-w-[1320px] flex-col px-5 py-3 sm:px-8">
+        <nav aria-label="Mobile" className="border-t border-[#F0D3DA] bg-white lg:hidden" id="mobile-nav-menu">
+          <ul className="flex w-full flex-col px-5 py-3 sm:px-8">
             {NAV_ITEMS.map((item) => (
               <li key={item.label}>
                 <Link
-                  className="block border-b border-pink-200 py-3.5 text-xs font-bold uppercase tracking-[0.16em] text-black transition-colors duration-200 hover:text-neutral-700"
+                  className="block border-b border-pink-200 py-3.5 text-xs font-bold uppercase tracking-[0.16em] text-black underline-offset-[6px] outline-none transition-colors duration-200 hover:text-cta hover:underline hover:decoration-2 hover:decoration-cta focus-visible:text-cta focus-visible:underline focus-visible:decoration-2 focus-visible:decoration-cta"
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

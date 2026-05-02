@@ -1,9 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 
+import { AuthModalProvider } from "@/components/auth/auth-modal-provider";
+import { AuthSessionProvider } from "@/components/auth-session-provider";
 import { CartProvider } from "@/components/CartProvider";
 
 import "./globals.css";
+
+const googleOAuthConfigured =
+  Boolean(process.env.AUTH_GOOGLE_ID?.trim()) &&
+  Boolean(process.env.AUTH_GOOGLE_SECRET?.trim());
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,7 +47,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col text-black">
-        <CartProvider>{children}</CartProvider>
+        <AuthSessionProvider>
+          <AuthModalProvider googleOAuthConfigured={googleOAuthConfigured}>
+            <CartProvider>{children}</CartProvider>
+          </AuthModalProvider>
+        </AuthSessionProvider>
       </body>
     </html>
   );

@@ -5,7 +5,10 @@ import { notFound } from "next/navigation";
 
 import { FooterSection } from "@/components/FooterSection";
 import { Navbar } from "@/components/Navbar";
+import { ProductAdditionalImagesGallery } from "@/components/product/ProductAdditionalImagesGallery";
+import { ProductCrossCategoryRecommendations } from "@/components/product/ProductCrossCategoryRecommendations";
 import { ProductPurchasePanel } from "@/components/product/ProductPurchasePanel";
+import { getCrossCategoryRecommendations } from "@/lib/get-cross-category-recommendations";
 import { getAllCatalogProducts, getProductBySlug } from "@/lib/get-product-by-slug";
 
 type PageProps = {
@@ -36,6 +39,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const crossCategoryPicks = getCrossCategoryRecommendations(product, 4);
+
   return (
     <div className="min-h-screen bg-background text-black">
       <Navbar />
@@ -65,39 +70,28 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </ol>
         </nav>
 
-        <section className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-10">
-          <div className="flex flex-col gap-4">
-            <div className="relative aspect-square w-full max-w-[min(100%,560px)] overflow-hidden rounded-md bg-neutral-100">
+        <section className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start lg:gap-12">
+          <div className="flex w-full flex-col gap-4 lg:max-w-none">
+            <div className="relative aspect-square w-full max-w-[min(100%,560px)] overflow-hidden rounded-md bg-neutral-100 lg:max-w-none">
               <Image
                 alt={product.title}
                 className="object-cover object-center"
                 fill
                 priority
-                sizes="(min-width: 1024px) 45vw, 100vw"
+                sizes="(min-width: 1024px) 44vw, 100vw"
                 src={product.imageSrc}
               />
             </div>
-            {product.additionalImages && product.additionalImages.length > 0 && (
-              <div className="grid grid-cols-2 gap-4">
-                {product.additionalImages.map((img, index) => (
-                  <div key={index} className="relative overflow-hidden rounded-md bg-white">
-                    <Image
-                      alt={`${product.title} view ${index + 2}`}
-                      className="h-full w-full object-cover"
-                      height={450}
-                      src={img}
-                      width={450}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
+            <div className="w-full max-w-[min(100%,560px)] lg:max-w-none">
+              <ProductAdditionalImagesGallery product={product} />
+            </div>
           </div>
-          <div className="lg:pt-4">
+          <div className="lg:pt-2">
             <ProductPurchasePanel product={product} />
-            <p className="mt-6 max-w-[420px] text-sm leading-7 text-black">{product.description}</p>
           </div>
         </section>
+
+        <ProductCrossCategoryRecommendations products={crossCategoryPicks} />
       </main>
       <FooterSection />
     </div>

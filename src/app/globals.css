@@ -4,8 +4,6 @@
   /* Primary CTAs — README.md / CLAUDE.md Soft Pink UI */
   --brand-cta: #e96a7a;
   --brand-cta-hover: #d85c6c;
-  /* Hero accent word — deeper rose than body pink, still on-brand */
-  --brand-dark-pink: #b84860;
   /* Jewelry gold tuned to NS Jewels logo (warm metallic, not flat yellow) */
   --brand-logo-gold-deep: #8f6918;
   --brand-logo-gold-mid: #c49a3c;
@@ -69,12 +67,14 @@ body {
   color: var(--brand-logo-gold-mid);
 }
 
-.hero-banner-dark-pink {
-  color: var(--brand-dark-pink);
+/* Hero “Luxury” — white, strong halo so it stays readable on the banner */
+.hero-banner-luxury-white {
+  color: #ffffff;
   text-shadow:
-    0 0 26px rgb(255 255 255 / 0.95),
-    0 0 40px rgb(255 255 255 / 0.45),
-    0 2px 12px rgb(0 0 0 / 0.22);
+    0 0 24px rgb(0 0 0 / 0.55),
+    0 0 48px rgb(0 0 0 / 0.38),
+    0 2px 14px rgb(0 0 0 / 0.72),
+    0 0 32px rgb(255 255 255 / 0.35);
 }
 
 .hero-image-float {
