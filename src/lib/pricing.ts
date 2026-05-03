@@ -15,15 +15,16 @@ export type OrderTotals = {
   readonly totalPaisa: number;
 };
 
-export const parsePriceToPaisa = (price: string): number => {
+/** First major amount in a PKR label (avoids ".950.00" → parseFloat 0.95 bug). */
+export const parsePriceStringToRupees = (price: string): number => {
   const normalized = price.replace(/,/g, "");
   const matchedAmount = normalized.match(/\d+(?:\.\d+)?/);
   const asNumber = Number.parseFloat(matchedAmount?.[0] ?? "");
-  if (Number.isNaN(asNumber)) {
-    return 0;
-  }
-  return Math.round(asNumber * 100);
+  return Number.isNaN(asNumber) ? 0 : asNumber;
 };
+
+export const parsePriceToPaisa = (price: string): number =>
+  Math.round(parsePriceStringToRupees(price) * 100);
 
 export const formatPkr = (valuePaisa: number): string => `Rs ${Math.max(0, valuePaisa / 100).toFixed(2)}`;
 

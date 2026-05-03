@@ -15,7 +15,7 @@ const COLLECTIONS: ReadonlyArray<{
   },
   {
     href: productCategoryHref("handcuffs"),
-    imageSrc: "/handcuffs/handcuffs-5.jpeg",
+    imageSrc: "/handcuffs/gucci.jpeg",
     label: "Bold",
   },
   {
@@ -31,8 +31,13 @@ const COLLECTIONS: ReadonlyArray<{
   },
   {
     href: productCategoryHref("rings"),
-    imageSrc: "/rings/ring-8.jpeg",
+    imageSrc: "/rings/chanel%20ring.jpeg",
     label: "Rings",
+  },
+  {
+    href: productCategoryHref("earrings"),
+    imageSrc: "/earrings/Duck%20earing.jpeg",
+    label: "Earrings",
   },
 ] as const;
 

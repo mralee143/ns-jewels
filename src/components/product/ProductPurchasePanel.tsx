@@ -7,21 +7,22 @@ import { useCart } from "@/components/CartProvider";
 import { ProductShareButton } from "@/components/product/ProductShareButton";
 import type { ShopProduct } from "@/data/shop-products";
 import { getProductFeatureBullets } from "@/lib/product-feature-bullets";
+import {
+  formatPkrLine,
+  parsePriceLabelToNumber,
+  resolveCompareAtAmount,
+} from "@/lib/product-price-display";
 
 type ProductPurchasePanelProps = {
   product: ShopProduct;
 };
 
-const parsePrice = (price: string): number => Number.parseFloat(price.replace(/[^\d.]/g, "")) || 0;
-
-const toPkr = (value: number): string => `Rs.${value.toFixed(2)} PKR`;
-
 export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
 
-  const discountedPrice = useMemo(() => parsePrice(product.price), [product.price]);
-  const originalPrice = useMemo(() => discountedPrice + 301, [discountedPrice]);
+  const originalPrice = useMemo(() => resolveCompareAtAmount(product), [product]);
+  const salePrice = useMemo(() => parsePriceLabelToNumber(product.price), [product.price]);
   const featureBullets = useMemo(() => getProductFeatureBullets(product), [product]);
 
   const decreaseQuantity = () => setQuantity((currentQuantity) => Math.max(1, currentQuantity - 1));
@@ -36,13 +37,15 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
         <div className="flex flex-wrap items-start gap-x-8 gap-y-3">
           <div className="flex flex-col gap-2">
             <span className="text-xl font-normal leading-tight text-neutral-500 line-through">
-              {toPkr(originalPrice)}
+              {formatPkrLine(originalPrice)}
             </span>
             <span className="w-fit rounded-full bg-[#F4A6A6] px-3 py-1 text-xs font-semibold text-black ring-1 ring-black/10">
               Sale
             </span>
           </div>
-          <p className="font-display text-3xl font-semibold leading-none tracking-tight text-black">{product.price}</p>
+          <p className="font-display text-3xl font-semibold leading-none tracking-tight text-black">
+            {formatPkrLine(salePrice)}
+          </p>
         </div>
 
         <p className="mt-6 text-sm text-black">

@@ -2,6 +2,7 @@ import type { ProductCategorySlug } from "@/data/product-categories";
 
 export type ShopProduct = {
   readonly category: ProductCategorySlug;
+  readonly compareAtPrice?: string;
   readonly description: string;
   readonly featureBullets?: readonly string[];
   readonly id: string;
@@ -15,28 +16,29 @@ export type ShopProduct = {
 export const SHOP_PRODUCTS: readonly ShopProduct[] = [
   {
     category: "anklets",
+    compareAtPrice: "Rs. 950.00 PKR",
     description:
-      "A delicate gold snake chain anklet with evenly spaced small round gold beads. Perfect for elegant daily wear or special occasions.",
-    id: "gold-snake-chain-anklet",
+      "A delicate beaded chain anklet with a lightweight feel — ideal for everyday wear, beach days, and layering with your favorite sandals.",
+    id: "beaded-chain-anklet",
     imageSrc: "/anklets/anklet-creative-display.png",
     additionalImages: [
       "/anklets/anklet-model-display.png",
       "/anklets/anklet-white-bg.png",
     ],
-    price: "Rs. 499.00 PKR",
-    slug: "gold-snake-chain-anklet",
-    title: "Gold Snake Chain Anklet",
+    price: "Rs. 599.00 PKR",
+    slug: "beaded-chain-anklet",
+    title: "Beaded Chain Anklet",
   },
   {
     category: "rings",
     description:
-      "A classic emerald-inspired ring with a polished finish that works for both everyday styling and festive looks.",
-    id: "emerald-grace-ring",
-    imageSrc: "/rings/ring-1.jpeg",
-    additionalImages: ["/rings/ring-2.jpeg", "/rings/ring-3.jpeg"],
+      "A timeless classic ring silhouette with polished finishing — versatile for everyday wear and gifting.",
+    id: "classic-ring",
+    imageSrc: "/rings/classic%20ring.jpeg",
+    additionalImages: ["/rings/floral%20ring.jpeg"],
     price: "Rs. 599.00 PKR",
-    slug: "emerald-grace-ring",
-    title: "Emerald Grace Ring",
+    slug: "classic-ring",
+    title: "Classic Ring",
   },
   {
     category: "bracelets",
@@ -70,12 +72,112 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
   {
     category: "handcuffs",
     description:
-      "An elegant heart-detailed handcuff style piece, crafted to highlight your hand with minimal effort.",
-    id: "heart-drop-necklace",
-    imageSrc: "/handcuffs/handcuffs-1.jpeg",
+      "Black stone detailing with a polished handcuff silhouette — refined on the wrist for everyday wear.",
+    id: "black-stone-handcuff",
+    imageSrc: "/handcuffs/Black%20Stone.jpeg",
+    compareAtPrice: "Rs. 1499.00 PKR",
+    price: "Rs. 999.00 PKR",
+    slug: "black-stone-handcuff",
+    title: "Black Stone Handcuff",
+  },
+  {
+    category: "handcuffs",
+    description:
+      "Green stone accents on a sleek handcuff profile — easy polish for daytime stacks or evening shine.",
+    id: "green-stone-handcuff",
+    imageSrc: "/handcuffs/Green%20stone.jpeg",
+    compareAtPrice: "Rs. 1499.00 PKR",
+    price: "Rs. 999.00 PKR",
+    slug: "green-stone-handcuff",
+    title: "Green Stone Handcuff",
+  },
+  {
+    category: "handcuffs",
+    description:
+      "White stone highlights with a balanced handcuff form — bright, wearable, and gifts beautifully.",
+    id: "white-stone-handcuff",
+    imageSrc: "/handcuffs/White%20stone.jpeg",
+    compareAtPrice: "Rs. 1499.00 PKR",
+    price: "Rs. 999.00 PKR",
+    slug: "white-stone-handcuff",
+    title: "White Stone Handcuff",
+  },
+  {
+    category: "handcuffs",
+    description:
+      "Floral premium detailing on a sculpted handcuff band — feminine lines with everyday versatility.",
+    id: "floral-premium-handcuff",
+    imageSrc: "/handcuffs/floral%20premium.jpeg",
+    compareAtPrice: "Rs. 1499.00 PKR",
+    price: "Rs. 999.00 PKR",
+    slug: "floral-premium-handcuff",
+    title: "Floral Premium Handcuff",
+  },
+  {
+    category: "handcuffs",
+    description:
+      "Gucci-inspired profiling with a confident handcuff silhouette — polished metal presence on the wrist.",
+    id: "gucci-handcuff",
+    imageSrc: "/handcuffs/gucci.jpeg",
+    compareAtPrice: "Rs. 850.00 PKR",
     price: "Rs. 650.00 PKR",
-    slug: "heart-drop-necklace",
-    title: "Heart Drop Necklace",
+    slug: "gucci-handcuff",
+    title: "Gucci Handcuff",
+  },
+  {
+    category: "handcuffs",
+    description:
+      "Nail-inspired lines with a sculptural handcuff band — sharp polish for stacks that still feel refined.",
+    id: "nail-handcuff",
+    imageSrc: "/handcuffs/Nail.jpeg",
+    compareAtPrice: "Rs. 999.00 PKR",
+    price: "Rs. 750.00 PKR",
+    slug: "nail-handcuff",
+    title: "Nail Handcuff",
+  },
+  {
+    category: "handcuffs",
+    description:
+      "Watch-forward detailing on a streamlined handcuff silhouette — everyday wrist presence with quiet shine.",
+    id: "watch-handcuff",
+    imageSrc: "/handcuffs/watch.jpeg",
+    compareAtPrice: "Rs. 999.00 PKR",
+    price: "Rs. 750.00 PKR",
+    slug: "watch-handcuff",
+    title: "Watch Handcuff",
+  },
+  {
+    category: "handcuffs",
+    description:
+      "Oval watch styling with softened edges — a balanced handcuff profile for dress-down and occasion wear.",
+    id: "oval-watch-handcuff",
+    imageSrc: "/handcuffs/Oval%20watch.jpeg",
+    compareAtPrice: "Rs. 999.00 PKR",
+    price: "Rs. 750.00 PKR",
+    slug: "oval-watch-handcuff",
+    title: "Oval Watch Handcuff",
+  },
+  {
+    category: "handcuffs",
+    description:
+      "Premium metal finishing with a confident handcuff curve — built to anchor your wrist stack.",
+    id: "premium-handcuff",
+    imageSrc: "/handcuffs/Premium.jpeg",
+    compareAtPrice: "Rs. 999.00 PKR",
+    price: "Rs. 750.00 PKR",
+    slug: "premium-handcuff",
+    title: "Premium Handcuff",
+  },
+  {
+    category: "handcuffs",
+    description:
+      "Spiked accent detailing along a polished handcuff band — edge without sacrificing everyday wearability.",
+    id: "spikes-handcuff",
+    imageSrc: "/handcuffs/spikes.jpeg",
+    compareAtPrice: "Rs. 999.00 PKR",
+    price: "Rs. 750.00 PKR",
+    slug: "spikes-handcuff",
+    title: "Spikes Handcuff",
   },
   {
     category: "necklace",
@@ -100,12 +202,35 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
   {
     category: "rings",
     description:
-      "A layered vintage-inspired ring style with textured details that stand out in close-up shots.",
-    id: "vintage-ring-stack",
-    imageSrc: "/rings/ring-2.jpeg",
+      "Butterfly spiral styling with delicate lines — wear solo or stacked with your favorite bands.",
+    id: "butterfly-spiral-ring",
+    imageSrc: "/rings/butterfly%20spiral%20ring.jpeg",
     price: "Rs. 490.00 PKR",
-    slug: "vintage-ring-stack",
-    title: "Vintage Ring Stack",
+    slug: "butterfly-spiral-ring",
+    title: "Butterfly Spiral Ring",
+  },
+  {
+    category: "earrings",
+    compareAtPrice: "Rs. 599.00 PKR",
+    description: "Bow-shaped earrings with a soft shine — easy to dress up or wear every day.",
+    id: "bow-earrings",
+    imageSrc: "/earrings/Bow%20Earing.jpeg",
+    additionalImages: ["/earrings/bow-earring-display-2.jpeg", "/earrings/bow-earring-display-3.jpeg"],
+    price: "Rs. 399.00 PKR",
+    slug: "bow-earrings",
+    title: "Bow Earrings",
+  },
+  {
+    category: "earrings",
+    compareAtPrice: "Rs. 599.00 PKR",
+    description:
+      "Black swan-inspired earrings with an elegant silhouette — a refined accent for day or evening.",
+    id: "black-swan-earrings",
+    imageSrc: "/earrings/Duck%20earing.jpeg",
+    additionalImages: ["/earrings/black-swan-display-2.jpeg", "/earrings/black-swan-display-3.jpeg"],
+    price: "Rs. 399.00 PKR",
+    slug: "black-swan-earrings",
+    title: "Black Swan Earrings",
   },
   {
     category: "necklace",
@@ -130,12 +255,13 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
   {
     category: "handcuffs",
     description:
-      "A velvet-inspired charm handcuff design that adds a bold focal point to your jewelry collection.",
-    id: "velvet-handcuff-charm",
-    imageSrc: "/handcuffs/handcuffs-2.jpeg",
-    price: "Rs. 540.00 PKR",
-    slug: "velvet-handcuff-charm",
-    title: "Velvet Handcuff Charm",
+      "Elara-line styling with a sleek handcuff profile — an elevated accent for layered wrist looks.",
+    id: "elara-handcuff",
+    imageSrc: "/handcuffs/elara.jpeg",
+    compareAtPrice: "Rs. 1299.00 PKR",
+    price: "Rs. 799.00 PKR",
+    slug: "elara-handcuff",
+    title: "Elara Premium Handcuff",
   },
   {
     category: "necklace",
@@ -176,9 +302,9 @@ export const SHOP_PRODUCTS_BY_IMAGE_SRC = SHOP_PRODUCTS.reduce<Record<string, Sh
 );
 
 const DEFAULT_CATEGORY_PRICE: Record<ProductCategorySlug, string> = {
-  anklets: "Rs. 499.00 PKR",
+  anklets: "Rs. 599.00 PKR",
   bracelets: "Rs. 599.00 PKR",
-  earrings: "Rs. 549.00 PKR",
+  earrings: "Rs. 399.00 PKR",
   handchain: "Rs. 450.00 PKR",
   handcuffs: "Rs. 650.00 PKR",
   necklace: "Rs. 699.00 PKR",
@@ -207,6 +333,22 @@ const toFallbackProduct = (category: ProductCategorySlug, imageSrc: string): Sho
   const base = stem.toLowerCase().replace(/[^a-z0-9]+/g, "-");
   const safeBase = base.replace(/^-+|-+$/g, "") || "item";
   const titleStem = toTitleCase(stem) || "Product";
+
+  if (category === "handcuffs") {
+    const title = `${titleStem} Handcuff`;
+    const slug = `${safeBase}-handcuff`;
+
+    return {
+      category,
+      description: `${title} from NS Jewels with premium finishing and elegant daily-wear styling.`,
+      id: slug,
+      imageSrc,
+      price: DEFAULT_CATEGORY_PRICE[category],
+      slug,
+      title,
+    };
+  }
+
   const title = `${toCategoryLabel(category)} ${titleStem}`;
 
   return {

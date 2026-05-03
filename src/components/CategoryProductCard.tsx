@@ -4,18 +4,19 @@ import Link from "next/link";
 
 import { FillImage } from "@/components/FillImage";
 import type { ShopProduct } from "@/data/shop-products";
+import {
+  formatPkrLine,
+  parsePriceLabelToNumber,
+  resolveCompareAtAmount,
+} from "@/lib/product-price-display";
 
 type CategoryProductCardProps = {
   product: ShopProduct;
 };
 
-const parsePrice = (price: string): number => Number.parseFloat(price.replace(/,/g, "").replace(/[^\d.]/g, "")) || 0;
-
-const formatPkr = (value: number): string => `Rs.${value.toFixed(2)} PKR`;
-
 export function CategoryProductCard({ product }: CategoryProductCardProps) {
-  const discountedPrice = parsePrice(product.price);
-  const originalPrice = discountedPrice + 301;
+  const originalPrice = resolveCompareAtAmount(product);
+  const salePrice = parsePriceLabelToNumber(product.price);
 
   return (
     <article className="group flex flex-col bg-white text-left">
@@ -37,8 +38,8 @@ export function CategoryProductCard({ product }: CategoryProductCardProps) {
           </Link>
         </h3>
         <div className="mt-2 flex items-center gap-3">
-          <span className="text-sm text-neutral-500 line-through">{formatPkr(originalPrice)}</span>
-          <span className="text-base text-black">{product.price}</span>
+          <span className="text-sm text-neutral-500 line-through">{formatPkrLine(originalPrice)}</span>
+          <span className="text-base text-black">{formatPkrLine(salePrice)}</span>
         </div>
       </div>
     </article>

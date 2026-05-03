@@ -4,10 +4,10 @@ import Link from "next/link";
 const INSTAGRAM_TILES: ReadonlyArray<{ alt: string; href: string; src: string }> = [
   { alt: "NS Jewels bracelet styling", href: "/products/bracelets", src: "/bracelets/bracelet-6.jpeg" },
   { alt: "NS Jewels necklace layering", href: "/products/necklace", src: "/necklace/necklace-9.jpeg" },
-  { alt: "NS Jewels ring stack", href: "/products/rings", src: "/rings/ring-14.jpeg" },
-  { alt: "NS Jewels earrings", href: "/products/earrings", src: "/earrings/earrings-3.jpeg" },
+  { alt: "NS Jewels ring stack", href: "/products/rings", src: "/rings/double%20butterfly%20ring.jpeg" },
+  { alt: "NS Jewels earrings", href: "/products/earrings", src: "/earrings/Bow%20Earing.jpeg" },
   { alt: "NS Jewels handchain", href: "/products/handchain", src: "/handchain/handchain-2.jpeg" },
-  { alt: "NS Jewels anklet", href: "/products/anklets", src: "/anklets/anklet-creative-display.png" },
+  { alt: "NS Jewels beaded chain anklet", href: "/products/anklets", src: "/anklets/anklet-creative-display.png" },
 ] as const;
 
 export function InstagramGallerySection() {

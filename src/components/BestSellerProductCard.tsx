@@ -5,16 +5,15 @@ import Link from "next/link";
 
 import { StarRating } from "@/components/StarRating";
 import type { ShopProduct } from "@/data/shop-products";
+import { formatRsAmount, parsePriceLabelToNumber } from "@/lib/product-price-display";
 
 type BestSellerProductCardProps = {
   readonly product: ShopProduct;
 };
 
-const parsePriceNumber = (price: string): number =>
-  Number.parseFloat(price.replace(/,/g, "").replace(/[^\d.]/g, "")) || 0;
-
 export function BestSellerProductCard({ product }: BestSellerProductCardProps) {
-  const numericPrice = parsePriceNumber(product.price);
+  const numericPrice = parsePriceLabelToNumber(product.price);
+  const compareNumeric = product.compareAtPrice ? parsePriceLabelToNumber(product.compareAtPrice) : null;
 
   return (
     <article className="group flex flex-col rounded-lg bg-white p-3 shadow-sm ring-1 ring-[#EFE9FF] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md hover:ring-[#C4B5FD]/80">
@@ -45,10 +44,13 @@ export function BestSellerProductCard({ product }: BestSellerProductCardProps) {
         <Link className="font-display text-base font-semibold text-black transition-colors duration-200 hover:text-neutral-800" href={`/product/${product.slug}`}>
           {product.title}
         </Link>
-        <div className="mt-1 flex items-center gap-2">
-          <span className="text-sm font-semibold tabular-nums text-black">
-            Rs. {numericPrice.toLocaleString("en-PK")}
-          </span>
+        <div className="mt-1 flex flex-wrap items-center gap-2">
+          {compareNumeric !== null ? (
+            <span className="text-xs font-medium tabular-nums text-neutral-500 line-through">
+              {formatRsAmount(compareNumeric)}
+            </span>
+          ) : null}
+          <span className="text-sm font-semibold tabular-nums text-black">{formatRsAmount(numericPrice)}</span>
         </div>
         <div className="mt-2">
           <StarRating />

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useCart } from "@/components/CartProvider";
 import { FillImage } from "@/components/FillImage";
 import { calculateOrderTotals, formatPkrDetailed, parsePriceToPaisa, TAX_RATE } from "@/lib/pricing";
+import { formatPkrLine, parsePriceLabelToNumber } from "@/lib/product-price-display";
 
 export function CartPageContent() {
   const { decreaseItem, increaseItem, items, removeItem } = useCart();
@@ -44,7 +45,9 @@ export function CartPageContent() {
             </div>
             <div className="flex-1">
               <h3 className="font-semibold text-black">{item.product.title}</h3>
-              <p className="mt-1 text-sm text-black">{item.product.price} each</p>
+              <p className="mt-1 text-sm text-black">
+                {formatPkrLine(parsePriceLabelToNumber(item.product.price))} each
+              </p>
               <p className="mt-1 text-xs font-medium text-black">
                 Line total: {formatPkrDetailed(parsePriceToPaisa(item.product.price) * item.quantity)}
               </p>

@@ -4,13 +4,13 @@ import { StarRating } from "@/components/StarRating";
 
 const TESTIMONIALS: ReadonlyArray<{ avatarSrc: string; name: string; quote: string }> = [
   {
-    avatarSrc: "/earrings/earrings-1.jpeg",
+    avatarSrc: "/earrings/Bow%20Earing.jpeg",
     name: "Aisha K.",
     quote:
       "The finish still looks brand new after weeks of daily wear. Elegant packaging and quick delivery — exactly what I hoped for.",
   },
   {
-    avatarSrc: "/rings/ring-12.jpeg",
+    avatarSrc: "/rings/classic%20ring.jpeg",
     name: "Mira L.",
     quote:
       "Finally jewelry that doesn’t irritate my skin. The violet-toned pieces photograph beautifully for my small business shoots.",
