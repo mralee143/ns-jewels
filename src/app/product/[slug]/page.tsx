@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { FillImage } from "@/components/FillImage";
 import { FooterSection } from "@/components/FooterSection";
 import { Navbar } from "@/components/Navbar";
 import { ProductAdditionalImagesGallery } from "@/components/product/ProductAdditionalImagesGallery";
@@ -76,10 +76,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
             <div
               className={`relative aspect-square w-full max-w-[min(100%,560px)] overflow-hidden rounded-md lg:max-w-none ${productDetailImageTileBg(product.category)}`}
             >
-              <Image
+              <FillImage
                 alt={product.title}
                 className={productDetailHeroImageFitClass(product.category)}
-                fill
                 priority
                 sizes="(min-width: 1024px) 44vw, 100vw"
                 src={product.imageSrc}

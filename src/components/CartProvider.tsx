@@ -18,6 +18,7 @@ type CartAction =
       readonly type: "ADD_ITEM";
       readonly payload: { readonly product: ShopProduct; readonly quantity: number };
     }
+  | { readonly type: "CLEAR_CART" }
   | { readonly type: "DECREASE_ITEM"; readonly payload: { readonly productId: string } }
   | { readonly type: "HYDRATE"; readonly payload: CartState }
   | { readonly type: "INCREASE_ITEM"; readonly payload: { readonly productId: string } }
@@ -26,6 +27,7 @@ type CartAction =
 type CartContextValue = {
   readonly addToCart: (product: ShopProduct, quantity?: number) => void;
   readonly cartCount: number;
+  readonly clearCart: () => void;
   readonly decreaseItem: (productId: string) => void;
   readonly increaseItem: (productId: string) => void;
   readonly items: readonly CartItem[];
@@ -136,6 +138,8 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       return {
         items: state.items.filter((item) => item.product.id !== action.payload.productId),
       };
+    case "CLEAR_CART":
+      return EMPTY_CART_STATE;
     default:
       return state;
   }
@@ -168,6 +172,7 @@ export function CartProvider({ children }: Readonly<{ children: React.ReactNode 
           payload: { product, quantity: Math.max(1, Math.floor(quantity)) },
         }),
       cartCount: state.items.reduce((total, item) => total + item.quantity, 0),
+      clearCart: () => dispatch({ type: "CLEAR_CART" }),
       decreaseItem: (productId) => dispatch({ type: "DECREASE_ITEM", payload: { productId } }),
       increaseItem: (productId) => dispatch({ type: "INCREASE_ITEM", payload: { productId } }),
       items: state.items,

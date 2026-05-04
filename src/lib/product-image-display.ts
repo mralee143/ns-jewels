@@ -1,61 +1,51 @@
 import type { ProductCategorySlug } from "@/data/product-categories";
 
-/** Category grid: anklets only use contain (flat circular lay). */
-const categoryCardContainCategories: ReadonlySet<ProductCategorySlug> = new Set(["anklets"]);
-
-/** PDP + gallery: anklets only use contain so thin layouts stay uncropped. */
-const detailPageContainCategories: ReadonlySet<ProductCategorySlug> = new Set(["anklets"]);
-
 /**
- * Category grid: sets and most categories use cover (edge-to-edge, no letterboxing). Anklets use
- * contain on a square tile.
+ * Category grid: cover fills the tile edge-to-edge (same for all categories).
  */
 export function productCardImageFitClass(category: ProductCategorySlug): string {
-  return categoryCardContainCategories.has(category)
-    ? "object-contain object-center p-4 sm:p-5 transition-transform duration-700 group-hover:scale-[1.03]"
-    : "object-cover object-center transition-transform duration-700 group-hover:scale-105";
+  void category;
+  return "object-cover object-center transition-transform duration-700 group-hover:scale-105";
 }
 
 export function productDetailHeroImageFitClass(category: ProductCategorySlug): string {
-  return detailPageContainCategories.has(category)
-    ? "object-contain object-center p-6 sm:p-10"
-    : "object-cover object-center";
+  void category;
+  return "object-cover object-center";
 }
 
 export function productGalleryThumbFitClass(category: ProductCategorySlug): string {
-  return detailPageContainCategories.has(category)
-    ? "object-contain object-center p-3 sm:p-4"
-    : "object-cover object-center";
+  void category;
+  return "object-cover object-center";
 }
 
-/** Category listing tiles: white behind contain (anklets); neutral behind cover. */
+/** Category listing tiles: neutral wash behind product photos. */
 export function productCategoryCardTileBg(category: ProductCategorySlug): string {
-  return categoryCardContainCategories.has(category) ? "bg-white" : "bg-neutral-100";
+  void category;
+  return "bg-neutral-100";
 }
 
-/** Product detail hero / gallery tile wash behind the image (mostly visible with contain). */
+/** Product detail hero / gallery tile wash behind the image. */
 export function productDetailImageTileBg(category: ProductCategorySlug): string {
-  return detailPageContainCategories.has(category) ? "bg-white" : "bg-neutral-100";
+  void category;
+  return "bg-neutral-100";
 }
 
 /**
- * Cart & checkout thumbnails: anklets use contain; sets and others use cover (no empty bands).
+ * Cart & checkout thumbnails: cover fills the thumb (no empty bands from letterboxing).
  */
 export function productCartThumbFitClass(category: ProductCategorySlug): string {
-  return detailPageContainCategories.has(category)
-    ? "object-contain object-center p-1.5 sm:p-2"
-    : "object-cover object-center";
+  void category;
+  return "object-cover object-center";
 }
 
-/** Checkout sidebar — lighter padding for contain (anklets) only. */
 export function productCheckoutThumbFitClass(category: ProductCategorySlug): string {
-  return detailPageContainCategories.has(category)
-    ? "object-contain object-center p-0.5 sm:p-1"
-    : "object-cover object-center";
+  void category;
+  return "object-cover object-center";
 }
 
 export function productCartThumbBg(category: ProductCategorySlug): string {
-  return detailPageContainCategories.has(category) ? "bg-white" : "bg-neutral-100";
+  void category;
+  return "bg-neutral-100";
 }
 
 /** Cart page row thumbnail. */

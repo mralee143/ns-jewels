@@ -21,6 +21,55 @@ const NAV_ITEMS: ReadonlyArray<{ href: string; label: string }> = PRODUCT_CATEGO
   })
 );
 
+const ANNOUNCEMENT_LINES = [
+  "Welcome to NS Jewels — fine jewelry for the moments you want to remember",
+  "Hand-finished details · edited collections you will not find on the high street",
+  "Complimentary delivery on qualifying orders · secure checkout, always",
+  "New pieces land often — follow the sparkle and treat yourself, guilt-free",
+] as const;
+
+const ANNOUNCEMENT_ARIA_LABEL = ANNOUNCEMENT_LINES.join(". ");
+
+function AnnouncementTruckIcon() {
+  return (
+    <svg
+      aria-hidden
+      className="h-4 w-4 shrink-0 text-[#E96A7A]"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12 0a48.667 48.667 0 00-12 0"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function AnnouncementStarIcon() {
+  return (
+    <svg aria-hidden className="logo-gold-accent h-4 w-4 shrink-0" viewBox="0 0 24 24">
+      <path
+        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+function AnnouncementLineSegment({ text }: { text: string }) {
+  return (
+    <span className="flex shrink-0 items-center gap-2 px-5 sm:gap-2.5 sm:px-8">
+      <AnnouncementTruckIcon />
+      <span className="whitespace-nowrap text-[#E96A7A]">{text}</span>
+      <AnnouncementStarIcon />
+    </span>
+  );
+}
+
 export function Navbar() {
   const { openLogin } = useAuthModal();
   const { cartCount } = useCart();
@@ -49,33 +98,31 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-30">
+    <header className="page-entrance-nav sticky top-0 z-30">
       <div
-        aria-label="Announcement"
-        className="flex items-center justify-center gap-2 border-b border-[#F0D3DA] bg-[#F6C1CC] px-4 py-2 text-center text-sm font-semibold tracking-wide sm:gap-2.5 sm:text-[0.9375rem]"
+        aria-label={ANNOUNCEMENT_ARIA_LABEL}
+        className="border-b border-[#F0D3DA] bg-[#F6C1CC] text-sm font-semibold tracking-wide sm:text-[0.9375rem]"
         role="region"
       >
-        <svg
-          aria-hidden
-          className="h-4 w-4 shrink-0 text-[#E96A7A]"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12 0a48.667 48.667 0 00-12 0"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-        <span className="text-[#E96A7A]">Welcome to NS Jewels</span>
-        <svg aria-hidden className="logo-gold-accent h-4 w-4 shrink-0" viewBox="0 0 24 24">
-          <path
-            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-            fill="currentColor"
-          />
-        </svg>
+        <div className="hidden items-center justify-center gap-2 px-4 py-2 text-center motion-reduce:flex">
+          <AnnouncementTruckIcon />
+          <span className="text-balance text-[#E96A7A]">{ANNOUNCEMENT_ARIA_LABEL}</span>
+          <AnnouncementStarIcon />
+        </div>
+        <div aria-hidden className="announcement-marquee-root motion-reduce:hidden">
+          <div className="announcement-marquee-track flex w-max py-2">
+            <div className="flex shrink-0 flex-nowrap items-center">
+              {ANNOUNCEMENT_LINES.map((line, index) => (
+                <AnnouncementLineSegment key={`a-${index}`} text={line} />
+              ))}
+            </div>
+            <div className="flex shrink-0 flex-nowrap items-center">
+              {ANNOUNCEMENT_LINES.map((line, index) => (
+                <AnnouncementLineSegment key={`b-${index}`} text={line} />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
       <div className="relative flex w-full items-center justify-between gap-3 border-b border-[#F0D3DA] bg-white px-4 py-3 sm:gap-4 sm:px-6 lg:gap-6 lg:px-8 lg:py-4">
         <button
@@ -114,11 +161,7 @@ export function Navbar() {
             height={307}
             priority
             src="/brand_logo.png"
-<<<<<<< HEAD
-            width={600}
-=======
             width={1024}
->>>>>>> 3552c71dbbf116b59857689597909bcf2b60cba3
           />
         </Link>
 
@@ -126,7 +169,7 @@ export function Navbar() {
           aria-label="Primary"
           className="absolute left-1/2 hidden min-w-0 -translate-x-1/2 lg:static lg:flex lg:translate-x-0 lg:flex-1 lg:justify-center"
         >
-          <ul className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-[0.65rem] font-black uppercase tracking-[0.14em] text-black sm:gap-x-3.5 xl:gap-x-4 xl:text-[0.75rem]">
+          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[0.65rem] font-black uppercase tracking-[0.14em] text-black sm:gap-x-6 xl:gap-x-8 xl:text-[0.75rem]">
             {NAV_ITEMS.map((item) => (
               <li key={item.label}>
                 <Link
@@ -140,11 +183,7 @@ export function Navbar() {
           </ul>
         </nav>
 
-<<<<<<< HEAD
         {/* Actions — search opens full-width row below (same on mobile and desktop) */}
-        <div className="z-10 flex shrink-0 items-center gap-3 text-[#581c87] sm:gap-5 lg:ml-0">
-          {isSearchOpen ? (
-=======
         <div className="z-10 flex shrink-0 items-center gap-3 text-black sm:gap-5 lg:ml-0">
           {isSearchOpen ? (
             <button
@@ -173,7 +212,6 @@ export function Navbar() {
           )}
           {!isSearchOpen ? (
             <>
->>>>>>> 3552c71dbbf116b59857689597909bcf2b60cba3
               <button
                 aria-label="Sign in"
                 className="text-black transition-colors duration-200 hover:text-neutral-800"
@@ -184,23 +222,6 @@ export function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                 </svg>
               </button>
-<<<<<<< HEAD
-            )}
-            {!isSearchOpen ? (
-              <>
-                <button aria-label="Login" className="text-[#581c87] transition-colors duration-200 hover:text-[#7e22ce]" type="button">
-                  <svg className="h-6 w-6 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                  </svg>
-                </button>
-                <button aria-label="Shopping bag" className="text-[#581c87] transition-colors duration-200 hover:text-[#7e22ce]" type="button">
-                  <svg className="h-6 w-6 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                  </svg>
-                </button>
-              </>
-            ) : null}
-=======
               <Link
                 aria-label="Shopping bag"
                 className="relative text-black transition-colors duration-200 hover:text-neutral-800"
@@ -217,7 +238,6 @@ export function Navbar() {
               </Link>
             </>
           ) : null}
->>>>>>> 3552c71dbbf116b59857689597909bcf2b60cba3
         </div>
       </div>
 

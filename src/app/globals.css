@@ -47,6 +47,64 @@ body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
+/* Navbar announcement — clip wide track so it does not widen the page / show a horizontal scrollbar */
+.announcement-marquee-root {
+  overflow-x: hidden;
+}
+
+.announcement-marquee-track {
+  animation: announcement-marquee-scroll 48s linear infinite;
+}
+
+@keyframes announcement-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .announcement-marquee-track {
+    animation: none;
+  }
+}
+
+/* Navbar announcement — single row, infinite loop scrolling left → right */
+.announcement-marquee-root {
+  overflow: hidden;
+  width: 100%;
+}
+
+.announcement-marquee-track {
+  align-items: center;
+  animation: announcement-marquee-ltr 48s linear infinite;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: max-content;
+  will-change: transform;
+}
+
+@keyframes announcement-marquee-ltr {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .announcement-marquee-track {
+    animation: none;
+    transform: none;
+  }
+}
+
 /* Hero — readable black type on photography without tinting the image */
 .hero-banner-heading {
   text-shadow:
@@ -65,6 +123,22 @@ body {
 /* Small accents (e.g. announcement star) — solid tone from logo mid gold */
 .logo-gold-accent {
   color: var(--brand-logo-gold-mid);
+}
+
+/* Wordmark / headline — warm gold foil (uses logo palette from :root) */
+.brand-gold-gradient-text {
+  background: linear-gradient(
+    118deg,
+    var(--brand-logo-gold-deep) 0%,
+    var(--brand-logo-gold-mid) 32%,
+    var(--brand-logo-gold-light) 52%,
+    var(--brand-logo-gold-mid) 72%,
+    var(--brand-logo-gold-deep) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Hero “Luxury” — white, strong halo so it stays readable on the banner */
@@ -133,6 +207,139 @@ body {
   .made-for-her-heading-reveal,
   .made-for-her-card-reveal {
     animation: none;
+  }
+}
+
+/* —— Page load: first paint entrance (respects reduced motion) —— */
+@keyframes page-entrance-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes page-entrance-fade-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes page-entrance-hero-reveal {
+  from {
+    opacity: 0;
+    transform: scale(1.035);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes page-entrance-fab-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.page-entrance-nav {
+  animation: page-entrance-fade-in 0.5s ease-out both;
+}
+
+.page-entrance-hero-media {
+  animation: page-entrance-hero-reveal 0.82s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+  transform-origin: center center;
+}
+
+.page-entrance-hero-copy {
+  animation: page-entrance-fade-rise 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.14s both;
+}
+
+.page-entrance-main {
+  animation: page-entrance-fade-rise 0.68s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.page-entrance-footer {
+  animation: page-entrance-fade-rise 0.64s cubic-bezier(0.22, 1, 0.36, 1) 0.26s both;
+}
+
+.page-entrance-fab {
+  animation: page-entrance-fab-pop 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-entrance-nav,
+  .page-entrance-hero-media,
+  .page-entrance-hero-copy,
+  .page-entrance-main,
+  .page-entrance-footer,
+  .page-entrance-fab {
+    animation: page-entrance-fade-in 0.35s ease-out both;
+  }
+
+  .page-entrance-hero-media,
+  .page-entrance-hero-copy,
+  .page-entrance-main,
+  .page-entrance-footer,
+  .page-entrance-fab {
+    animation-delay: 0s;
+  }
+}
+
+/* FillImage — fade / gentle scale in after decode (not full-opacity before motion) */
+.fill-image-reveal {
+  opacity: 0;
+  transform: scale(1.024);
+}
+
+.fill-image-reveal.fill-image-reveal--ready {
+  animation: fill-image-reveal-in 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes fill-image-reveal-in {
+  from {
+    opacity: 0;
+    transform: scale(1.024);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fill-image-reveal-in-reduce {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill-image-reveal {
+    transform: none;
+  }
+
+  .fill-image-reveal.fill-image-reveal--ready {
+    animation: fill-image-reveal-in-reduce 0.22s ease-out forwards;
   }
 }
 

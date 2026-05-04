@@ -18,7 +18,7 @@ export function WhatsAppFloatButton() {
   const button = (
     <a
       aria-label="Chat on WhatsApp"
-      className="pointer-events-auto fixed bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] z-[100] flex h-[52px] w-[52px] touch-manipulation items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_14px_rgba(0,0,0,0.25)] ring-2 ring-white/70 transition-transform duration-200 hover:scale-105 active:scale-95 sm:bottom-[max(1.5rem,env(safe-area-inset-bottom,0px))] sm:right-[max(1.5rem,env(safe-area-inset-right,0px))] sm:h-14 sm:w-14"
+      className="page-entrance-fab pointer-events-auto fixed bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] z-[100] flex h-[52px] w-[52px] touch-manipulation items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_14px_rgba(0,0,0,0.25)] ring-2 ring-white/70 transition-transform duration-200 hover:scale-105 active:scale-95 sm:bottom-[max(1.5rem,env(safe-area-inset-bottom,0px))] sm:right-[max(1.5rem,env(safe-area-inset-right,0px))] sm:h-14 sm:w-14"
       href={WHATSAPP_HREF}
       rel="noopener noreferrer"
       target="_blank"

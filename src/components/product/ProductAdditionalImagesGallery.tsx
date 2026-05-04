@@ -1,5 +1,4 @@
-import Image from "next/image";
-
+import { FillImage } from "@/components/FillImage";
 import type { ShopProduct } from "@/data/shop-products";
 import { productDetailImageTileBg, productGalleryThumbFitClass } from "@/lib/product-image-display";
 
@@ -23,10 +22,9 @@ export function ProductAdditionalImagesGallery({ product }: ProductAdditionalIma
           className={`relative aspect-square overflow-hidden rounded-md ${productDetailImageTileBg(product.category)}`}
           key={`${src}-${index.toString()}`}
         >
-          <Image
+          <FillImage
             alt={`${product.title} — photo ${index + 2}`}
             className={productGalleryThumbFitClass(product.category)}
-            fill
             sizes="(min-width: 1024px) 22vw, (min-width: 640px) 35vw, 50vw"
             src={src}
           />

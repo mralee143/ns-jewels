@@ -1,10 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
+import { FillImage } from "@/components/FillImage";
 import { StarRating } from "@/components/StarRating";
 import type { ShopProduct } from "@/data/shop-products";
+import { productCardImageFitClass } from "@/lib/product-image-display";
 import { formatRsAmount, parsePriceLabelToNumber } from "@/lib/product-price-display";
 
 type BestSellerProductCardProps = {
@@ -19,10 +20,9 @@ export function BestSellerProductCard({ product }: BestSellerProductCardProps) {
     <article className="group flex flex-col rounded-lg bg-white p-3 shadow-sm ring-1 ring-[#EFE9FF] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md hover:ring-[#C4B5FD]/80">
       <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-[#F7F5FF]">
         <Link className="absolute inset-0 block" href={`/product/${product.slug}`}>
-          <Image
+          <FillImage
             alt={product.title}
-            className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-            fill
+            className={productCardImageFitClass(product.category)}
             sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
             src={product.imageSrc}
           />

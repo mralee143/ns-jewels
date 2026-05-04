@@ -4,9 +4,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { FillImage } from "@/components/FillImage";
-import { PRIMARY_HERO_BANNER_SRC } from "@/data/hero-banner";
+import {
+  PRIMARY_HERO_BANNER_SRC,
+  SECONDARY_HERO_BANNER_SRC,
+} from "@/data/hero-banner";
 
-const HERO_IMAGES = [PRIMARY_HERO_BANNER_SRC];
+const HERO_IMAGES = [PRIMARY_HERO_BANNER_SRC, SECONDARY_HERO_BANNER_SRC];
 
 export function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,7 +26,7 @@ export function HeroSection() {
     <section className="relative w-full bg-background">
       <div className="relative flex w-full min-w-0 flex-col items-center justify-center">
         {/* Banner image */}
-        <div className="relative aspect-[4/5] w-full min-w-0 overflow-hidden sm:aspect-[16/9] lg:aspect-[1525/528]">
+        <div className="page-entrance-hero-media relative aspect-[4/5] w-full min-w-0 overflow-hidden sm:aspect-[16/9] lg:aspect-[1525/528]">
           {HERO_IMAGES.map((src, index) => (
             <FillImage
               key={src}
@@ -32,6 +35,7 @@ export function HeroSection() {
                 index === currentIndex ? "opacity-100" : "opacity-0"
               } max-md:object-[62%_center] md:object-center`}
               priority={index === 0}
+              revealOnLoad={false}
               sizes="100vw"
               src={src}
             />
@@ -39,7 +43,7 @@ export function HeroSection() {
         </div>
 
         {/* Copy sits directly on the banner — no color wash; shadows keep type readable */}
-        <div className="absolute inset-0 flex flex-col justify-end px-8 pb-14 sm:px-14 sm:pb-16 md:justify-center md:pb-0 lg:px-28">
+        <div className="page-entrance-hero-copy absolute inset-0 flex flex-col justify-end px-8 pb-14 sm:px-14 sm:pb-16 md:justify-center md:pb-0 lg:px-28">
           <div className="max-w-md space-y-5 text-left sm:max-w-xl sm:space-y-6">
             <h1 className="hero-banner-heading font-display text-4xl font-semibold italic tracking-[0.12em] text-black sm:text-5xl md:text-6xl lg:text-7xl">
               Everyday{" "}

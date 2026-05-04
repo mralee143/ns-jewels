@@ -1,8 +1,3 @@
-import Link from "next/link";
-
-import { FillImage } from "@/components/FillImage";
-import { PRIMARY_HERO_BANNER_SRC } from "@/data/hero-banner";
-
 const TESTIMONIALS: ReadonlyArray<{ name: string; quote: string }> = [
   {
     name: "Annie",
@@ -38,36 +33,6 @@ export function AboutUsSection() {
               <p className="mt-4 font-mono text-base text-black">- {item.name}</p>
             </article>
           ))}
-        </div>
-      </div>
-      <div className="relative mt-12 h-[min(76vh,720px)] w-full overflow-hidden lg:h-screen">
-        <FillImage
-          alt="NS Jewels Collection"
-          className="hero-image-float object-cover object-[72%_center] lg:object-center"
-          priority
-          sizes="100vw"
-          src={PRIMARY_HERO_BANNER_SRC}
-        />
-        <div className="absolute inset-0 z-10">
-          <div className="mx-auto flex h-full w-full max-w-[1320px] items-center px-6 sm:px-10 lg:px-12">
-            <div className="w-full max-w-[620px] text-left text-black">
-              <h1 className="hero-banner-heading mb-4 font-display text-4xl font-semibold tracking-[0.12em] text-black sm:text-5xl md:text-6xl lg:text-7xl">
-                NS Jewels
-              </h1>
-              <p className="hero-banner-subtext mb-8 text-sm font-medium leading-relaxed tracking-wide text-black sm:text-base md:text-lg">
-                Discover the essence of elegance with our exclusive collection of
-                fine jewelry. Handcrafted with precision and passion, each piece
-                is designed to celebrate your unique style and unforgettable
-                moments.
-              </p>
-              <Link
-                className="inline-block rounded-full bg-cta px-8 py-3.5 text-xs font-bold uppercase tracking-[0.16em] text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-cta-hover hover:shadow-xl"
-                href="/#products"
-              >
-                Shop Collection
-              </Link>
-            </div>
-          </div>
         </div>
       </div>
     </section>

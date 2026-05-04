@@ -12,15 +12,13 @@ export default function Home() {
     <div className="min-h-screen bg-background text-black">
       <Navbar />
       <HeroSection />
-      <main className="py-12">
+      <main className="page-entrance-main py-12">
         <div className="px-5 sm:px-8 lg:px-12">
           <MadeForHerSection />
           <StyleIdeasSection />
         </div>
         <AboutUsSection />
-        <div className="px-5 sm:px-8 lg:px-12">
-          <WhyNsJewelsSection />
-        </div>
+        <WhyNsJewelsSection />
       </main>
       <FooterSection />
       <WhatsAppFloatButton />

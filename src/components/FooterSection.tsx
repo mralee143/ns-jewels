@@ -40,23 +40,16 @@ const SOCIAL_LINKS: ReadonlyArray<{ href: string; icon: ReactNode; label: string
 
 export function FooterSection() {
   return (
-    <footer className="mt-8 bg-[#F6C1CC] text-black">
+    <footer className="page-entrance-footer mt-8 bg-[#F6C1CC] text-black">
       <div className="grid w-full grid-cols-1 gap-8 px-5 py-12 sm:px-8 md:grid-cols-2 md:gap-x-10 lg:grid-cols-4 lg:gap-x-8 lg:px-12">
         <div className="text-left">
           <Link className="inline-block" href="/">
             <Image
               alt="NS Jewels logo"
-<<<<<<< HEAD
               className="h-auto w-[200px] mix-blend-multiply sm:w-[220px]"
-              height={300}
-              src="/brand_logo.png"
-              width={600}
-=======
-              className="h-auto w-[220px] sm:w-[260px]"
               height={307}
               src="/brand_logo.png"
               width={1024}
->>>>>>> 3552c71dbbf116b59857689597909bcf2b60cba3
             />
           </Link>
           <div className="mt-5 flex items-center gap-4 text-black">

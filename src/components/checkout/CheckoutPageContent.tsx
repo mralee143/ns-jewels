@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { useCart } from "@/components/CartProvider";
 import { FillImage } from "@/components/FillImage";
@@ -11,7 +12,8 @@ import {
 import { calculateOrderTotals, formatPkrDetailed, parsePriceToPaisa, TAX_RATE } from "@/lib/pricing";
 
 export function CheckoutPageContent() {
-  const { items } = useCart();
+  const router = useRouter();
+  const { clearCart, items } = useCart();
   const totals = calculateOrderTotals(items);
 
   if (items.length === 0) {
@@ -30,7 +32,14 @@ export function CheckoutPageContent() {
   }
 
   return (
-    <section className="grid grid-cols-1 gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+    <form
+      className="grid grid-cols-1 gap-8 lg:grid-cols-[1.2fr_0.8fr]"
+      onSubmit={(event) => {
+        event.preventDefault();
+        clearCart();
+        router.push("/");
+      }}
+    >
       <div className="space-y-6">
         <div>
           <div className="flex items-center justify-between">
@@ -40,7 +49,7 @@ export function CheckoutPageContent() {
             </button>
           </div>
           <input
-            className="mt-3 w-full rounded-md border border-[#cbd5e1] px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
+            className="mt-3 w-full rounded-md border border-[#cbd5e1] bg-white px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
             placeholder="Email or mobile phone number"
             type="text"
           />
@@ -50,55 +59,75 @@ export function CheckoutPageContent() {
           <h2 className="text-3xl font-semibold text-black">Delivery</h2>
           <div className="mt-3 space-y-3">
             <input
-              className="w-full rounded-md border border-[#cbd5e1] px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
+              className="w-full rounded-md border border-[#cbd5e1] bg-white px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
               defaultValue="Pakistan"
               placeholder="Country/Region"
               type="text"
             />
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <input
-                className="rounded-md border border-[#cbd5e1] px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
+                className="rounded-md border border-[#cbd5e1] bg-white px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
                 placeholder="First name"
                 type="text"
               />
               <input
-                className="rounded-md border border-[#cbd5e1] px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
+                className="rounded-md border border-[#cbd5e1] bg-white px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
                 placeholder="Last name"
                 type="text"
               />
             </div>
             <input
-              className="w-full rounded-md border border-[#cbd5e1] px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
+              className="w-full rounded-md border border-[#cbd5e1] bg-white px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
               placeholder="Address"
               type="text"
             />
             <input
-              className="w-full rounded-md border border-[#cbd5e1] px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
+              className="w-full rounded-md border border-[#cbd5e1] bg-white px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
               placeholder="Apartment, suite, etc. (optional)"
               type="text"
             />
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <input
-                className="rounded-md border border-[#cbd5e1] px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
+                className="rounded-md border border-[#cbd5e1] bg-white px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
                 placeholder="City"
                 type="text"
               />
               <input
-                className="rounded-md border border-[#cbd5e1] px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
+                className="rounded-md border border-[#cbd5e1] bg-white px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
                 placeholder="Postal code (optional)"
                 type="text"
               />
             </div>
             <input
-              className="w-full rounded-md border border-[#cbd5e1] px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
+              className="w-full rounded-md border border-[#cbd5e1] bg-white px-4 py-3 text-sm outline-none focus:border-[#94a3b8]"
               placeholder="Phone"
               type="text"
             />
           </div>
         </div>
+
+        <div>
+          <h2 className="text-3xl font-semibold text-black">Payment</h2>
+          <fieldset className="mt-3">
+            <legend className="sr-only">Payment method</legend>
+            <label className="flex cursor-pointer items-center gap-3 rounded-md border border-[#cbd5e1] bg-white px-4 py-3 text-sm text-black transition-colors duration-200 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-cta/40">
+              <input
+                className="size-4 shrink-0 accent-cta"
+                defaultChecked
+                name="paymentMethod"
+                type="radio"
+                value="cod"
+              />
+              <span>
+                <span className="font-medium">Cash on delivery (COD)</span>
+                <span className="mt-0.5 block text-xs text-[#6E6E6E]">Pay when your order arrives.</span>
+              </span>
+            </label>
+          </fieldset>
+        </div>
       </div>
 
-      <aside className="rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-6">
+      <aside className="rounded-2xl border border-[#e2e8f0] bg-white p-6 shadow-sm">
         <div className="space-y-4">
           {items.map((item) => (
             <div className="flex items-center gap-3" key={item.product.id}>
@@ -139,7 +168,14 @@ export function CheckoutPageContent() {
             <span className="text-3xl font-bold text-black">{formatPkrDetailed(totals.totalPaisa)}</span>
           </div>
         </div>
+
+        <button
+          className="mt-6 w-full rounded-full bg-cta px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-cta-hover"
+          type="submit"
+        >
+          Confirm order
+        </button>
       </aside>
-    </section>
+    </form>
   );
 }

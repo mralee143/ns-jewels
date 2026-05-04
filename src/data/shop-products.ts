@@ -347,6 +347,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "A matching heart-themed set in a deep tone — balanced shine for everyday outfits and gifting.",
     id: "sets-black-heart",
     imageSrc: "/sets/black%20heart%20set.jpeg",
+    additionalImages: [
+      "/sets/black-heart-set-gallery-blush-silk.png",
+      "/sets/black-heart-set-gallery-wood-linen.png",
+    ],
     compareAtPrice: SETS_COMPARE_AT_PRICE,
     price: SETS_SALE_PRICE,
     slug: "sets-black-heart",
@@ -428,6 +432,35 @@ export const SHOP_PRODUCTS_BY_SLUG = SHOP_PRODUCTS.reduce<Record<string, ShopPro
   }),
   {}
 );
+
+/** Home “Shop By Category”: two handcuffs plus a broad mix (see `StyleIdeasSection`). */
+const HOME_SHOP_BY_CATEGORY_SLUGS = [
+  "black-stone-handcuff",
+  "gucci-handcuff",
+  "beaded-chain-anklet",
+  "classic-ring",
+  "butterfly-spiral-ring",
+  "mesh-watch-bracelet",
+  "classic-bracelet",
+  "heartlock-ring",
+  "luna-crystal-pendant",
+  "pendant-glow",
+  "crystal-duo-set",
+  "bow-earrings",
+  "black-swan-earrings",
+  "sets-black-clover",
+  "sets-golden-heart",
+  "sets-circle-watch",
+] as const;
+
+export const HOME_SHOP_BY_CATEGORY_PRODUCTS: readonly ShopProduct[] =
+  HOME_SHOP_BY_CATEGORY_SLUGS.map((slug) => {
+    const product = SHOP_PRODUCTS_BY_SLUG[slug];
+    if (product === undefined) {
+      throw new Error(`HOME_SHOP_BY_CATEGORY_PRODUCTS: missing slug "${slug}"`);
+    }
+    return product;
+  });
 
 export const SHOP_PRODUCTS_BY_IMAGE_SRC = SHOP_PRODUCTS.reduce<Record<string, ShopProduct>>(
   (accumulator, product) => ({

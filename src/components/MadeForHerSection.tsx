@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+const SECTION_IMAGE_QUALITY = 92 as const;
+
 const MADE_FOR_HER_IMAGES: ReadonlyArray<{ alt: string; src: string }> = [
   { alt: "Model wearing gold heart earrings and necklace", src: "/made for her/image 1.png" },
   { alt: "Gold heart jewelry styled for everyday wear", src: "/made for her/image 2.png" },
@@ -27,6 +29,7 @@ export function MadeForHerSection() {
               alt={image.alt}
               className="h-64 w-full object-cover transition-transform duration-500 hover:scale-105 sm:h-72 lg:h-80"
               height={460}
+              quality={SECTION_IMAGE_QUALITY}
               sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
               src={image.src}
               width={320}

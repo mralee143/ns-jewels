@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { ShopProductCard } from "@/components/ShopProductCard";
-import { SHOP_PRODUCTS } from "@/data/shop-products";
+import { HOME_SHOP_BY_CATEGORY_PRODUCTS } from "@/data/shop-products";
 
 export function StyleIdeasSection() {
   return (
@@ -13,8 +13,8 @@ export function StyleIdeasSection() {
         </h3>
       </div>
       <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-4">
-        {SHOP_PRODUCTS.slice(0, 12).map((product, index) => (
-          <ShopProductCard key={`${product.title}-${index}`} product={product} />
+        {HOME_SHOP_BY_CATEGORY_PRODUCTS.map((product) => (
+          <ShopProductCard key={product.id} product={product} />
         ))}
       </div>
       <div className="mt-10 flex justify-center">
