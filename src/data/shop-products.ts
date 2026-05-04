@@ -377,6 +377,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Warm golden heart accents across a coordinated set — soft luxury with a romantic silhouette.",
     id: "sets-golden-heart",
     imageSrc: "/sets/golden%20heart%20set.jpeg",
+    additionalImages: [
+      "/sets/golden-heart-set-gallery-burgundy-velvet.png",
+      "/sets/golden-heart-set-gallery-white-marble.png",
+    ],
     compareAtPrice: SETS_COMPARE_AT_PRICE,
     price: SETS_SALE_PRICE,
     slug: "sets-golden-heart",
@@ -418,6 +422,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "A heart-forward coordinated set with polished detailing — signature romance from NS Jewels.",
     id: "sets-heart",
     imageSrc: "/sets/WhatsApp%20Image%202026-04-27%20at%207.02.44%20AM%20(1).jpeg",
+    additionalImages: [
+      "/sets/sets-heart-gallery-blush-silk.png",
+      "/sets/sets-heart-gallery-forest-velvet.png",
+    ],
     compareAtPrice: SETS_COMPARE_AT_PRICE,
     price: SETS_SALE_PRICE,
     slug: "sets-heart",
