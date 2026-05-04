@@ -9,7 +9,7 @@ import { WhyNsJewelsSection } from "@/components/WhyNsJewelsSection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#fdfbf8] text-[#1c1917]">
+    <div className="min-h-screen bg-background text-black">
       <Navbar />
       <HeroSection />
       <main className="py-12">

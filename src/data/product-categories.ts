@@ -11,7 +11,7 @@ export const PRODUCT_CATEGORY_SLUGS = [
 
 export type ProductCategorySlug = (typeof PRODUCT_CATEGORY_SLUGS)[number];
 
-export type CatalogedImageCategory = Exclude<ProductCategorySlug, "handchain" | "sets">;
+export type CatalogedImageCategory = Exclude<ProductCategorySlug, "handchain" | "rings">;
 
 export const PRODUCT_CATEGORY_LABELS: Record<ProductCategorySlug, string> = {
   anklets: "Anklets",
@@ -25,7 +25,8 @@ export const PRODUCT_CATEGORY_LABELS: Record<ProductCategorySlug, string> = {
 };
 
 export const CATALOGED_CATEGORY_IMAGES: Record<CatalogedImageCategory, readonly string[]> = {
-  anklets: ["/anklets/anklet-1.jpeg"],
+  anklets: ["/anklets/anklet-creative-display.png"],
+  earrings: ["/earrings/Bow%20Earing.jpeg", "/earrings/Duck%20earing.jpeg"],
   bracelets: [
     "/bracelets/bracelet-1.jpeg",
     "/bracelets/bracelet-2.jpeg",
@@ -37,23 +38,18 @@ export const CATALOGED_CATEGORY_IMAGES: Record<CatalogedImageCategory, readonly 
     "/bracelets/bracelet-8.jpeg",
     "/bracelets/bracelet-9.jpeg",
   ],
-  earrings: [
-    "/earrings/earrings-1.jpeg",
-    "/earrings/earrings-2.jpeg",
-    "/earrings/earrings-3.jpeg",
-  ],
   handcuffs: [
-    "/handcuffs/handcuffs-1.jpeg",
-    "/handcuffs/handcuffs-2.jpeg",
-    "/handcuffs/handcuffs-3.jpeg",
-    "/handcuffs/handcuffs-4.jpeg",
-    "/handcuffs/handcuffs-5.jpeg",
-    "/handcuffs/handcuffs-6.jpeg",
-    "/handcuffs/handcuffs-7.jpeg",
-    "/handcuffs/handcuffs-8.jpeg",
-    "/handcuffs/handcuffs-9.jpeg",
-    "/handcuffs/handcuffs-10.jpeg",
-    "/handcuffs/handcuffs-11.jpeg",
+    "/handcuffs/Black%20Stone.jpeg",
+    "/handcuffs/elara.jpeg",
+    "/handcuffs/floral%20premium.jpeg",
+    "/handcuffs/Green%20stone.jpeg",
+    "/handcuffs/gucci.jpeg",
+    "/handcuffs/Nail.jpeg",
+    "/handcuffs/Oval%20watch.jpeg",
+    "/handcuffs/Premium.jpeg",
+    "/handcuffs/spikes.jpeg",
+    "/handcuffs/watch.jpeg",
+    "/handcuffs/White%20stone.jpeg",
   ],
   necklace: [
     "/necklace/necklace-1.jpeg",
@@ -74,30 +70,15 @@ export const CATALOGED_CATEGORY_IMAGES: Record<CatalogedImageCategory, readonly 
     "/necklace/necklace-16.jpeg",
     "/necklace/necklace-17.jpeg",
   ],
-  rings: [
-    "/rings/ring-1.jpeg",
-    "/rings/ring-2.jpeg",
-    "/rings/ring-3.jpeg",
-    "/rings/ring-4.jpeg",
-    "/rings/ring-5.jpeg",
-    "/rings/ring-6.jpeg",
-    "/rings/ring-7.jpeg",
-    "/rings/ring-8.jpeg",
-    "/rings/ring-9.jpeg",
-    "/rings/ring-10.jpeg",
-    "/rings/ring-11.jpeg",
-    "/rings/ring-12.jpeg",
-    "/rings/ring-13.jpeg",
-    "/rings/ring-14.jpeg",
-    "/rings/ring-15.jpeg",
-    "/rings/ring-16.jpeg",
-    "/rings/ring-17.jpeg",
-    "/rings/ring-18.jpeg",
-    "/rings/ring-19.jpeg",
-    "/rings/ring-20.jpeg",
-    "/rings/ring-21.jpeg",
-    "/rings/ring-22.jpeg",
-    "/rings/ring-23.jpeg",
+  /** Primary hero paths only — matches `imageSrc` in shop-products so extras stay on product detail (same pattern as anklets). */
+  sets: [
+    "/sets/black%20clover%20set.jpeg",
+    "/sets/black%20heart%20set.jpeg",
+    "/sets/circle%20watch%20set%20with%20bracelate.jpeg",
+    "/sets/golden%20heart%20set.jpeg",
+    "/sets/oval%20watch%20set%20with%20bracelate%20(2).jpeg",
+    "/sets/watch%20set%20with%20bracelate.jpeg",
+    "/sets/WhatsApp%20Image%202026-04-27%20at%207.02.44%20AM%20(1).jpeg",
   ],
 };
 

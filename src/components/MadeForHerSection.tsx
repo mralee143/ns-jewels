@@ -13,13 +13,13 @@ export function MadeForHerSection() {
       className="mx-auto flex max-w-[1320px] flex-col items-center pb-12 pt-6 text-center sm:pb-14 sm:pt-8"
       id="products"
     >
-      <h2 className="made-for-her-heading-reveal font-display text-3xl font-semibold tracking-[0.12em] text-[#1c1917] sm:text-4xl">
+      <h2 className="made-for-her-heading-reveal font-display text-3xl font-semibold tracking-[0.12em] text-black sm:text-4xl">
         Made For Her
       </h2>
       <div className="mt-6 grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {MADE_FOR_HER_IMAGES.map((image, index) => (
           <article
-            className="made-for-her-card-reveal touch-manipulation overflow-hidden rounded-2xl border border-[#ebe4d9] bg-white shadow-sm transition-[box-shadow,transform] duration-300 hover:scale-95 hover:shadow-xl active:scale-95"
+            className="made-for-her-card-reveal touch-manipulation overflow-hidden rounded-2xl border border-pink-200 bg-white shadow-sm transition-[box-shadow,transform] duration-300 hover:scale-95 hover:shadow-xl active:scale-95"
             key={image.src}
             style={{ animationDelay: `${index * 90}ms` }}
           >

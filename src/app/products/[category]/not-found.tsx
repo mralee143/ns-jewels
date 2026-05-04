@@ -11,14 +11,14 @@ import {
 
 export default function ProductCategoryNotFound() {
   return (
-    <div className="min-h-screen bg-[#fdfbf8] text-[#1c1917]">
+    <div className="min-h-screen bg-background text-black">
       <Navbar />
       <main className="mx-auto max-w-[1320px] px-5 py-16 text-center sm:px-8 lg:px-12">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#78716c]">NS Jewels</p>
-        <h1 className="mt-3 font-display text-3xl font-semibold tracking-[0.06em] text-[#1c1917] sm:text-4xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black">NS Jewels</p>
+        <h1 className="mt-3 font-display text-3xl font-semibold tracking-[0.06em] text-black sm:text-4xl">
           Not found
         </h1>
-        <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-[#57534e]">
+        <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-black">
           That category doesn&apos;t exist or the spelling doesn&apos;t match our collections. Pick a
           category below or go back home.
         </p>
@@ -26,7 +26,7 @@ export default function ProductCategoryNotFound() {
           {PRODUCT_CATEGORY_SLUGS.map((slug) => (
             <li key={slug}>
               <Link
-                className="inline-block rounded-full border border-[#581c87] bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#581c87] transition-colors duration-200 hover:bg-[#581c87] hover:text-white"
+                className="inline-block rounded-full border border-black bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-black transition-colors duration-200 hover:bg-cta hover:text-white"
                 href={productCategoryHref(slug)}
               >
                 {PRODUCT_CATEGORY_LABELS[slug]}
@@ -35,7 +35,7 @@ export default function ProductCategoryNotFound() {
           ))}
         </ul>
         <Link
-          className="mt-12 inline-block text-sm font-semibold text-[#581c87] underline-offset-4 transition-colors hover:text-[#7e22ce] hover:underline"
+          className="mt-12 inline-block text-sm font-semibold text-black underline-offset-4 transition-colors hover:text-neutral-800 hover:underline"
           href="/"
         >
           Back to home

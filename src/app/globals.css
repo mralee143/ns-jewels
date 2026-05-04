@@ -1,29 +1,80 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary CTAs — README.md / CLAUDE.md Soft Pink UI */
+  --brand-cta: #e96a7a;
+  --brand-cta-hover: #d85c6c;
+  /* Jewelry gold tuned to NS Jewels logo (warm metallic, not flat yellow) */
+  --brand-logo-gold-deep: #8f6918;
+  --brand-logo-gold-mid: #c49a3c;
+  --brand-logo-gold-light: #f3e5a6;
+  /* Very Light Blush — match navbar main bar (README § page background) */
+  --background: #fdf2f5;
+  --foreground: #000000;
+  --color-pink-50: #fff3f8;
+  --color-pink-100: #fde7f1;
+  --color-pink-200: #f8cfe1;
+  --color-pink-300: #f1b3d0;
+  --color-pink-400: #e38bb4;
+  --color-pink-500: #d66b9f;
+  --color-pink-600: #c3568e;
+  --color-pink-700: #a84578;
+  --color-pink-800: #8a3763;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-cta: var(--brand-cta);
+  --color-cta-hover: var(--brand-cta-hover);
+  --color-pink-50: var(--color-pink-50);
+  --color-pink-100: var(--color-pink-100);
+  --color-pink-200: var(--color-pink-200);
+  --color-pink-300: var(--color-pink-300);
+  --color-pink-400: var(--color-pink-400);
+  --color-pink-500: var(--color-pink-500);
+  --color-pink-600: var(--color-pink-600);
+  --color-pink-700: var(--color-pink-700);
+  --color-pink-800: var(--color-pink-800);
   --font-display: var(--font-display);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Hero — readable black type on photography without tinting the image */
+.hero-banner-heading {
+  text-shadow:
+    0 0 28px rgb(255 255 255 / 0.94),
+    0 0 56px rgb(255 255 255 / 0.5),
+    0 2px 14px rgb(0 0 0 / 0.22);
+}
+
+.hero-banner-subtext {
+  text-shadow:
+    0 0 18px rgb(255 255 255 / 0.9),
+    0 1px 10px rgb(0 0 0 / 0.18);
+}
+
+/* Metallic logo gold — gradient clip reads closer to printed mark than single hex */
+/* Small accents (e.g. announcement star) — solid tone from logo mid gold */
+.logo-gold-accent {
+  color: var(--brand-logo-gold-mid);
+}
+
+/* Hero “Luxury” — white, strong halo so it stays readable on the banner */
+.hero-banner-luxury-white {
+  color: #ffffff;
+  text-shadow:
+    0 0 24px rgb(0 0 0 / 0.55),
+    0 0 48px rgb(0 0 0 / 0.38),
+    0 2px 14px rgb(0 0 0 / 0.72),
+    0 0 32px rgb(255 255 255 / 0.35);
 }
 
 .hero-image-float {
@@ -86,18 +137,52 @@ body {
 }
 
 .product-card-3d {
+  --card-rotate-x: 0deg;
+  --card-rotate-y: 0deg;
+  --shine-x: 50%;
+  --shine-y: 50%;
+  position: relative;
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0);
   transform-style: preserve-3d;
-  transition: transform 320ms ease, box-shadow 320ms ease;
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+
+.product-card-3d-surface {
+  position: relative;
+  z-index: 1;
+  transform: translateZ(22px);
+  transform-style: preserve-3d;
 }
 
 .product-card-3d:hover {
-  box-shadow: 0 24px 44px rgba(17, 24, 39, 0.2);
-  transform: perspective(1000px) rotateX(6deg) rotateY(-8deg) translateZ(14px);
+  box-shadow: 0 24px 44px rgba(168, 69, 120, 0.24);
+  transform: perspective(1000px) rotateX(var(--card-rotate-x)) rotateY(var(--card-rotate-y))
+    translateZ(12px);
+}
+
+.product-card-3d::before {
+  background: radial-gradient(
+    circle at var(--shine-x) var(--shine-y),
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0) 44%
+  );
+  border-radius: 0.75rem;
+  content: "";
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 240ms ease;
+  z-index: 2;
+}
+
+.product-card-3d:hover::before {
+  opacity: 1;
 }
 
 .product-card-3d:active {
-  transform: perspective(1000px) rotateX(2deg) rotateY(-3deg) translateZ(6px) scale(0.98);
+  transform: perspective(1000px) rotateX(calc(var(--card-rotate-x) * 0.3))
+    rotateY(calc(var(--card-rotate-y) * 0.3)) translateZ(6px) scale(0.985);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -105,6 +190,11 @@ body {
   .product-card-3d:hover,
   .product-card-3d:active {
     transform: none;
+  }
+
+  .product-card-3d::before,
+  .product-card-3d:hover::before {
+    opacity: 0;
   }
 }
 

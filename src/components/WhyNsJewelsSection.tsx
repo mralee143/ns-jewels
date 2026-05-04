@@ -10,7 +10,7 @@ const BENEFIT_IMAGES: ReadonlyArray<{ alt: string; src: string }> = [
 export function WhyNsJewelsSection() {
   return (
     <section className="w-full py-7 text-center sm:py-8">
-      <h3 className="font-display text-2xl font-medium tracking-[0.08em] text-[#1f2937] sm:text-3xl">
+      <h3 className="font-display text-2xl font-medium tracking-[0.08em] text-black sm:text-3xl">
         WHY NS JEWELS?
       </h3>
       <div className="mx-auto mt-5 flex w-full flex-wrap items-start justify-center gap-x-2 gap-y-2 sm:gap-x-3 sm:gap-y-3 lg:gap-x-4">

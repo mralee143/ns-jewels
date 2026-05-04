@@ -1,6 +1,6 @@
 # NS Jewels — Project Guide for AI Assistants
 
-This document orients coding agents and contributors to the **ns-jewels** codebase, conventions, and the intended **pink–purple** visual direction.
+This document orients coding agents and contributors to the **ns-jewels** codebase, conventions, and the approved **soft pink** UI palette (see §5.2), plus extended **pink–purple** tokens for gradual alignment or legacy UI.
 
 ---
 
@@ -68,11 +68,56 @@ public/           # Static assets (e.g. images, SVGs)
 ### 5.1 Overall feel
 
 - **Luxury jewelry** tone: refined typography, generous whitespace, soft gradients optional.
-- **Primary aesthetic**: **pinkish purple** — warm mauve, orchid, and plum accents on light rose or deep violet surfaces; avoid neon or harsh magenta unless used sparingly for CTAs.
+- **Primary aesthetic**: **soft pink** — blush backgrounds, rose accents, strong pink **only** on primary CTAs; optional gradients from main pink to light pink (see §5.2). Extended violet tokens (§5.3) remain available where purple accents are still in use.
 
-### 5.2 Color scheme (canonical palette)
+### 5.2 Soft Pink UI color scheme (approved — use for new UI)
 
-Use these as **design tokens** (map to CSS variables in `globals.css` and/or Tailwind `@theme` when implementing UI).
+Canonical NS Jewels palette. Mirror these in `:root` / `@theme inline` in `src/app/globals.css` when building or refactoring screens. Human-readable copy also lives in [`README.md`](./README.md).
+
+#### Primary colors
+
+| Role | Hex | Usage |
+|------|-----|--------|
+| **Soft Pink (main CTA)** | `#E96A7A` | Buttons (Buy Now, Checkout), price / CTA highlights |
+| **Light Pink** | `#F6C1CC` | Cards, highlights, backgrounds |
+| **Very Light Blush** | `#FDF2F5` | Main page background |
+
+#### Accent colors
+
+| Role | Hex | Usage |
+|------|-----|--------|
+| **Rose Gold Soft** | `#E8A9A9` | Borders, icons, subtle luxury touch |
+| **Peach Pink Accent** | `#F4A6A6` | Hover states, badges (e.g. discounts) |
+
+#### Neutrals
+
+| Role | Hex | Usage |
+|------|-----|--------|
+| **Primary text** | `#2B2B2B` | Body and headings on light surfaces |
+| **Secondary text** | `#6E6E6E` | Supporting copy |
+| **White** | `#FFFFFF` | Cards, panels; text on saturated pink |
+
+#### Structural tokens
+
+| Role | Hex | Usage |
+|------|-----|--------|
+| **Button hover** | `#D85C6C` | Primary button hover (slightly darker than main CTA) |
+| **Card / section border** | `#F0D3DA` | Borders on cards and grouped sections |
+
+#### Gradient (buttons / highlights)
+
+`linear-gradient(135deg, #E96A7A, #F6C1CC)`
+
+#### Usage breakdown
+
+- **Buttons**: background `#E96A7A`, hover `#D85C6C`, text white (or suitable contrast-safe equivalent).
+- **Cards / sections**: background `#FFFFFF` or `#F6C1CC`; border `#F0D3DA`.
+- **Page background**: `#FDF2F5`.
+- **Balance**: ~70% light background, ~20% soft pink surfaces, ~10% strong pink for CTAs only — keeps layout calm while preserving conversion focus on primary actions.
+
+### 5.3 Extended pink–purple tokens (optional / legacy)
+
+Use these as **design tokens** where violet accents still apply; prefer §5.2 for new customer-facing UI.
 
 #### Core brand (pink–purple family)
 
@@ -120,21 +165,20 @@ Use these as **design tokens** (map to CSS variables in `globals.css` and/or Tai
 | **dark-muted** | `#c4b5fd` | Secondary text |
 | **dark-accent** | `#e879f9` | Links / focus (pink-purple glow) |
 
-### 5.3 How to apply the palette in code
+### 5.4 How to apply the palette in code
 
-1. **Prefer CSS variables** in `:root` (and a `[data-theme="dark"]` or `prefers-color-scheme` block) mirroring the table above, e.g. `--color-brand-500`, `--color-surface-0`.
-   - Use `--color-brand-picked: #600080` as the current campaign accent where a stronger purple is needed.
-2. **Expose tokens in Tailwind v4** via `@theme inline { ... }` so utilities read `bg-brand-500`, `text-ink-900`, etc.
-3. **Contrast**: Body text on `brand-50`–`brand-200` should use **ink-900** or **brand-900**; white or `brand-50` text on **brand-600+** for buttons.
-4. **Metals / gems** in imagery: keep UI chrome in brand neutrals; let photography carry gold/silver sparkle.
+1. **Primary CTAs / buttons**: In `src/app/globals.css`, `--brand-cta` (`#E96A7A`) and `--brand-cta-hover` (`#D85C6C`) map to Tailwind v4 `--color-cta` / `--color-cta-hover`. Use **`bg-cta`**, **`hover:bg-cta-hover`**, **`text-white`** for filled buttons; **`border-cta`**, **`text-cta`** for outlines — matching **§5.2** and [`README.md`](./README.md). Add other §5.2 tokens (`--color-blush-bg`, card borders, etc.) to `:root` / `@theme inline` as you extend UI.
+2. **Legacy / violet**: Continue mapping §5.3 tokens (`--color-brand-500`, `--color-surface-0`, …) where existing components depend on them; migrate screens toward §5.2 over time.
+3. **Contrast**: Primary text `#2B2B2B` / secondary `#6E6E6E` on blush `#FDF2F5` and white cards; white text on `#E96A7A` / `#D85C6C` for buttons — verify WCAG AA where applicable.
+4. **Metals / gems** in imagery: keep UI chrome aligned to §5.2 neutrals and accents; let photography carry gold/silver sparkle.
 
-### 5.4 Typography
+### 5.5 Typography
 
 - **Headings**: Consider **Cormorant Garamond** or similar serif for editorial luxury (optional future change from Geist).
 - **UI / body**: **Geist Sans** (current) or a clean geometric sans; **Geist Mono** for SKUs, prices in tables, or technical footers.
 - Scale: clear hierarchy (e.g. hero `text-4xl`–`text-6xl`, section titles `text-2xl`–`text-3xl`).
 
-### 5.5 Motion & shape
+### 5.6 Motion & shape
 
 - Subtle transitions (`transition-colors`, `duration-200`).
 - Prefer **rounded-2xl** or **rounded-full** for primary buttons to match soft gem-like curves.
@@ -158,8 +202,8 @@ Use these as **design tokens** (map to CSS variables in `globals.css` and/or Tai
 
 ## 8. Quick checklist before shipping UI changes
 
-- [ ] Colors use the **pink–purple** tokens above (or documented extensions).
-- [ ] Light text on saturated purple/pink passes contrast (WCAG AA where applicable).
+- [ ] Colors follow **§5.2 Soft Pink** (or documented extensions / legacy §5.3 during migration).
+- [ ] Light text on saturated pink / purple passes contrast (WCAG AA where applicable).
 - [ ] Responsive breakpoints tested (`sm`, `md`, `lg`).
 - [ ] `npm run lint` and `npm run build` succeed.
 
