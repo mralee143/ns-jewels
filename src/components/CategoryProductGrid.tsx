@@ -36,7 +36,7 @@ export function CategoryProductGrid({ category, categoryLabel, images }: Categor
         {images.map((src) => {
           const product = getProductFromCategoryImage(category, src);
           return (
-            <CategoryProductCard key={src} product={product} />
+            <CategoryProductCard category={category} key={src} product={product} />
           );
         })}
       </div>

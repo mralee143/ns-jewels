@@ -1,9 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
+import { FillImage } from "@/components/FillImage";
 import type { ShopProduct } from "@/data/shop-products";
+import { productCardImageFitClass, productCategoryCardTileBg } from "@/lib/product-image-display";
 import {
   formatPkrLine,
   parsePriceLabelToNumber,
@@ -20,11 +21,13 @@ export function ShopProductCard({ product }: ShopProductCardProps) {
 
   return (
     <article className="group flex flex-col bg-white text-left">
-      <Link className="relative block aspect-square w-full overflow-hidden bg-neutral-100" href={`/product/${product.slug}`}>
-        <Image
+      <Link
+        className={`relative block aspect-square w-full overflow-hidden ${productCategoryCardTileBg(product.category)}`}
+        href={`/product/${product.slug}`}
+      >
+        <FillImage
           alt={product.title}
-          className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-          fill
+          className={productCardImageFitClass(product.category)}
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
           src={product.imageSrc}
         />

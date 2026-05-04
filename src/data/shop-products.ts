@@ -13,6 +13,12 @@ export type ShopProduct = {
   readonly additionalImages?: readonly string[];
 };
 
+const SETS_COMPARE_AT_PRICE = "Rs. 999.00 PKR";
+const SETS_SALE_PRICE = "Rs. 849.00 PKR";
+
+const WATCH_SETS_COMPARE_AT_PRICE = "Rs. 1799.00 PKR";
+const WATCH_SETS_SALE_PRICE = "Rs. 1499.00 PKR";
+
 export const SHOP_PRODUCTS: readonly ShopProduct[] = [
   {
     category: "anklets",
@@ -75,6 +81,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Black stone detailing with a polished handcuff silhouette — refined on the wrist for everyday wear.",
     id: "black-stone-handcuff",
     imageSrc: "/handcuffs/Black%20Stone.jpeg",
+    additionalImages: [
+      "/handcuffs/black-stone-handcuff-display-2.jpeg",
+      "/handcuffs/black-stone-handcuff-display-3.jpeg",
+    ],
     compareAtPrice: "Rs. 1499.00 PKR",
     price: "Rs. 999.00 PKR",
     slug: "black-stone-handcuff",
@@ -86,6 +96,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Green stone accents on a sleek handcuff profile — easy polish for daytime stacks or evening shine.",
     id: "green-stone-handcuff",
     imageSrc: "/handcuffs/Green%20stone.jpeg",
+    additionalImages: [
+      "/handcuffs/green-stone-handcuff-display-2.jpeg",
+      "/handcuffs/green-stone-handcuff-display-3.jpeg",
+    ],
     compareAtPrice: "Rs. 1499.00 PKR",
     price: "Rs. 999.00 PKR",
     slug: "green-stone-handcuff",
@@ -97,6 +111,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "White stone highlights with a balanced handcuff form — bright, wearable, and gifts beautifully.",
     id: "white-stone-handcuff",
     imageSrc: "/handcuffs/White%20stone.jpeg",
+    additionalImages: [
+      "/handcuffs/white-stone-handcuff-display-2.jpeg",
+      "/handcuffs/white-stone-handcuff-display-3.jpeg",
+    ],
     compareAtPrice: "Rs. 1499.00 PKR",
     price: "Rs. 999.00 PKR",
     slug: "white-stone-handcuff",
@@ -108,6 +126,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Floral premium detailing on a sculpted handcuff band — feminine lines with everyday versatility.",
     id: "floral-premium-handcuff",
     imageSrc: "/handcuffs/floral%20premium.jpeg",
+    additionalImages: [
+      "/handcuffs/floral-premium-handcuff-display-2.jpeg",
+      "/handcuffs/floral-premium-handcuff-display-3.jpeg",
+    ],
     compareAtPrice: "Rs. 1499.00 PKR",
     price: "Rs. 999.00 PKR",
     slug: "floral-premium-handcuff",
@@ -119,6 +141,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Gucci-inspired profiling with a confident handcuff silhouette — polished metal presence on the wrist.",
     id: "gucci-handcuff",
     imageSrc: "/handcuffs/gucci.jpeg",
+    additionalImages: [
+      "/handcuffs/gucci-handcuff-display-2.jpeg",
+      "/handcuffs/gucci-handcuff-display-3.jpeg",
+    ],
     compareAtPrice: "Rs. 850.00 PKR",
     price: "Rs. 650.00 PKR",
     slug: "gucci-handcuff",
@@ -130,6 +156,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Nail-inspired lines with a sculptural handcuff band — sharp polish for stacks that still feel refined.",
     id: "nail-handcuff",
     imageSrc: "/handcuffs/Nail.jpeg",
+    additionalImages: [
+      "/handcuffs/nail-handcuff-display-2.jpeg",
+      "/handcuffs/nail-handcuff-display-3.jpeg",
+    ],
     compareAtPrice: "Rs. 999.00 PKR",
     price: "Rs. 750.00 PKR",
     slug: "nail-handcuff",
@@ -141,6 +171,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Watch-forward detailing on a streamlined handcuff silhouette — everyday wrist presence with quiet shine.",
     id: "watch-handcuff",
     imageSrc: "/handcuffs/watch.jpeg",
+    additionalImages: [
+      "/handcuffs/watch-handcuff-display-2.jpeg",
+      "/handcuffs/watch-handcuff-display-3.jpeg",
+    ],
     compareAtPrice: "Rs. 999.00 PKR",
     price: "Rs. 750.00 PKR",
     slug: "watch-handcuff",
@@ -152,6 +186,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Oval watch styling with softened edges — a balanced handcuff profile for dress-down and occasion wear.",
     id: "oval-watch-handcuff",
     imageSrc: "/handcuffs/Oval%20watch.jpeg",
+    additionalImages: [
+      "/handcuffs/oval-watch-handcuff-display-2.jpeg",
+      "/handcuffs/oval-watch-handcuff-display-3.jpeg",
+    ],
     compareAtPrice: "Rs. 999.00 PKR",
     price: "Rs. 750.00 PKR",
     slug: "oval-watch-handcuff",
@@ -174,6 +212,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Spiked accent detailing along a polished handcuff band — edge without sacrificing everyday wearability.",
     id: "spikes-handcuff",
     imageSrc: "/handcuffs/spikes.jpeg",
+    additionalImages: [
+      "/handcuffs/spikes-handcuff-display-2.jpeg",
+      "/handcuffs/spikes-handcuff-display-3.jpeg",
+    ],
     compareAtPrice: "Rs. 999.00 PKR",
     price: "Rs. 750.00 PKR",
     slug: "spikes-handcuff",
@@ -258,6 +300,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Elara-line styling with a sleek handcuff profile — an elevated accent for layered wrist looks.",
     id: "elara-handcuff",
     imageSrc: "/handcuffs/elara.jpeg",
+    additionalImages: [
+      "/handcuffs/elara-handcuff-display-2.jpeg",
+      "/handcuffs/elara-handcuff-display-3.jpeg",
+    ],
     compareAtPrice: "Rs. 1299.00 PKR",
     price: "Rs. 799.00 PKR",
     slug: "elara-handcuff",
@@ -282,6 +328,96 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     price: "Rs. 590.00 PKR",
     slug: "twilight-pendant",
     title: "Twilight Pendant",
+  },
+  {
+    category: "sets",
+    description:
+      "A coordinated clover-motif jewelry set with polished finishing — ready to wear together or mix into your stack.",
+    id: "sets-black-clover",
+    imageSrc: "/sets/black%20clover%20set.jpeg",
+    additionalImages: ["/sets/black-clover-set-gallery-1.png", "/sets/black-clover-set-gallery-2.png"],
+    compareAtPrice: SETS_COMPARE_AT_PRICE,
+    price: SETS_SALE_PRICE,
+    slug: "sets-black-clover",
+    title: "Black Clover Set",
+  },
+  {
+    category: "sets",
+    description:
+      "A matching heart-themed set in a deep tone — balanced shine for everyday outfits and gifting.",
+    id: "sets-black-heart",
+    imageSrc: "/sets/black%20heart%20set.jpeg",
+    compareAtPrice: SETS_COMPARE_AT_PRICE,
+    price: SETS_SALE_PRICE,
+    slug: "sets-black-heart",
+    title: "Black Heart Set",
+  },
+  {
+    category: "sets",
+    description:
+      "Circle-watch styling paired with a complementary bracelet — one cohesive look from NS Jewels.",
+    id: "sets-circle-watch",
+    imageSrc: "/sets/circle%20watch%20set%20with%20bracelate.jpeg",
+    additionalImages: [
+      "/sets/circle-watch-set-display-2.jpeg",
+      "/sets/circle-watch-set-display-3.jpeg",
+    ],
+    compareAtPrice: WATCH_SETS_COMPARE_AT_PRICE,
+    price: WATCH_SETS_SALE_PRICE,
+    slug: "sets-circle-watch",
+    title: "Circle Watch Set",
+  },
+  {
+    category: "sets",
+    description:
+      "Warm golden heart accents across a coordinated set — soft luxury with a romantic silhouette.",
+    id: "sets-golden-heart",
+    imageSrc: "/sets/golden%20heart%20set.jpeg",
+    compareAtPrice: SETS_COMPARE_AT_PRICE,
+    price: SETS_SALE_PRICE,
+    slug: "sets-golden-heart",
+    title: "Golden Heart Set",
+  },
+  {
+    category: "sets",
+    description:
+      "Oval watch lines matched to a bracelet pairing — refined proportions for wrist-forward styling.",
+    id: "sets-oval-watch-bracelet",
+    imageSrc: "/sets/oval%20watch%20set%20with%20bracelate%20(2).jpeg",
+    additionalImages: [
+      "/sets/oval-watch-set-display-2.jpeg",
+      "/sets/oval-watch-set-display-3.jpeg",
+    ],
+    compareAtPrice: WATCH_SETS_COMPARE_AT_PRICE,
+    price: WATCH_SETS_SALE_PRICE,
+    slug: "sets-oval-watch-bracelet",
+    title: "Oval Watch Set",
+  },
+  {
+    category: "sets",
+    description:
+      "Classic watch presence with a linked bracelet complement — an elevated everyday duo.",
+    id: "sets-watch-bracelet",
+    imageSrc: "/sets/watch%20set%20with%20bracelate.jpeg",
+    additionalImages: [
+      "/sets/watch-bracelet-set-display-2.jpeg",
+      "/sets/watch-bracelet-set-display-3.jpeg",
+    ],
+    compareAtPrice: WATCH_SETS_COMPARE_AT_PRICE,
+    price: WATCH_SETS_SALE_PRICE,
+    slug: "sets-watch-bracelet",
+    title: "Watch Bracelet Set",
+  },
+  {
+    category: "sets",
+    description:
+      "A heart-forward coordinated set with polished detailing — signature romance from NS Jewels.",
+    id: "sets-heart",
+    imageSrc: "/sets/WhatsApp%20Image%202026-04-27%20at%207.02.44%20AM%20(1).jpeg",
+    compareAtPrice: SETS_COMPARE_AT_PRICE,
+    price: SETS_SALE_PRICE,
+    slug: "sets-heart",
+    title: "Heart Set",
   },
 ] as const;
 
@@ -309,7 +445,7 @@ const DEFAULT_CATEGORY_PRICE: Record<ProductCategorySlug, string> = {
   handcuffs: "Rs. 650.00 PKR",
   necklace: "Rs. 699.00 PKR",
   rings: "Rs. 599.00 PKR",
-  sets: "Rs. 780.00 PKR",
+  sets: SETS_SALE_PRICE,
 };
 
 const toDecodedStem = (imageSrc: string): string => {
@@ -356,6 +492,7 @@ const toFallbackProduct = (category: ProductCategorySlug, imageSrc: string): Sho
     description: `${title} from NS Jewels with premium finishing and elegant daily-wear styling.`,
     id: `${category}-${safeBase}`,
     imageSrc,
+    ...(category === "sets" ? { compareAtPrice: SETS_COMPARE_AT_PRICE } : {}),
     price: DEFAULT_CATEGORY_PRICE[category],
     slug: `${category}-${safeBase}`,
     title,

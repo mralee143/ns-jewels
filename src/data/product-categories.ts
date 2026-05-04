@@ -11,7 +11,7 @@ export const PRODUCT_CATEGORY_SLUGS = [
 
 export type ProductCategorySlug = (typeof PRODUCT_CATEGORY_SLUGS)[number];
 
-export type CatalogedImageCategory = Exclude<ProductCategorySlug, "handchain" | "rings" | "sets">;
+export type CatalogedImageCategory = Exclude<ProductCategorySlug, "handchain" | "rings">;
 
 export const PRODUCT_CATEGORY_LABELS: Record<ProductCategorySlug, string> = {
   anklets: "Anklets",
@@ -69,6 +69,16 @@ export const CATALOGED_CATEGORY_IMAGES: Record<CatalogedImageCategory, readonly 
     "/necklace/necklace-15.jpeg",
     "/necklace/necklace-16.jpeg",
     "/necklace/necklace-17.jpeg",
+  ],
+  /** Primary hero paths only — matches `imageSrc` in shop-products so extras stay on product detail (same pattern as anklets). */
+  sets: [
+    "/sets/black%20clover%20set.jpeg",
+    "/sets/black%20heart%20set.jpeg",
+    "/sets/circle%20watch%20set%20with%20bracelate.jpeg",
+    "/sets/golden%20heart%20set.jpeg",
+    "/sets/oval%20watch%20set%20with%20bracelate%20(2).jpeg",
+    "/sets/watch%20set%20with%20bracelate.jpeg",
+    "/sets/WhatsApp%20Image%202026-04-27%20at%207.02.44%20AM%20(1).jpeg",
   ],
 };
 

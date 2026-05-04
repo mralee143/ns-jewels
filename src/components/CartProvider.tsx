@@ -36,16 +36,18 @@ const CART_STORAGE_KEY = "ns-jewels-cart";
 const EMPTY_CART_STATE: CartState = { items: [] };
 
 const resolveProduct = (item: { product?: ShopProduct; productId?: string }): ShopProduct | null => {
-  if (item.productId) {
-    const canonicalProduct = SHOP_PRODUCTS_BY_SLUG[item.productId];
-    if (canonicalProduct) {
-      return canonicalProduct;
+  const slugCandidates = [item.productId, item.product?.slug].filter(
+    (slug): slug is string => typeof slug === "string" && slug.length > 0
+  );
+
+  for (const slug of slugCandidates) {
+    const canonical = SHOP_PRODUCTS_BY_SLUG[slug];
+    if (canonical) {
+      return canonical;
     }
   }
-  if (item.product) {
-    return item.product;
-  }
-  return null;
+
+  return item.product ?? null;
 };
 
 const buildCartItem = (item: { product?: ShopProduct; productId?: string; quantity: number }): CartItem | null => {

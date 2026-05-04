@@ -4,6 +4,10 @@ import Link from "next/link";
 
 import { useCart } from "@/components/CartProvider";
 import { FillImage } from "@/components/FillImage";
+import {
+  productCheckoutThumbFitClass,
+  productCheckoutThumbShellClass,
+} from "@/lib/product-image-display";
 import { calculateOrderTotals, formatPkrDetailed, parsePriceToPaisa, TAX_RATE } from "@/lib/pricing";
 
 export function CheckoutPageContent() {
@@ -98,11 +102,11 @@ export function CheckoutPageContent() {
         <div className="space-y-4">
           {items.map((item) => (
             <div className="flex items-center gap-3" key={item.product.id}>
-              <div className="relative h-14 w-14 overflow-hidden rounded-lg border border-[#cbd5e1] bg-white">
+              <div className={productCheckoutThumbShellClass(item.product.category)}>
                 <FillImage
                   alt={item.product.title}
-                  className="h-full w-full object-cover"
-                  sizes="56px"
+                  className={productCheckoutThumbFitClass(item.product.category)}
+                  sizes={item.product.category === "sets" ? "96px" : "56px"}
                   src={item.product.imageSrc}
                 />
                 <span className="absolute right-1 top-1 rounded-full bg-[#F6C1CC] px-1.5 text-[10px] font-semibold text-black ring-1 ring-black/10">

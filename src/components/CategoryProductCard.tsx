@@ -3,7 +3,9 @@
 import Link from "next/link";
 
 import { FillImage } from "@/components/FillImage";
+import type { ProductCategorySlug } from "@/data/product-categories";
 import type { ShopProduct } from "@/data/shop-products";
+import { productCardImageFitClass, productCategoryCardTileBg } from "@/lib/product-image-display";
 import {
   formatPkrLine,
   parsePriceLabelToNumber,
@@ -11,19 +13,23 @@ import {
 } from "@/lib/product-price-display";
 
 type CategoryProductCardProps = {
+  category: ProductCategorySlug;
   product: ShopProduct;
 };
 
-export function CategoryProductCard({ product }: CategoryProductCardProps) {
+export function CategoryProductCard({ category, product }: CategoryProductCardProps) {
   const originalPrice = resolveCompareAtAmount(product);
   const salePrice = parsePriceLabelToNumber(product.price);
 
   return (
     <article className="group flex flex-col bg-white text-left">
-      <Link className="relative block aspect-square w-full overflow-hidden bg-neutral-100" href={`/product/${product.slug}`}>
+      <Link
+        className={`relative block aspect-square w-full overflow-hidden ${productCategoryCardTileBg(category)}`}
+        href={`/product/${product.slug}`}
+      >
         <FillImage
           alt={product.title}
-          className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+          className={productCardImageFitClass(category)}
           sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           src={product.imageSrc}
         />

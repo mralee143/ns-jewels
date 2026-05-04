@@ -18,7 +18,7 @@ export function ProductCrossCategoryRecommendations({ products }: ProductCrossCa
       </p>
       <div className="mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
         {products.map((entry) => (
-          <CategoryProductCard key={entry.slug} product={entry} />
+          <CategoryProductCard category={entry.category} key={entry.slug} product={entry} />
         ))}
       </div>
     </section>

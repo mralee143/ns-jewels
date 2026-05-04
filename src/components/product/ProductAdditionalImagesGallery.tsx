@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import type { ShopProduct } from "@/data/shop-products";
+import { productDetailImageTileBg, productGalleryThumbFitClass } from "@/lib/product-image-display";
 
 type ProductAdditionalImagesGalleryProps = {
   readonly product: ShopProduct;
@@ -19,12 +20,12 @@ export function ProductAdditionalImagesGallery({ product }: ProductAdditionalIma
     >
       {images.map((src, index) => (
         <div
-          className="relative aspect-square overflow-hidden rounded-md bg-neutral-100"
+          className={`relative aspect-square overflow-hidden rounded-md ${productDetailImageTileBg(product.category)}`}
           key={`${src}-${index.toString()}`}
         >
           <Image
             alt={`${product.title} — photo ${index + 2}`}
-            className="object-cover"
+            className={productGalleryThumbFitClass(product.category)}
             fill
             sizes="(min-width: 1024px) 22vw, (min-width: 640px) 35vw, 50vw"
             src={src}

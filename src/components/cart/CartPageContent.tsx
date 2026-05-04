@@ -4,6 +4,11 @@ import Link from "next/link";
 
 import { useCart } from "@/components/CartProvider";
 import { FillImage } from "@/components/FillImage";
+import {
+  productCartPageSetsThumbShellClass,
+  productCartPageThumbShellClass,
+  productCartThumbFitClass,
+} from "@/lib/product-image-display";
 import { calculateOrderTotals, formatPkrDetailed, parsePriceToPaisa, TAX_RATE } from "@/lib/pricing";
 import { formatPkrLine, parsePriceLabelToNumber } from "@/lib/product-price-display";
 
@@ -35,15 +40,25 @@ export function CartPageContent() {
             className="flex flex-col gap-4 rounded-2xl border border-[#f3e8ff] bg-white p-4 sm:flex-row sm:items-center"
             key={item.product.id}
           >
-            <div className="relative h-24 w-24 overflow-hidden rounded-xl bg-[#faf5ff]">
+            <div
+              className={
+                item.product.category === "sets"
+                  ? productCartPageSetsThumbShellClass(item.product.category)
+                  : productCartPageThumbShellClass(item.product.category)
+              }
+            >
               <FillImage
                 alt={item.product.title}
-                className="h-full w-full object-cover"
-                sizes="96px"
+                className={productCartThumbFitClass(item.product.category)}
+                sizes={
+                  item.product.category === "sets"
+                    ? "(min-width: 640px) 144px, 128px"
+                    : "96px"
+                }
                 src={item.product.imageSrc}
               />
             </div>
-            <div className="flex-1">
+            <div className="flex min-w-0 flex-1 flex-col">
               <h3 className="font-semibold text-black">{item.product.title}</h3>
               <p className="mt-1 text-sm text-black">
                 {formatPkrLine(parsePriceLabelToNumber(item.product.price))} each
@@ -52,7 +67,7 @@ export function CartPageContent() {
                 Line total: {formatPkrDetailed(parsePriceToPaisa(item.product.price) * item.quantity)}
               </p>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-shrink-0 flex-wrap items-center gap-2">
               <button
                 className="h-8 w-8 rounded-full border border-[#F0D3DA] text-sm text-black transition-colors duration-200 hover:bg-[#F6C1CC]/35"
                 onClick={() => decreaseItem(item.product.slug)}
