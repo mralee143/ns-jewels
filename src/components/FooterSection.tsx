@@ -44,17 +44,13 @@ export function FooterSection() {
       <div className="grid w-full grid-cols-1 gap-8 px-5 py-12 sm:px-8 md:grid-cols-2 md:gap-x-10 lg:grid-cols-4 lg:gap-x-8 lg:px-12">
         <div className="text-left">
           <Link className="inline-block" href="/">
-<<<<<<< HEAD
-            <Image alt="NS Jewels logo" className="h-auto w-[200px] sm:w-[220px]" height={300} src="/ns-logo-latest.png" width={600} />
-=======
             <Image
               alt="NS Jewels logo"
               className="h-auto w-[200px] mix-blend-multiply sm:w-[220px]"
               height={300}
-              src="/brand__logo.jpeg"
+              src="/brand_logo.png"
               width={600}
             />
->>>>>>> 1402f39ee4d33810a34f0ea628c1eda85ebf14f2
           </Link>
           <div className="mt-5 flex items-center gap-4 text-[#581c87]">
             {SOCIAL_LINKS.map((item) => (
