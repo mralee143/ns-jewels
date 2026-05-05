@@ -4,11 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { useCart } from "@/components/CartProvider";
-import { FillImage } from "@/components/FillImage";
-import {
-  productCheckoutThumbFitClass,
-  productCheckoutThumbShellClass,
-} from "@/lib/product-image-display";
 import { calculateOrderTotals, formatPkrDetailed, parsePriceToPaisa, TAX_RATE } from "@/lib/pricing";
 
 export function CheckoutPageContent() {
@@ -131,19 +126,11 @@ export function CheckoutPageContent() {
         <div className="space-y-4">
           {items.map((item) => (
             <div className="flex items-center gap-3" key={item.product.id}>
-              <div className={productCheckoutThumbShellClass(item.product.category)}>
-                <FillImage
-                  alt={item.product.title}
-                  className={productCheckoutThumbFitClass(item.product.category)}
-                  sizes={item.product.category === "sets" ? "96px" : "56px"}
-                  src={item.product.imageSrc}
-                />
-                <span className="absolute right-1 top-1 rounded-full bg-[#F6C1CC] px-1.5 text-[10px] font-semibold text-black ring-1 ring-black/10">
-                  {item.quantity}
-                </span>
-              </div>
-              <p className="flex-1 text-sm text-black">{item.product.title}</p>
-              <p className="text-sm font-medium text-black">
+              <p className="min-w-0 flex-1 text-sm text-black">
+                <span className="font-medium">{item.product.title}</span>
+                <span className="ml-2 shrink-0 text-[#6E6E6E]">×{item.quantity}</span>
+              </p>
+              <p className="shrink-0 text-sm font-medium text-black">
                 {formatPkrDetailed(parsePriceToPaisa(item.product.price) * item.quantity)}
               </p>
             </div>

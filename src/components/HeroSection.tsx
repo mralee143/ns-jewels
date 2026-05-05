@@ -34,6 +34,7 @@ export function HeroSection() {
               className={`object-cover transition-opacity duration-1000 ease-in-out ${
                 index === currentIndex ? "opacity-100" : "opacity-0"
               } max-md:object-[62%_center] md:object-center`}
+              loading="eager"
               priority={index === 0}
               revealOnLoad={false}
               sizes="100vw"

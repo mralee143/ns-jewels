@@ -37,12 +37,12 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
   },
   {
     category: "rings",
+    compareAtPrice: "Rs. 899.00 PKR",
     description:
       "A timeless classic ring silhouette with polished finishing — versatile for everyday wear and gifting.",
     id: "classic-ring",
     imageSrc: "/rings/classic%20ring.jpeg",
-    additionalImages: ["/rings/floral%20ring.jpeg"],
-    price: "Rs. 599.00 PKR",
+    price: "Rs. 450.00 PKR",
     slug: "classic-ring",
     title: "Classic Ring",
   },
@@ -243,13 +243,246 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
   },
   {
     category: "rings",
+    compareAtPrice: "Rs. 899.00 PKR",
     description:
-      "Butterfly spiral styling with delicate lines — wear solo or stacked with your favorite bands.",
+      "Adjustable butterfly spiral styling with delicate lines — wear solo or stacked with your favorite bands.",
     id: "butterfly-spiral-ring",
     imageSrc: "/rings/butterfly%20spiral%20ring.jpeg",
-    price: "Rs. 490.00 PKR",
+    price: "Rs. 450.00 PKR",
     slug: "butterfly-spiral-ring",
-    title: "Butterfly Spiral Ring",
+    title: "Adjustable Butterfly Spiral Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 849.00 PKR",
+    description:
+      "Black clover motif on an adjustable band — polished presence for everyday stacks and gifting.",
+    id: "adjustable-black-clover-ring",
+    imageSrc: "/rings/adjustable%20black%20clover%20ring.jpeg",
+    price: "Rs. 399.00 PKR",
+    slug: "adjustable-black-clover-ring",
+    title: "Adjustable Black Clover Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 899.00 PKR",
+    description:
+      "Floral lines on an adjustable silhouette — soft femininity with a refined daily-wear finish.",
+    id: "adjustable-floral-ring-2",
+    imageSrc: "/rings/adjustable%20floral%20ring.jpeg",
+    price: "Rs. 450.00 PKR",
+    slug: "adjustable-floral-ring-2",
+    title: "Adjustable Floral Ring (2)",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 849.00 PKR",
+    description:
+      "Leaf-inspired adjustable styling with a lightweight feel — easy to pair solo or in a stack.",
+    id: "adjustable-leaf-ring",
+    imageSrc: "/rings/adjustable%20leaf%20ring%20(2).jpeg",
+    price: "Rs. 449.00 PKR",
+    slug: "adjustable-leaf-ring",
+    title: "Adjustable Leaf Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 899.00 PKR",
+    description:
+      "Spiral leaf detailing on an adjustable band — sculptural lines with everyday comfort.",
+    id: "adjustable-spril-leaf-ring-1",
+    imageSrc: "/rings/adjustable%20spril%20leaf%20ring.jpeg",
+    price: "Rs. 450.00 PKR",
+    slug: "adjustable-spril-leaf-ring-1",
+    title: "Adjustable Spril Leaf Ring (1)",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 899.00 PKR",
+    description:
+      "Uneven-edge adjustable styling for a modern stack — polished metal with a confident profile.",
+    id: "adjustable-uneven-ring-1",
+    imageSrc: "/rings/uneven%20ring.jpeg",
+    price: "Rs. 450.00 PKR",
+    slug: "adjustable-uneven-ring-1",
+    title: "Adjustable Uneven Ring (1)",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 849.00 PKR",
+    description:
+      "Bhawra-inspired silhouette with premium finishing — a signature accent from NS Jewels.",
+    id: "bhawra-ring",
+    imageSrc: "/rings/bhawra%20ring%20(2).jpeg",
+    price: "Rs. 399.00 PKR",
+    slug: "bhawra-ring",
+    title: "Bhawra Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 749.00 PKR",
+    description:
+      "Butterfly-forward lines with a polished shine — an airy accent for day-to-night outfits.",
+    id: "butterfly-ring",
+    imageSrc: "/rings/butter%20fly%20ring.jpeg",
+    price: "Rs. 300.00 PKR",
+    slug: "butterfly-ring",
+    title: "Butterfly Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 849.00 PKR",
+    description:
+      "Stone-forward Cartier-inspired detailing — refined presence for gifting and daily wear.",
+    id: "cartier-stone-ring",
+    imageSrc: "/rings/cartier%20stone%20ring.jpeg",
+    price: "Rs. 399.00 PKR",
+    slug: "cartier-stone-ring",
+    title: "Cartier Stone Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 749.00 PKR",
+    description:
+      "Chanel-inspired profiling with polished finishing — quiet luxury for your ring stack.",
+    id: "chanel-ring",
+    imageSrc: "/rings/chanel%20ring.jpeg",
+    price: "Rs. 349.00 PKR",
+    slug: "chanel-ring",
+    title: "Chanel Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 800.00 PKR",
+    description:
+      "Double butterfly styling with balanced symmetry — romantic sparkle for everyday outfits.",
+    id: "double-butterfly-ring",
+    imageSrc: "/rings/double%20butterfly%20ring.jpeg",
+    price: "Rs. 399.00 PKR",
+    slug: "double-butterfly-ring",
+    title: "Double Butterfly Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 849.00 PKR",
+    description:
+      "Floral petal lines on an adjustable band — soft shine that layers beautifully with classics.",
+    id: "adjustable-floral-ring-1",
+    imageSrc: "/rings/floral%20ring.jpeg",
+    price: "Rs. 449.00 PKR",
+    slug: "adjustable-floral-ring-1",
+    title: "Adjustable Floral Ring (1)",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 749.00 PKR",
+    description:
+      "Gucci-inspired ring profiling with confident polish — a statement piece that still feels wearable.",
+    id: "gucci-ring",
+    imageSrc: "/rings/gucci%20ring.jpeg",
+    price: "Rs. 399.00 PKR",
+    slug: "gucci-ring",
+    title: "Gucci Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 600.00 PKR",
+    description:
+      "Heart silhouette styling with a soft romantic finish — perfect for gifting and daily shine.",
+    id: "heart-ring",
+    imageSrc: "/rings/hreat%20rig.jpeg",
+    price: "Rs. 299.00 PKR",
+    slug: "heart-ring",
+    title: "Heart Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 849.00 PKR",
+    description:
+      "Louis Vuitton-inspired detailing with premium finishing — elevated presence for your stack.",
+    id: "louis-vuitton-ring",
+    imageSrc: "/rings/louis%20vuitton%20ring.jpeg",
+    price: "Rs. 399.00 PKR",
+    slug: "louis-vuitton-ring",
+    title: "Louis Vuitton Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 849.00 PKR",
+    description:
+      "Nail-inspired ring lines with sculptural polish — sharp, refined, and stack-friendly.",
+    id: "nail-ring",
+    imageSrc: "/rings/nail%20ring.jpeg",
+    price: "Rs. 399.00 PKR",
+    slug: "nail-ring",
+    title: "Nail Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 800.00 PKR",
+    description:
+      "Roman numeral detailing with a timeless profile — classic typography for everyday wear.",
+    id: "roman-numeral-ring",
+    imageSrc: "/rings/roman%20numeral%20ring.jpeg",
+    price: "Rs. 399.00 PKR",
+    slug: "roman-numeral-ring",
+    title: "Roman Numeral Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 749.00 PKR",
+    description:
+      "Silver-tone stone accents with butterfly styling — soft sparkle for day-to-night looks.",
+    id: "silver-stone-butterfly-ring",
+    imageSrc: "/rings/silver%20stone%20butterfly%20ring.jpeg",
+    price: "Rs. 399.00 PKR",
+    slug: "silver-stone-butterfly-ring",
+    title: "Silver Stone and Butterfly Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 899.00 PKR",
+    description:
+      "Spiral leaf lines with polished finishing — sculptural shine that pairs with your favorite bands.",
+    id: "spril-leaf-ring",
+    imageSrc: "/rings/spril%20leaf%20ring.jpeg",
+    price: "Rs. 450.00 PKR",
+    slug: "spril-leaf-ring",
+    title: "Spril Leaf Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 700.00 PKR",
+    description:
+      "Stone highlights paired with butterfly styling — balanced sparkle for everyday outfits.",
+    id: "stone-butterfly-ring",
+    imageSrc: "/rings/stone%20abd%20butterfly%20ring.jpeg",
+    additionalImages: ["/rings/floral-stone-butterfly-duo-lifestyle-light-2.png"],
+    price: "Rs. 399.00 PKR",
+    slug: "stone-butterfly-ring",
+    title: "Stone and Butterfly Ring",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 899.00 PKR",
+    description:
+      "Uneven-edge adjustable styling — a second profile option for modern ring stacks.",
+    id: "adjustable-uneven-ring-2",
+    imageSrc: "/rings/adjustable%20uneven%20ring.jpeg",
+    price: "Rs. 450.00 PKR",
+    slug: "adjustable-uneven-ring-2",
+    title: "Adjustable Uneven Ring (2)",
+  },
+  {
+    category: "rings",
+    compareAtPrice: "Rs. 899.00 PKR",
+    description:
+      "Watch-forward ring styling with sleek lines — wrist-inspired polish for your fingers.",
+    id: "watch-ring",
+    imageSrc: "/rings/watch%20ring.jpeg",
+    price: "Rs. 450.00 PKR",
+    slug: "watch-ring",
+    title: "Watch Ring",
   },
   {
     category: "earrings",
@@ -514,6 +747,21 @@ const toFallbackProduct = (category: ProductCategorySlug, imageSrc: string): Sho
   if (category === "handcuffs") {
     const title = `${titleStem} Handcuff`;
     const slug = `${safeBase}-handcuff`;
+
+    return {
+      category,
+      description: `${title} from NS Jewels with premium finishing and elegant daily-wear styling.`,
+      id: slug,
+      imageSrc,
+      price: DEFAULT_CATEGORY_PRICE[category],
+      slug,
+      title,
+    };
+  }
+
+  if (category === "rings") {
+    const title = titleStem || "Product";
+    const slug = `${category}-${safeBase}`;
 
     return {
       category,

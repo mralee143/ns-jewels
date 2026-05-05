@@ -159,6 +159,7 @@ export function Navbar() {
             alt="NS Jewels logo"
             className="h-auto w-[140px] transition-transform duration-300 hover:scale-[1.06] sm:w-[160px] lg:w-[200px]"
             height={307}
+            loading="eager"
             priority
             src="/brand_logo.png"
             width={1024}

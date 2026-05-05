@@ -3,7 +3,7 @@
 import Image, { type ImageProps } from "next/image";
 import { type SyntheticEvent, useCallback, useState } from "react";
 
-export type FillImageProps = Omit<ImageProps, "fill" | "sizes"> & {
+export type FillImageProps = Omit<ImageProps, "fill" | "sizes" | "onLoadingComplete"> & {
   sizes: string;
   /**
    * When true (default), the image stays hidden until load then plays a short reveal.
@@ -16,7 +16,7 @@ export function FillImage({
   alt,
   className,
   onError,
-  onLoadingComplete,
+  onLoad,
   revealOnLoad = true,
   sizes,
   ...rest
@@ -24,14 +24,14 @@ export function FillImage({
   const [isReady, setIsReady] = useState(false);
   const resolvedSizes = sizes.trim().length > 0 ? sizes : "100vw";
 
-  const handleLoadingComplete = useCallback(
-    (img: HTMLImageElement) => {
+  const handleLoad = useCallback(
+    (event: SyntheticEvent<HTMLImageElement>) => {
       if (revealOnLoad) {
         setIsReady(true);
       }
-      onLoadingComplete?.(img);
+      onLoad?.(event);
     },
-    [onLoadingComplete, revealOnLoad],
+    [onLoad, revealOnLoad],
   );
 
   const handleError = useCallback(
@@ -58,7 +58,7 @@ export function FillImage({
       className={[revealClasses, className].filter(Boolean).join(" ")}
       fill
       onError={handleError}
-      onLoadingComplete={handleLoadingComplete}
+      onLoad={handleLoad}
       sizes={resolvedSizes}
     />
   );

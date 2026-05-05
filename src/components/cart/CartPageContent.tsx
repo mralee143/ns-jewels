@@ -3,12 +3,6 @@
 import Link from "next/link";
 
 import { useCart } from "@/components/CartProvider";
-import { FillImage } from "@/components/FillImage";
-import {
-  productCartPageSetsThumbShellClass,
-  productCartPageThumbShellClass,
-  productCartThumbFitClass,
-} from "@/lib/product-image-display";
 import { calculateOrderTotals, formatPkrDetailed, parsePriceToPaisa, TAX_RATE } from "@/lib/pricing";
 import { formatPkrLine, parsePriceLabelToNumber } from "@/lib/product-price-display";
 
@@ -40,24 +34,6 @@ export function CartPageContent() {
             className="flex flex-col gap-4 rounded-2xl border border-[#f3e8ff] bg-white p-4 sm:flex-row sm:items-center"
             key={item.product.id}
           >
-            <div
-              className={
-                item.product.category === "sets"
-                  ? productCartPageSetsThumbShellClass(item.product.category)
-                  : productCartPageThumbShellClass(item.product.category)
-              }
-            >
-              <FillImage
-                alt={item.product.title}
-                className={productCartThumbFitClass(item.product.category)}
-                sizes={
-                  item.product.category === "sets"
-                    ? "(min-width: 640px) 144px, 128px"
-                    : "96px"
-                }
-                src={item.product.imageSrc}
-              />
-            </div>
             <div className="flex min-w-0 flex-1 flex-col">
               <h3 className="font-semibold text-black">{item.product.title}</h3>
               <p className="mt-1 text-sm text-black">
