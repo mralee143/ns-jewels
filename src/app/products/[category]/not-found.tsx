@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { BackHomeIconButton } from "@/components/BackHomeIconButton";
 import { FooterSection } from "@/components/FooterSection";
 import { Navbar } from "@/components/Navbar";
 import { WhatsAppFloatButton } from "@/components/WhatsAppFloatButton";
@@ -34,12 +35,7 @@ export default function ProductCategoryNotFound() {
             </li>
           ))}
         </ul>
-        <Link
-          className="mt-12 inline-block text-sm font-semibold text-black underline-offset-4 transition-colors hover:text-neutral-800 hover:underline"
-          href="/"
-        >
-          Back to home
-        </Link>
+        <BackHomeIconButton className="mt-12" />
       </main>
       <FooterSection />
       <WhatsAppFloatButton />

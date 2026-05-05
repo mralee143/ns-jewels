@@ -18,15 +18,25 @@ type ProductPurchasePanelProps = {
 };
 
 export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
+  const [hasAddedToCart, setHasAddedToCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
 
   const originalPrice = useMemo(() => resolveCompareAtAmount(product), [product]);
   const salePrice = useMemo(() => parsePriceLabelToNumber(product.price), [product.price]);
   const featureBullets = useMemo(() => getProductFeatureBullets(product), [product]);
+  const buyNowHref = useMemo(
+    () => `/checkout?buyNowSlug=${encodeURIComponent(product.slug)}&quantity=${quantity.toString()}`,
+    [product.slug, quantity]
+  );
 
   const decreaseQuantity = () => setQuantity((currentQuantity) => Math.max(1, currentQuantity - 1));
   const increaseQuantity = () => setQuantity((currentQuantity) => currentQuantity + 1);
+
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+    setHasAddedToCart(true);
+  };
 
   return (
     <div className="max-w-[420px]">
@@ -76,18 +86,34 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
           </div>
         </div>
 
-        <button
-          className="mt-6 h-12 w-full border border-black bg-white text-sm font-medium tracking-[0.08em] text-black transition-colors duration-200 hover:bg-[#F6C1CC]/40"
-          onClick={() => addToCart(product, quantity)}
-          type="button"
-        >
-          Add to cart
-        </button>
+        {hasAddedToCart ? (
+          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <Link
+              className="flex h-12 items-center justify-center rounded-full border border-[#F0D3DA] bg-white px-4 text-xs font-semibold uppercase tracking-[0.12em] text-black transition-colors duration-200 hover:bg-[#F6C1CC]/35"
+              href="/cart"
+            >
+              View cart
+            </Link>
+            <Link
+              className="flex h-12 items-center justify-center rounded-full bg-cta px-4 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-cta-hover"
+              href="/#categories"
+            >
+              Continue shopping
+            </Link>
+          </div>
+        ) : (
+          <button
+            className="mt-6 h-12 w-full border border-black bg-white text-sm font-medium tracking-[0.08em] text-black transition-colors duration-200 hover:bg-[#F6C1CC]/40"
+            onClick={handleAddToCart}
+            type="button"
+          >
+            Add to cart
+          </button>
+        )}
 
         <Link
           className="mt-3 flex h-12 w-full items-center justify-center bg-cta text-sm font-semibold tracking-[0.08em] text-white transition-colors duration-200 hover:bg-cta-hover"
-          href="/checkout"
-          onClick={() => addToCart(product, quantity)}
+          href={buyNowHref}
         >
           Buy it now
         </Link>

@@ -5,7 +5,7 @@ import { HOME_SHOP_BY_CATEGORY_PRODUCTS } from "@/data/shop-products";
 
 export function StyleIdeasSection() {
   return (
-    <section className="mx-auto max-w-[1320px] pb-16 pt-4 sm:pb-20 sm:pt-6">
+    <section className="mx-auto max-w-[1320px] pb-16 pt-4 sm:pb-20 sm:pt-6" id="categories">
       <div className="mb-6 text-center sm:mb-8">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black">Product List</p>
         <h3 className="mt-2 font-display text-2xl font-semibold tracking-[0.08em] text-black sm:text-3xl">

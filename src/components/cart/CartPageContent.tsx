@@ -21,7 +21,7 @@ export function CartPageContent() {
         <p className="mt-2 text-sm text-black">Add products to your cart to continue shopping.</p>
         <Link
           className="mt-6 inline-flex rounded-full bg-cta px-5 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-cta-hover"
-          href="/"
+          href="/#categories"
         >
           Continue shopping
         </Link>
@@ -120,6 +120,12 @@ export function CartPageContent() {
           href="/checkout"
         >
           Checkout
+        </Link>
+        <Link
+          className="mt-3 block w-full rounded-full border border-[#F0D3DA] bg-white px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.12em] text-black transition-colors duration-200 hover:bg-[#F6C1CC]/35"
+          href="/#categories"
+        >
+          Continue shopping
         </Link>
       </aside>
       {previewImage ? (

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+
+import { BackHomeIconButton } from "@/components/BackHomeIconButton";
 
 export const metadata: Metadata = {
   description: "Terms of service for NS Jewels.",
@@ -14,9 +15,7 @@ export default function TermsPage() {
         <p className="mt-4 text-sm leading-relaxed text-neutral-600">
           This page is a placeholder. Replace this copy with your store&apos;s legal terms and policies.
         </p>
-        <Link className="mt-8 inline-block text-sm font-medium text-cta underline-offset-2 hover:underline" href="/">
-          Back to home
-        </Link>
+        <BackHomeIconButton className="mt-8" />
       </div>
     </div>
   );
