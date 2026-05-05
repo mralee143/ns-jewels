@@ -56,7 +56,11 @@ export function CartPageContent() {
               />
             </button>
             <div className="flex min-w-0 flex-1 flex-col">
-              <h3 className="font-semibold text-black">{item.product.title}</h3>
+              <h3 className="font-semibold text-black">
+                <Link className="transition-colors duration-200 hover:text-cta" href={`/product/${item.product.slug}`}>
+                  {item.product.title}
+                </Link>
+              </h3>
               <p className="mt-1 text-sm text-black">
                 {formatPkrLine(parsePriceLabelToNumber(item.product.price))} each
               </p>
