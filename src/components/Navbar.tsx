@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FormEvent, useMemo, useState } from "react";
 
 import { useAuthModal } from "@/components/auth/auth-modal-provider";
@@ -14,12 +14,13 @@ import {
 } from "@/data/product-categories";
 import { resolveSearchToCategorySlug } from "@/lib/resolve-search-to-category-slug";
 
-const NAV_ITEMS: ReadonlyArray<{ href: string; label: string }> = PRODUCT_CATEGORY_SLUGS.map(
-  (slug) => ({
+const NAV_ITEMS: ReadonlyArray<{ href: string; label: string }> = [
+  { href: "/", label: "Home" },
+  ...PRODUCT_CATEGORY_SLUGS.map((slug) => ({
     href: productCategoryHref(slug),
     label: PRODUCT_CATEGORY_LABELS[slug],
-  })
-);
+  })),
+];
 
 const ANNOUNCEMENT_LINES = [
   "Welcome to NS Jewels — fine jewelry for the moments you want to remember",
@@ -73,6 +74,7 @@ function AnnouncementLineSegment({ text }: { text: string }) {
 export function Navbar() {
   const { openLogin } = useAuthModal();
   const { cartCount } = useCart();
+  const pathname = usePathname();
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -95,6 +97,15 @@ export function Navbar() {
     }
     setIsSearchOpen(false);
     setSearchValue("");
+  };
+
+  const handleNavClick = (href: string) => () => {
+    setIsMobileMenuOpen(false);
+    setIsSearchOpen(false);
+
+    if (href === "/" && pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
@@ -150,10 +161,7 @@ export function Navbar() {
         <Link
           className="absolute left-1/2 z-10 shrink-0 -translate-x-1/2 transition-opacity duration-200 lg:static lg:z-auto lg:translate-x-0"
           href="/"
-          onClick={() => {
-            setIsMobileMenuOpen(false);
-            setIsSearchOpen(false);
-          }}
+          onClick={handleNavClick("/")}
         >
           <Image
             alt="NS Jewels logo"
@@ -176,6 +184,7 @@ export function Navbar() {
                 <Link
                   className="border-b-2 border-transparent pb-0.5 text-black outline-none transition-colors duration-200 hover:border-cta hover:text-cta focus-visible:border-cta focus-visible:text-cta"
                   href={item.href}
+                  onClick={handleNavClick(item.href)}
                 >
                   {item.label}
                 </Link>
@@ -273,7 +282,7 @@ export function Navbar() {
                 <Link
                   className="block border-b border-pink-200 py-3.5 text-xs font-bold uppercase tracking-[0.16em] text-black underline-offset-[6px] outline-none transition-colors duration-200 hover:text-cta hover:underline hover:decoration-2 hover:decoration-cta focus-visible:text-cta focus-visible:underline focus-visible:decoration-2 focus-visible:decoration-cta"
                   href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={handleNavClick(item.href)}
                 >
                   {item.label}
                 </Link>
