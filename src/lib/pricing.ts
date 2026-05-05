@@ -1,6 +1,6 @@
 import type { ShopProduct } from "@/data/shop-products";
 
-export const DELIVERY_CHARGE_PKR = 250;
+export const DELIVERY_CHARGE_PKR = 199;
 export const TAX_RATE = 0.04;
 
 type CartLikeItem = {

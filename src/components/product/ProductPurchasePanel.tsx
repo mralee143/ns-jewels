@@ -30,7 +30,7 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
 
   return (
     <div className="max-w-[420px]">
-      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-black">Luxe Sparkles</p>
+      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-black">NS Jewels</p>
       <h1 className="mt-1 font-display text-4xl font-semibold leading-tight text-black">{product.title}</h1>
 
       <div className="mt-8 border-t border-[#F0D3DA] pt-8">

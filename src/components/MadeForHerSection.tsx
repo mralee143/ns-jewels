@@ -3,7 +3,7 @@ import Image from "next/image";
 const SECTION_IMAGE_QUALITY = 92 as const;
 
 const MADE_FOR_HER_IMAGES: ReadonlyArray<{ alt: string; src: string }> = [
-  { alt: "Model wearing gold heart earrings and necklace", src: "/made for her/image 1.png" },
+  { alt: "Model wearing an elegant gold oval watch", src: "/made for her/image-1-new.png" },
   { alt: "Gold heart jewelry styled for everyday wear", src: "/made for her/image 2.png" },
   { alt: "Close-up of heart-shaped gold jewelry set", src: "/made for her/image 3.png" },
   { alt: "Elegant gold heart necklace and earrings look", src: "/made for her/image 4.png" },

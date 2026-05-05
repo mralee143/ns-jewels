@@ -1,13 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 import { useCart } from "@/components/CartProvider";
+import { FillImage } from "@/components/FillImage";
 import { calculateOrderTotals, formatPkrDetailed, parsePriceToPaisa, TAX_RATE } from "@/lib/pricing";
 import { formatPkrLine, parsePriceLabelToNumber } from "@/lib/product-price-display";
 
 export function CartPageContent() {
   const { decreaseItem, increaseItem, items, removeItem } = useCart();
+  const [previewImage, setPreviewImage] = useState<{ alt: string; src: string } | null>(null);
 
   const totals = calculateOrderTotals(items);
 
@@ -34,6 +37,24 @@ export function CartPageContent() {
             className="flex flex-col gap-4 rounded-2xl border border-[#f3e8ff] bg-white p-4 sm:flex-row sm:items-center"
             key={item.product.id}
           >
+            <button
+              aria-label={`Open image preview for ${item.product.title}`}
+              className="relative h-20 w-20 overflow-hidden rounded-xl bg-neutral-100"
+              onClick={() =>
+                setPreviewImage({
+                  alt: item.product.title,
+                  src: item.product.additionalImages?.[0] ?? item.product.imageSrc,
+                })
+              }
+              type="button"
+            >
+              <FillImage
+                alt={item.product.title}
+                className="object-cover object-center"
+                sizes="80px"
+                src={item.product.additionalImages?.[0] ?? item.product.imageSrc}
+              />
+            </button>
             <div className="flex min-w-0 flex-1 flex-col">
               <h3 className="font-semibold text-black">{item.product.title}</h3>
               <p className="mt-1 text-sm text-black">
@@ -97,6 +118,33 @@ export function CartPageContent() {
           Checkout
         </Link>
       </aside>
+      {previewImage ? (
+        <div
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+          role="dialog"
+        >
+          <div className="w-full max-w-3xl rounded-2xl bg-white p-3">
+            <div className="flex justify-end">
+              <button
+                className="rounded-full border border-[#F0D3DA] px-3 py-1 text-sm font-semibold text-black transition-colors duration-200 hover:bg-[#F6C1CC]/35"
+                onClick={() => setPreviewImage(null)}
+                type="button"
+              >
+                Close
+              </button>
+            </div>
+            <div className="relative mt-2 h-[70vh] w-full overflow-hidden rounded-xl bg-neutral-100">
+              <FillImage
+                alt={previewImage.alt}
+                className="object-contain object-center"
+                sizes="(max-width: 1024px) 100vw, 900px"
+                src={previewImage.src}
+              />
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
