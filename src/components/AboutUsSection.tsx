@@ -1,16 +1,16 @@
 const TESTIMONIALS: ReadonlyArray<{ name: string; quote: string }> = [
   {
-    name: "Annie",
+    name: "Ayesha",
     quote:
       "I've always had a lot of allergic reactions while wearing earrings. With NS Jewels jewelry, I no longer have reactions, which makes me very happy!",
   },
   {
-    name: "Norah",
+    name: "Maham",
     quote:
       "I've been wearing them for a month, during the day, while sleeping, in the shower and while exercising and they look as new as when I got them!",
   },
   {
-    name: "Anouk",
+    name: "Hira",
     quote: "Great customer service, shipping was so fast! Really happy to have discovered your company!",
   },
 ] as const;

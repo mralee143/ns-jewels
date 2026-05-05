@@ -3,9 +3,19 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "923000000000";
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "03357395658";
 
-const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, "")}`;
+const formatWhatsAppNumber = (value: string) => {
+  const digitsOnly = value.replace(/\D/g, "");
+
+  if (digitsOnly.startsWith("0")) {
+    return `92${digitsOnly.slice(1)}`;
+  }
+
+  return digitsOnly;
+};
+
+const WHATSAPP_HREF = `https://wa.me/${formatWhatsAppNumber(WHATSAPP_NUMBER)}`;
 
 export function WhatsAppFloatButton() {
   const [mounted, setMounted] = useState(false);

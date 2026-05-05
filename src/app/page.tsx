@@ -1,4 +1,5 @@
 import { AboutUsSection } from "@/components/AboutUsSection";
+import { CustomerTestimonialsSection } from "@/components/CustomerTestimonialsSection";
 import { FooterSection } from "@/components/FooterSection";
 import { HeroSection } from "@/components/HeroSection";
 import { MadeForHerSection } from "@/components/MadeForHerSection";
@@ -19,6 +20,7 @@ export default function Home() {
         </div>
         <AboutUsSection />
         <WhyNsJewelsSection />
+        <CustomerTestimonialsSection />
       </main>
       <FooterSection />
       <WhatsAppFloatButton />
