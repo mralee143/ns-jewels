@@ -15,8 +15,10 @@ export type FillImageProps = Omit<ImageProps, "fill" | "sizes" | "onLoadingCompl
 export function FillImage({
   alt,
   className,
+  loading,
   onError,
   onLoad,
+  priority,
   revealOnLoad = true,
   sizes,
   ...rest
@@ -52,14 +54,18 @@ export function FillImage({
     : "";
 
   return (
-    <Image
-      {...rest}
-      alt={alt ?? ""}
-      className={[revealClasses, className].filter(Boolean).join(" ")}
-      fill
-      onError={handleError}
-      onLoad={handleLoad}
-      sizes={resolvedSizes}
-    />
+    <span className="relative block size-full min-h-0 min-w-0">
+      <Image
+        {...rest}
+        alt={alt ?? ""}
+        className={[revealClasses, className].filter(Boolean).join(" ")}
+        fill
+        loading={loading ?? (priority ? "eager" : undefined)}
+        onError={handleError}
+        onLoad={handleLoad}
+        priority={priority}
+        sizes={resolvedSizes}
+      />
+    </span>
   );
 }
