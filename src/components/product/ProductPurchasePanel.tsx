@@ -18,9 +18,13 @@ type ProductPurchasePanelProps = {
 };
 
 export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
-  const [hasAddedToCart, setHasAddedToCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
-  const { addToCart } = useCart();
+  const { addToCart, items } = useCart();
+
+  const isInCart = useMemo(
+    () => items.some((line) => line.product.id === product.id),
+    [items, product.id]
+  );
 
   const originalPrice = useMemo(() => resolveCompareAtAmount(product), [product]);
   const salePrice = useMemo(() => parsePriceLabelToNumber(product.price), [product.price]);
@@ -35,7 +39,6 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
-    setHasAddedToCart(true);
   };
 
   return (
@@ -86,7 +89,7 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
           </div>
         </div>
 
-        {hasAddedToCart ? (
+        {isInCart ? (
           <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <Link
               className="flex h-12 items-center justify-center rounded-full border border-[#F0D3DA] bg-white px-4 text-xs font-semibold uppercase tracking-[0.12em] text-black transition-colors duration-200 hover:bg-[#F6C1CC]/35"
