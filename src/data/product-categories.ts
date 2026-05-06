@@ -11,8 +11,6 @@ export const PRODUCT_CATEGORY_SLUGS = [
 
 export type ProductCategorySlug = (typeof PRODUCT_CATEGORY_SLUGS)[number];
 
-export type CatalogedImageCategory = Exclude<ProductCategorySlug, "handchain" | "rings">;
-
 export const PRODUCT_CATEGORY_LABELS: Record<ProductCategorySlug, string> = {
   anklets: "Anklets",
   bracelets: "Bracelets",
@@ -24,7 +22,8 @@ export const PRODUCT_CATEGORY_LABELS: Record<ProductCategorySlug, string> = {
   sets: "Sets",
 };
 
-export const CATALOGED_CATEGORY_IMAGES: Record<CatalogedImageCategory, readonly string[]> = {
+/** Listing heroes only — omit `-marble-bg`, `-velvet-bg`, `-display-*`, etc. (mirrors former `readPublicCategoryImagePaths` rules). */
+export const CATALOGED_CATEGORY_IMAGES: Record<ProductCategorySlug, readonly string[]> = {
   anklets: ["/anklets/anklet-creative-display.png"],
   earrings: ["/earrings/Bow%20Earing.jpeg", "/earrings/Duck%20earing.jpeg"],
   bracelets: [
@@ -37,6 +36,7 @@ export const CATALOGED_CATEGORY_IMAGES: Record<CatalogedImageCategory, readonly 
     "/bracelets/merh%20watch%20bracelaet.jpeg",
     "/bracelets/bracelet-8.jpeg",
   ],
+  handchain: ["/handchain/gold%20ball%20handchain.jpeg", "/handchain/pearls%20handchain.jpeg"],
   handcuffs: [
     "/handcuffs/Black%20Stone.jpeg",
     "/handcuffs/elara.jpeg",
@@ -69,6 +69,31 @@ export const CATALOGED_CATEGORY_IMAGES: Record<CatalogedImageCategory, readonly 
     "/necklace/vintage%20rose%20necklace.jpeg",
     "/necklace/watch%20necklace.jpeg",
     "/necklace/white%20stone%20necklace.jpeg",
+  ],
+  rings: [
+    "/rings/adjustable%20black%20clover%20ring.jpeg",
+    "/rings/adjustable%20floral%20ring.jpeg",
+    "/rings/adjustable%20leaf%20ring%20(2).jpeg",
+    "/rings/adjustable%20spril%20leaf%20ring.jpeg",
+    "/rings/adjustable%20uneven%20ring.jpeg",
+    "/rings/bhawra%20ring%20(2).jpeg",
+    "/rings/butter%20fly%20ring.jpeg",
+    "/rings/butterfly%20spiral%20ring.jpeg",
+    "/rings/cartier%20stone%20ring.jpeg",
+    "/rings/chanel%20ring.jpeg",
+    "/rings/classic%20ring.jpeg",
+    "/rings/double%20butterfly%20ring.jpeg",
+    "/rings/floral%20ring.jpeg",
+    "/rings/gucci%20ring.jpeg",
+    "/rings/hreat%20rig.jpeg",
+    "/rings/louis%20vuitton%20ring.jpeg",
+    "/rings/nail%20ring.jpeg",
+    "/rings/roman%20numeral%20ring.jpeg",
+    "/rings/silver%20stone%20butterfly%20ring.jpeg",
+    "/rings/spril%20leaf%20ring.jpeg",
+    "/rings/stone%20abd%20butterfly%20ring.jpeg",
+    "/rings/uneven%20ring.jpeg",
+    "/rings/watch%20ring.jpeg",
   ],
   /** Primary hero paths only — matches `imageSrc` in shop-products so extras stay on product detail (same pattern as anklets). */
   sets: [
