@@ -5,6 +5,9 @@ import { CheckoutPageContent } from "@/components/checkout/CheckoutPageContent";
 import { FooterSection } from "@/components/FooterSection";
 import { Navbar } from "@/components/Navbar";
 
+/** Avoid static prerender issues with `useSearchParams` and cart-backed UI in worker builds. */
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   description: "Complete your NS Jewels checkout with exact subtotal, shipping, taxes, and final total.",
   title: "Checkout | NS Jewels",
