@@ -28,18 +28,19 @@ export function HeroSection() {
         {/* Banner image */}
         <div className="page-entrance-hero-media relative aspect-[4/5] w-full min-w-0 overflow-hidden sm:aspect-[16/9] lg:aspect-[1525/528]">
           {HERO_IMAGES.map((src, index) => (
-            <FillImage
-              key={src}
-              alt={`NS Jewels Collection ${index + 1}`}
-              className={`object-cover transition-opacity duration-1000 ease-in-out ${
-                index === currentIndex ? "opacity-100" : "opacity-0"
-              } max-md:object-[62%_center] md:object-center`}
-              loading="eager"
-              priority={index === 0}
-              revealOnLoad={false}
-              sizes="100vw"
-              src={src}
-            />
+            <div className="absolute inset-0" key={src}>
+              <FillImage
+                alt={`NS Jewels Collection ${index + 1}`}
+                className={`object-cover transition-opacity duration-1000 ease-in-out ${
+                  index === currentIndex ? "opacity-100" : "opacity-0"
+                } max-md:object-[62%_center] md:object-center`}
+                loading="eager"
+                priority={index === 0}
+                revealOnLoad={false}
+                sizes="100vw"
+                src={src}
+              />
+            </div>
           ))}
         </div>
 
