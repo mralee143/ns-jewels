@@ -6,7 +6,13 @@ const IMAGE_EXT = /\.(jpe?g|png|webp|gif)$/i;
 /** Alternate shoots (blush/white backdrops, cart crops) — not separate SKUs on the category grid. */
 const isSupplementaryCategoryImageFileName = (fileName: string): boolean => {
   const lower = fileName.toLowerCase();
-  return lower.includes("-gallery") || lower.includes("-cart-") || lower.includes("-display-");
+  return (
+    lower.includes("-gallery") ||
+    lower.includes("-cart-") ||
+    lower.includes("-display-") ||
+    lower.includes("-marble-bg") ||
+    lower.includes("-velvet-bg")
+  );
 };
 
 export const readPublicCategoryImagePaths = (folder: string): readonly string[] => {

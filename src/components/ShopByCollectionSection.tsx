@@ -59,7 +59,7 @@ export function ShopByCollectionSection() {
           </h2>
           <Link
             className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-black transition-colors duration-200 hover:text-neutral-800 sm:text-xs"
-            href={productCategoryHref("rings")}
+            href="/products?page=1"
           >
             View all
           </Link>

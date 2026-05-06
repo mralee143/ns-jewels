@@ -20,7 +20,7 @@ export function StyleIdeasSection() {
       <div className="mt-10 flex justify-center">
         <Link
           className="rounded-full border border-black px-8 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-black transition-colors duration-200 hover:bg-cta hover:text-white"
-          href="/#products"
+          href="/products"
         >
           View All
         </Link>

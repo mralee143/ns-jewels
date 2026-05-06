@@ -42,6 +42,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "A timeless classic ring silhouette with polished finishing — versatile for everyday wear and gifting.",
     id: "classic-ring",
     imageSrc: "/rings/classic%20ring.jpeg",
+    additionalImages: [
+      "/rings/classic-ring-marble-bg.jpeg",
+      "/rings/classic-ring-velvet-bg.jpeg",
+    ],
     price: "Rs. 450.00 PKR",
     slug: "classic-ring",
     title: "Classic Ring",
@@ -51,8 +55,11 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     description:
       "A watch-style bracelet with a sleek linked pattern, designed to give your wrist stack a premium look.",
     id: "mesh-watch-bracelet",
-    imageSrc: "/bracelets/bracelet-1.jpeg",
-    additionalImages: ["/bracelets/bracelet-2.jpeg", "/bracelets/bracelet-3.jpeg"],
+    imageSrc: "/bracelets/merh%20watch%20bracelaet.jpeg",
+    additionalImages: [
+      "/bracelets/merh-watch-bracelet-marble-bg.jpeg",
+      "/bracelets/merh-watch-bracelet-velvet-bg.jpeg",
+    ],
     price: "Rs. 599.00 PKR",
     slug: "mesh-watch-bracelet",
     title: "Mesh Watch Bracelet",
@@ -69,8 +76,11 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Long-lasting shine with low maintenance",
     ],
     id: "heartlock-ring",
-    imageSrc: "/handchain/handchain-1.jpeg",
-    additionalImages: ["/handchain/handchain-2.jpeg"],
+    imageSrc: "/handchain/gold%20ball%20handchain.jpeg",
+    additionalImages: [
+      "/handchain/gold-ball-handchain-marble-bg.jpeg",
+      "/handchain/gold-ball-handchain-velvet-bg.jpeg",
+    ],
     price: "Rs. 350.00 PKR",
     slug: "heartlock-ring",
     title: "HeartLock Ring",
@@ -248,6 +258,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Adjustable butterfly spiral styling with delicate lines — wear solo or stacked with your favorite bands.",
     id: "butterfly-spiral-ring",
     imageSrc: "/rings/butterfly%20spiral%20ring.jpeg",
+    additionalImages: [
+      "/rings/butterfly-spiral-ring-marble-bg.jpeg",
+      "/rings/butterfly-spiral-ring-velvet-bg.jpeg",
+    ],
     price: "Rs. 450.00 PKR",
     slug: "butterfly-spiral-ring",
     title: "Adjustable Butterfly Spiral Ring",
@@ -259,6 +273,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Black clover motif on an adjustable band — polished presence for everyday stacks and gifting.",
     id: "adjustable-black-clover-ring",
     imageSrc: "/rings/adjustable%20black%20clover%20ring.jpeg",
+    additionalImages: [
+      "/rings/adjustable-black-clover-ring-marble-bg.jpeg",
+      "/rings/adjustable-black-clover-ring-velvet-bg.jpeg",
+    ],
     price: "Rs. 399.00 PKR",
     slug: "adjustable-black-clover-ring",
     title: "Adjustable Black Clover Ring",
@@ -270,6 +288,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Floral lines on an adjustable silhouette — soft femininity with a refined daily-wear finish.",
     id: "adjustable-floral-ring-2",
     imageSrc: "/rings/adjustable%20floral%20ring.jpeg",
+    additionalImages: [
+      "/rings/adjustable-floral-ring-marble-bg.jpeg",
+      "/rings/adjustable-floral-ring-velvet-bg.jpeg",
+    ],
     price: "Rs. 450.00 PKR",
     slug: "adjustable-floral-ring-2",
     title: "Adjustable Floral Ring (2)",
@@ -281,6 +303,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Leaf-inspired adjustable styling with a lightweight feel — easy to pair solo or in a stack.",
     id: "adjustable-leaf-ring",
     imageSrc: "/rings/adjustable%20leaf%20ring%20(2).jpeg",
+    additionalImages: [
+      "/rings/adjustable-leaf-ring-2-marble-bg.jpeg",
+      "/rings/adjustable-leaf-ring-2-velvet-bg.jpeg",
+    ],
     price: "Rs. 449.00 PKR",
     slug: "adjustable-leaf-ring",
     title: "Adjustable Leaf Ring",
@@ -292,6 +318,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Spiral leaf detailing on an adjustable band — sculptural lines with everyday comfort.",
     id: "adjustable-spril-leaf-ring-1",
     imageSrc: "/rings/adjustable%20spril%20leaf%20ring.jpeg",
+    additionalImages: [
+      "/rings/adjustable-spril-leaf-ring-marble-bg.jpeg",
+      "/rings/adjustable-spril-leaf-ring-velvet-bg.jpeg",
+    ],
     price: "Rs. 450.00 PKR",
     slug: "adjustable-spril-leaf-ring-1",
     title: "Adjustable Spril Leaf Ring (1)",
@@ -303,6 +333,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Uneven-edge adjustable styling for a modern stack — polished metal with a confident profile.",
     id: "adjustable-uneven-ring-1",
     imageSrc: "/rings/uneven%20ring.jpeg",
+    additionalImages: [
+      "/rings/uneven-ring-marble-bg.jpeg",
+      "/rings/uneven-ring-velvet-bg.jpeg",
+    ],
     price: "Rs. 450.00 PKR",
     slug: "adjustable-uneven-ring-1",
     title: "Adjustable Uneven Ring (1)",
@@ -314,6 +348,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Bhawra-inspired silhouette with premium finishing — a signature accent from NS Jewels.",
     id: "bhawra-ring",
     imageSrc: "/rings/bhawra%20ring%20(2).jpeg",
+    additionalImages: [
+      "/rings/bhawra-ring-2-marble-bg.jpeg",
+      "/rings/bhawra-ring-2-velvet-bg.jpeg",
+    ],
     price: "Rs. 399.00 PKR",
     slug: "bhawra-ring",
     title: "Bhawra Ring",
@@ -325,7 +363,12 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Butterfly-forward lines with a polished shine — an airy accent for day-to-night outfits.",
     id: "butterfly-ring",
     imageSrc: "/rings/butter%20fly%20ring.jpeg",
-    additionalImages: ["/rings/butterfly-ring-display-2.png", "/rings/butterfly-ring-display-3.png"],
+    additionalImages: [
+      "/rings/butter-fly-ring-marble-bg.jpeg",
+      "/rings/butter-fly-ring-velvet-bg.jpeg",
+      "/rings/butterfly-ring-display-2.png",
+      "/rings/butterfly-ring-display-3.png",
+    ],
     price: "Rs. 300.00 PKR",
     slug: "butterfly-ring",
     title: "Butterfly Ring",
@@ -338,6 +381,8 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     id: "cartier-stone-ring",
     imageSrc: "/rings/cartier%20stone%20ring.jpeg",
     additionalImages: [
+      "/rings/cartier-stone-ring-marble-bg.jpeg",
+      "/rings/cartier-stone-ring-velvet-bg.jpeg",
       "/rings/cartier-stone-ring-display-2.png",
       "/rings/cartier-stone-ring-display-3.png",
     ],
@@ -352,7 +397,12 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Chanel-inspired profiling with polished finishing — quiet luxury for your ring stack.",
     id: "chanel-ring",
     imageSrc: "/rings/chanel%20ring.jpeg",
-    additionalImages: ["/rings/chanel-ring-display-2.png", "/rings/chanel-ring-display-3.png"],
+    additionalImages: [
+      "/rings/chanel-ring-marble-bg.jpeg",
+      "/rings/chanel-ring-velvet-bg.jpeg",
+      "/rings/chanel-ring-display-2.png",
+      "/rings/chanel-ring-display-3.png",
+    ],
     price: "Rs. 349.00 PKR",
     slug: "chanel-ring",
     title: "Chanel Ring",
@@ -365,6 +415,8 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     id: "double-butterfly-ring",
     imageSrc: "/rings/double%20butterfly%20ring.jpeg",
     additionalImages: [
+      "/rings/double-butterfly-ring-marble-bg.jpeg",
+      "/rings/double-butterfly-ring-velvet-bg.jpeg",
       "/rings/double-butterfly-ring-display-2.png",
       "/rings/double-butterfly-ring-display-3.png",
     ],
@@ -379,6 +431,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Floral petal lines on an adjustable band — soft shine that layers beautifully with classics.",
     id: "adjustable-floral-ring-1",
     imageSrc: "/rings/floral%20ring.jpeg",
+    additionalImages: [
+      "/rings/floral-ring-marble-bg.jpeg",
+      "/rings/floral-ring-velvet-bg.jpeg",
+    ],
     price: "Rs. 449.00 PKR",
     slug: "adjustable-floral-ring-1",
     title: "Adjustable Floral Ring (1)",
@@ -390,6 +446,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Gucci-inspired ring profiling with confident polish — a statement piece that still feels wearable.",
     id: "gucci-ring",
     imageSrc: "/rings/gucci%20ring.jpeg",
+    additionalImages: [
+      "/rings/gucci-ring-marble-bg.jpeg",
+      "/rings/gucci-ring-velvet-bg.jpeg",
+    ],
     price: "Rs. 399.00 PKR",
     slug: "gucci-ring",
     title: "Gucci Ring",
@@ -401,7 +461,12 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Heart silhouette styling with a soft romantic finish — perfect for gifting and daily shine.",
     id: "heart-ring",
     imageSrc: "/rings/hreat%20rig.jpeg",
-    additionalImages: ["/rings/heart-ring-display-2.png", "/rings/heart-ring-display-3.png"],
+    additionalImages: [
+      "/rings/hreat-rig-marble-bg.jpeg",
+      "/rings/hreat-rig-velvet-bg.jpeg",
+      "/rings/heart-ring-display-2.png",
+      "/rings/heart-ring-display-3.png",
+    ],
     price: "Rs. 299.00 PKR",
     slug: "heart-ring",
     title: "Heart Ring",
@@ -413,6 +478,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Louis Vuitton-inspired detailing with premium finishing — elevated presence for your stack.",
     id: "louis-vuitton-ring",
     imageSrc: "/rings/louis%20vuitton%20ring.jpeg",
+    additionalImages: [
+      "/rings/louis-vuitton-ring-marble-bg.jpeg",
+      "/rings/louis-vuitton-ring-velvet-bg.jpeg",
+    ],
     price: "Rs. 399.00 PKR",
     slug: "louis-vuitton-ring",
     title: "Louis Vuitton Ring",
@@ -424,7 +493,12 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Nail-inspired ring lines with sculptural polish — sharp, refined, and stack-friendly.",
     id: "nail-ring",
     imageSrc: "/rings/nail%20ring.jpeg",
-    additionalImages: ["/rings/nail-ring-display-2.png", "/rings/nail-ring-display-3.png"],
+    additionalImages: [
+      "/rings/nail-ring-marble-bg.jpeg",
+      "/rings/nail-ring-velvet-bg.jpeg",
+      "/rings/nail-ring-display-2.png",
+      "/rings/nail-ring-display-3.png",
+    ],
     price: "Rs. 399.00 PKR",
     slug: "nail-ring",
     title: "Nail Ring",
@@ -436,6 +510,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Roman numeral detailing with a timeless profile — classic typography for everyday wear.",
     id: "roman-numeral-ring",
     imageSrc: "/rings/roman%20numeral%20ring.jpeg",
+    additionalImages: [
+      "/rings/roman-numeral-ring-marble-bg.jpeg",
+      "/rings/roman-numeral-ring-velvet-bg.jpeg",
+    ],
     price: "Rs. 399.00 PKR",
     slug: "roman-numeral-ring",
     title: "Roman Numeral Ring",
@@ -447,6 +525,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Silver-tone stone accents with butterfly styling — soft sparkle for day-to-night looks.",
     id: "silver-stone-butterfly-ring",
     imageSrc: "/rings/silver%20stone%20butterfly%20ring.jpeg",
+    additionalImages: [
+      "/rings/silver-stone-butterfly-ring-marble-bg.jpeg",
+      "/rings/silver-stone-butterfly-ring-velvet-bg.jpeg",
+    ],
     price: "Rs. 399.00 PKR",
     slug: "silver-stone-butterfly-ring",
     title: "Silver Stone and Butterfly Ring",
@@ -458,6 +540,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Spiral leaf lines with polished finishing — sculptural shine that pairs with your favorite bands.",
     id: "spril-leaf-ring",
     imageSrc: "/rings/spril%20leaf%20ring.jpeg",
+    additionalImages: [
+      "/rings/spril-leaf-ring-marble-bg.jpeg",
+      "/rings/spril-leaf-ring-velvet-bg.jpeg",
+    ],
     price: "Rs. 450.00 PKR",
     slug: "spril-leaf-ring",
     title: "Spril Leaf Ring",
@@ -469,7 +555,11 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Stone highlights paired with butterfly styling — balanced sparkle for everyday outfits.",
     id: "stone-butterfly-ring",
     imageSrc: "/rings/stone%20abd%20butterfly%20ring.jpeg",
-    additionalImages: ["/rings/floral-stone-butterfly-duo-lifestyle-light-2.png"],
+    additionalImages: [
+      "/rings/stone-abd-butterfly-ring-marble-bg.jpeg",
+      "/rings/stone-abd-butterfly-ring-velvet-bg.jpeg",
+      "/rings/floral-stone-butterfly-duo-lifestyle-light-2.png",
+    ],
     price: "Rs. 399.00 PKR",
     slug: "stone-butterfly-ring",
     title: "Stone and Butterfly Ring",
@@ -481,6 +571,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Uneven-edge adjustable styling — a second profile option for modern ring stacks.",
     id: "adjustable-uneven-ring-2",
     imageSrc: "/rings/adjustable%20uneven%20ring.jpeg",
+    additionalImages: [
+      "/rings/adjustable-uneven-ring-marble-bg.jpeg",
+      "/rings/adjustable-uneven-ring-velvet-bg.jpeg",
+    ],
     price: "Rs. 450.00 PKR",
     slug: "adjustable-uneven-ring-2",
     title: "Adjustable Uneven Ring (2)",
@@ -492,6 +586,10 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "Watch-forward ring styling with sleek lines — wrist-inspired polish for your fingers.",
     id: "watch-ring",
     imageSrc: "/rings/watch%20ring.jpeg",
+    additionalImages: [
+      "/rings/watch-ring-marble-bg.jpeg",
+      "/rings/watch-ring-velvet-bg.jpeg",
+    ],
     price: "Rs. 450.00 PKR",
     slug: "watch-ring",
     title: "Watch Ring",
@@ -534,7 +632,11 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     description:
       "A timeless bracelet profile made for day-to-day wear, with a polished texture and refined edge.",
     id: "classic-bracelet",
-    imageSrc: "/bracelets/bracelet-2.jpeg",
+    imageSrc: "/bracelets/bracelet-8.jpeg",
+    additionalImages: [
+      "/bracelets/bracelet-8-marble-bg.jpeg",
+      "/bracelets/bracelet-8-velvet-bg.jpeg",
+    ],
     price: "Rs. 520.00 PKR",
     slug: "classic-bracelet",
     title: "Classic Bracelet",
@@ -734,6 +836,385 @@ const DEFAULT_CATEGORY_PRICE: Record<ProductCategorySlug, string> = {
   sets: SETS_SALE_PRICE,
 };
 
+const NECKLACE_ADDITIONAL_IMAGES_BY_STEM: Record<string, readonly string[]> = {
+  "anne tiffany necklace": [
+    "/necklace/anne-tiffany-necklace-marble-bg.jpeg",
+    "/necklace/anne-tiffany-necklace-velvet-bg.jpeg",
+  ],
+  "black stone necklace": [
+    "/necklace/black-stone-necklace-marble-bg.jpeg",
+    "/necklace/black-stone-necklace-velvet-bg.jpeg",
+  ],
+  "black swan necklace": [
+    "/necklace/black-swan-necklace-marble-bg.jpeg",
+    "/necklace/black-swan-necklace-velvet-bg.jpeg",
+  ],
+  "blach v necklace": [
+    "/necklace/blach-v-necklace-marble-bg.jpeg",
+    "/necklace/blach-v-necklace-velvet-bg.jpeg",
+  ],
+  "bow necklace": [
+    "/necklace/bow-necklace-marble-bg.jpeg",
+    "/necklace/bow-necklace-velvet-bg.jpeg",
+  ],
+  "emerald stone necklace": [
+    "/necklace/emerald-stone-necklace-marble-bg.jpeg",
+    "/necklace/emerald-stone-necklace-velvet-bg.jpeg",
+  ],
+  "gold leaf charm necklace": [
+    "/necklace/gold-leaf-charm-necklace-marble-bg.jpeg",
+    "/necklace/gold-leaf-charm-necklace-velvet-bg.jpeg",
+  ],
+  "golden beaded necklace": [
+    "/necklace/golden-beaded-necklace-marble-bg.jpeg",
+    "/necklace/golden-beaded-necklace-velvet-bg.jpeg",
+  ],
+  "golden floral necklace": [
+    "/necklace/golden-floral-necklace-marble-bg.jpeg",
+    "/necklace/golden-floral-necklace-velvet-bg.jpeg",
+  ],
+  "golden petal necklace": [
+    "/necklace/golden-petal-necklace-marble-bg.jpeg",
+    "/necklace/golden-petal-necklace-velvet-bg.jpeg",
+  ],
+  "golden premium necklace": [
+    "/necklace/golden-premium-necklace-marble-bg.jpeg",
+    "/necklace/golden-premium-necklace-velvet-bg.jpeg",
+  ],
+  "heart necklace": [
+    "/necklace/heart-necklace-marble-bg.jpeg",
+    "/necklace/heart-necklace-velvet-bg.jpeg",
+  ],
+  "nail necklace": [
+    "/necklace/nail-necklace-marble-bg.jpeg",
+    "/necklace/nail-necklace-velvet-bg.jpeg",
+  ],
+  "pink stone necklace": [
+    "/necklace/pink-stone-necklace-marble-bg.jpeg",
+    "/necklace/pink-stone-necklace-velvet-bg.jpeg",
+  ],
+  "twinkle necklace": [
+    "/necklace/twinkle-necklace-marble-bg.jpeg",
+    "/necklace/twinkle-necklace-velvet-bg.jpeg",
+  ],
+  "vintage rose necklace": [
+    "/necklace/vintage-rose-necklace-marble-bg.jpeg",
+    "/necklace/vintage-rose-necklace-velvet-bg.jpeg",
+  ],
+  "watch necklace": [
+    "/necklace/watch-necklace-marble-bg.jpeg",
+    "/necklace/watch-necklace-velvet-bg.jpeg",
+  ],
+  "white stone necklace": [
+    "/necklace/white-stone-necklace-marble-bg.jpeg",
+    "/necklace/white-stone-necklace-velvet-bg.jpeg",
+  ],
+};
+
+const necklaceGalleryForStem = (
+  stem: string
+): { readonly additionalImages: readonly string[] } | Record<string, never> => {
+  const images = NECKLACE_ADDITIONAL_IMAGES_BY_STEM[stem.toLowerCase()];
+  return images === undefined ? {} : { additionalImages: images };
+};
+
+const NECKLACE_PRICE_BY_STEM: Record<
+  string,
+  { readonly compareAtPrice: string; readonly salePrice: string }
+> = {
+  "anne tiffany necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "black stone necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "black swan necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "blach v necklace": {
+    compareAtPrice: "Rs. 850.00 PKR",
+    salePrice: "Rs. 649.00 PKR",
+  },
+  "bow necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "emerald stone necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "gold leaf charm necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "golden beaded necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "golden floral necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "golden petal necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "golden premium necklace": {
+    compareAtPrice: "Rs. 1050.00 PKR",
+    salePrice: "Rs. 849.00 PKR",
+  },
+  "heart necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "nail necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "pink stone necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "twinkle necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "vintage rose necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "watch necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+  "white stone necklace": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 749.00 PKR",
+  },
+};
+
+/** Marble + velvet variants — cart uses `additionalImages[0]` (same pattern as anklets). Keys: decoded filename stem, lowercased. */
+const BRACELET_ADDITIONAL_IMAGES_BY_STEM: Record<string, readonly string[]> = {
+  "bracelet-8": [
+    "/bracelets/bracelet-8-marble-bg.jpeg",
+    "/bracelets/bracelet-8-velvet-bg.jpeg",
+  ],
+  "floral bracelet": [
+    "/bracelets/floral-bracelet-marble-bg.jpeg",
+    "/bracelets/floral-bracelet-velvet-bg.jpeg",
+  ],
+  "heart bracelet": [
+    "/bracelets/heart-bracelet-marble-bg.jpeg",
+    "/bracelets/heart-bracelet-velvet-bg.jpeg",
+  ],
+  "heart bracelet (2)": [
+    "/bracelets/heart-bracelet-2-marble-bg.jpeg",
+    "/bracelets/heart-bracelet-2-velvet-bg.jpeg",
+  ],
+  "love bracelet": [
+    "/bracelets/love-bracelet-marble-bg.jpeg",
+    "/bracelets/love-bracelet-velvet-bg.jpeg",
+  ],
+  "love charm bracelet (2)": [
+    "/bracelets/love-charm-bracelet-2-marble-bg.jpeg",
+    "/bracelets/love-charm-bracelet-2-velvet-bg.jpeg",
+  ],
+  "luna love bracelet": [
+    "/bracelets/luna-love-bracelet-marble-bg.jpeg",
+    "/bracelets/luna-love-bracelet-velvet-bg.jpeg",
+  ],
+  "merh watch bracelaet": [
+    "/bracelets/merh-watch-bracelet-marble-bg.jpeg",
+    "/bracelets/merh-watch-bracelet-velvet-bg.jpeg",
+  ],
+};
+
+const braceletGalleryForStem = (
+  stem: string
+): { readonly additionalImages: readonly string[] } | Record<string, never> => {
+  const images = BRACELET_ADDITIONAL_IMAGES_BY_STEM[stem.toLowerCase()];
+  return images === undefined ? {} : { additionalImages: images };
+};
+
+const BRACELET_PRICE_BY_STEM: Record<
+  string,
+  { readonly compareAtPrice: string; readonly salePrice: string }
+> = {
+  "bracelet-8": {
+    compareAtPrice: "Rs. 900.00 PKR",
+    salePrice: "Rs. 599.00 PKR",
+  },
+  "floral bracelet": {
+    compareAtPrice: "Rs. 900.00 PKR",
+    salePrice: "Rs. 599.00 PKR",
+  },
+  "heart bracelet": {
+    compareAtPrice: "Rs. 750.00 PKR",
+    salePrice: "Rs. 599.00 PKR",
+  },
+  "heart bracelet (2)": {
+    compareAtPrice: "Rs. 750.00 PKR",
+    salePrice: "Rs. 599.00 PKR",
+  },
+  "love bracelet": {
+    compareAtPrice: "Rs. 900.00 PKR",
+    salePrice: "Rs. 599.00 PKR",
+  },
+  "love charm bracelet (1)": {
+    compareAtPrice: "Rs. 750.00 PKR",
+    salePrice: "Rs. 599.00 PKR",
+  },
+  "love charm bracelet (2)": {
+    compareAtPrice: "Rs. 750.00 PKR",
+    salePrice: "Rs. 599.00 PKR",
+  },
+  "luna love bracelet": {
+    compareAtPrice: "Rs. 899.00 PKR",
+    salePrice: "Rs. 599.00 PKR",
+  },
+  "merh watch bracelaet": {
+    compareAtPrice: "Rs. 900.00 PKR",
+    salePrice: "Rs. 599.00 PKR",
+  },
+};
+
+const HANDCHAIN_ADDITIONAL_IMAGES_BY_STEM: Record<string, readonly string[]> = {
+  "gold ball handchain": [
+    "/handchain/gold-ball-handchain-marble-bg.jpeg",
+    "/handchain/gold-ball-handchain-velvet-bg.jpeg",
+  ],
+  "pearls handchain": [
+    "/handchain/pearls-handchain-marble-bg.jpeg",
+    "/handchain/pearls-handchain-velvet-bg.jpeg",
+  ],
+};
+
+const handchainGalleryForStem = (
+  stem: string
+): { readonly additionalImages: readonly string[] } | Record<string, never> => {
+  const images = HANDCHAIN_ADDITIONAL_IMAGES_BY_STEM[stem.toLowerCase()];
+  return images === undefined ? {} : { additionalImages: images };
+};
+
+const HANDCHAIN_PRICE_BY_STEM: Record<
+  string,
+  { readonly compareAtPrice: string; readonly salePrice: string }
+> = {
+  "gold ball handchain": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 599.00 PKR",
+  },
+  "pearls handchain": {
+    compareAtPrice: "Rs. 950.00 PKR",
+    salePrice: "Rs. 599.00 PKR",
+  },
+};
+
+const RINGS_ADDITIONAL_IMAGES_BY_STEM: Record<string, readonly string[]> = {
+  "adjustable black clover ring": [
+    "/rings/adjustable-black-clover-ring-marble-bg.jpeg",
+    "/rings/adjustable-black-clover-ring-velvet-bg.jpeg",
+  ],
+  "adjustable floral ring": [
+    "/rings/adjustable-floral-ring-marble-bg.jpeg",
+    "/rings/adjustable-floral-ring-velvet-bg.jpeg",
+  ],
+  "adjustable leaf ring (2)": [
+    "/rings/adjustable-leaf-ring-2-marble-bg.jpeg",
+    "/rings/adjustable-leaf-ring-2-velvet-bg.jpeg",
+  ],
+  "adjustable spril leaf ring": [
+    "/rings/adjustable-spril-leaf-ring-marble-bg.jpeg",
+    "/rings/adjustable-spril-leaf-ring-velvet-bg.jpeg",
+  ],
+  "adjustable uneven ring": [
+    "/rings/adjustable-uneven-ring-marble-bg.jpeg",
+    "/rings/adjustable-uneven-ring-velvet-bg.jpeg",
+  ],
+  "bhawra ring (2)": [
+    "/rings/bhawra-ring-2-marble-bg.jpeg",
+    "/rings/bhawra-ring-2-velvet-bg.jpeg",
+  ],
+  "butter fly ring": [
+    "/rings/butter-fly-ring-marble-bg.jpeg",
+    "/rings/butter-fly-ring-velvet-bg.jpeg",
+  ],
+  "butterfly spiral ring": [
+    "/rings/butterfly-spiral-ring-marble-bg.jpeg",
+    "/rings/butterfly-spiral-ring-velvet-bg.jpeg",
+  ],
+  "cartier stone ring": [
+    "/rings/cartier-stone-ring-marble-bg.jpeg",
+    "/rings/cartier-stone-ring-velvet-bg.jpeg",
+  ],
+  "chanel ring": [
+    "/rings/chanel-ring-marble-bg.jpeg",
+    "/rings/chanel-ring-velvet-bg.jpeg",
+  ],
+  "classic ring": [
+    "/rings/classic-ring-marble-bg.jpeg",
+    "/rings/classic-ring-velvet-bg.jpeg",
+  ],
+  "double butterfly ring": [
+    "/rings/double-butterfly-ring-marble-bg.jpeg",
+    "/rings/double-butterfly-ring-velvet-bg.jpeg",
+  ],
+  "floral ring": [
+    "/rings/floral-ring-marble-bg.jpeg",
+    "/rings/floral-ring-velvet-bg.jpeg",
+  ],
+  "gucci ring": [
+    "/rings/gucci-ring-marble-bg.jpeg",
+    "/rings/gucci-ring-velvet-bg.jpeg",
+  ],
+  "hreat rig": [
+    "/rings/hreat-rig-marble-bg.jpeg",
+    "/rings/hreat-rig-velvet-bg.jpeg",
+  ],
+  "louis vuitton ring": [
+    "/rings/louis-vuitton-ring-marble-bg.jpeg",
+    "/rings/louis-vuitton-ring-velvet-bg.jpeg",
+  ],
+  "nail ring": [
+    "/rings/nail-ring-marble-bg.jpeg",
+    "/rings/nail-ring-velvet-bg.jpeg",
+  ],
+  "roman numeral ring": [
+    "/rings/roman-numeral-ring-marble-bg.jpeg",
+    "/rings/roman-numeral-ring-velvet-bg.jpeg",
+  ],
+  "silver stone butterfly ring": [
+    "/rings/silver-stone-butterfly-ring-marble-bg.jpeg",
+    "/rings/silver-stone-butterfly-ring-velvet-bg.jpeg",
+  ],
+  "spril leaf ring": [
+    "/rings/spril-leaf-ring-marble-bg.jpeg",
+    "/rings/spril-leaf-ring-velvet-bg.jpeg",
+  ],
+  "stone abd butterfly ring": [
+    "/rings/stone-abd-butterfly-ring-marble-bg.jpeg",
+    "/rings/stone-abd-butterfly-ring-velvet-bg.jpeg",
+  ],
+  "uneven ring": [
+    "/rings/uneven-ring-marble-bg.jpeg",
+    "/rings/uneven-ring-velvet-bg.jpeg",
+  ],
+  "watch ring": [
+    "/rings/watch-ring-marble-bg.jpeg",
+    "/rings/watch-ring-velvet-bg.jpeg",
+  ],
+};
+
+const ringGalleryForStem = (
+  stem: string
+): { readonly additionalImages: readonly string[] } | Record<string, never> => {
+  const images = RINGS_ADDITIONAL_IMAGES_BY_STEM[stem.toLowerCase()];
+  return images === undefined ? {} : { additionalImages: images };
+};
+
 const toDecodedStem = (imageSrc: string): string => {
   const segment = imageSrc.split("/").pop() ?? "product";
   const decoded = decodeURIComponent(segment);
@@ -747,6 +1228,13 @@ const toTitleCase = (value: string): string =>
     .map((word) => `${word[0]?.toUpperCase() ?? ""}${word.slice(1).toLowerCase()}`)
     .join(" ");
 
+const normalizeIndexedVariantSuffix = (value: string): string =>
+  value.replace(/\s*(?:\((?:2|5)\)|(?:2|5))\s*$/, "").trim();
+
+const BRACELET_TITLE_BY_STEM: Record<string, string> = {
+  "bracelet-8": "Love Link Bracelet",
+};
+
 const toCategoryLabel = (category: ProductCategorySlug): string =>
   `${category[0]?.toUpperCase() ?? ""}${category.slice(1).toLowerCase()}`;
 
@@ -754,7 +1242,7 @@ const toFallbackProduct = (category: ProductCategorySlug, imageSrc: string): Sho
   const stem = toDecodedStem(imageSrc);
   const base = stem.toLowerCase().replace(/[^a-z0-9]+/g, "-");
   const safeBase = base.replace(/^-+|-+$/g, "") || "item";
-  const titleStem = toTitleCase(stem) || "Product";
+  const titleStem = normalizeIndexedVariantSuffix(toTitleCase(stem)) || "Product";
 
   if (category === "handcuffs") {
     const title = `${titleStem} Handcuff`;
@@ -780,7 +1268,50 @@ const toFallbackProduct = (category: ProductCategorySlug, imageSrc: string): Sho
       description: `${title} from NS Jewels with premium finishing and elegant daily-wear styling.`,
       id: slug,
       imageSrc,
+      ...ringGalleryForStem(stem),
       price: DEFAULT_CATEGORY_PRICE[category],
+      slug,
+      title,
+    };
+  }
+
+  if (category === "bracelets" || category === "handchain") {
+    const braceletPrice = BRACELET_PRICE_BY_STEM[stem.toLowerCase()];
+    const handchainPrice = HANDCHAIN_PRICE_BY_STEM[stem.toLowerCase()];
+    const categoryPrice = category === "bracelets" ? braceletPrice : handchainPrice;
+    const title =
+      category === "bracelets"
+        ? (BRACELET_TITLE_BY_STEM[stem.toLowerCase()] ?? titleStem) || "Product"
+        : titleStem || "Product";
+    const slug = `${category}-${safeBase}`;
+
+    return {
+      category,
+      description: `${title} from NS Jewels with premium finishing and elegant daily-wear styling.`,
+      id: slug,
+      imageSrc,
+      ...(category === "bracelets" ? braceletGalleryForStem(stem) : {}),
+      ...(category === "handchain" ? handchainGalleryForStem(stem) : {}),
+      ...(categoryPrice === undefined ? {} : { compareAtPrice: categoryPrice.compareAtPrice }),
+      price: categoryPrice?.salePrice ?? DEFAULT_CATEGORY_PRICE[category],
+      slug,
+      title,
+    };
+  }
+
+  if (category === "necklace") {
+    const title = titleStem || "Product";
+    const slug = `${category}-${safeBase}`;
+    const necklacePrice = NECKLACE_PRICE_BY_STEM[stem.toLowerCase()];
+
+    return {
+      category,
+      description: `${title} from NS Jewels with premium finishing and elegant daily-wear styling.`,
+      id: slug,
+      imageSrc,
+      ...necklaceGalleryForStem(stem),
+      ...(necklacePrice === undefined ? {} : { compareAtPrice: necklacePrice.compareAtPrice }),
+      price: necklacePrice?.salePrice ?? DEFAULT_CATEGORY_PRICE[category],
       slug,
       title,
     };

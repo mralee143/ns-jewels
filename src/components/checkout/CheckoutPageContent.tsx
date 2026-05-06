@@ -26,7 +26,7 @@ export function CheckoutPageContent() {
         <p className="mt-2 text-sm text-black">Add items to continue checkout.</p>
         <Link
           className="mt-6 inline-flex rounded-full bg-cta px-5 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-cta-hover"
-          href="/"
+          href="/products?page=1"
         >
           Continue shopping
         </Link>

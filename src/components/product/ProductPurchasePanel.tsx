@@ -96,7 +96,7 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
             </Link>
             <Link
               className="flex h-12 items-center justify-center rounded-full bg-cta px-4 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-cta-hover"
-              href="/#categories"
+              href="/products?page=1"
             >
               Continue shopping
             </Link>

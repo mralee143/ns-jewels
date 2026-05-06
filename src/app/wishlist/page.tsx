@@ -17,7 +17,7 @@ export default function WishlistPage() {
         </p>
         <Link
           className="mt-8 inline-flex rounded-lg bg-cta px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors duration-200 hover:bg-cta-hover"
-          href="/products/rings"
+          href="/products?page=1"
         >
           Continue shopping
         </Link>

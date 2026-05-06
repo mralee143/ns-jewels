@@ -390,7 +390,10 @@ export function LoginPageContent({
             Continue shopping
           </button>
         ) : (
-          <Link className="font-medium text-neutral-600 underline-offset-2 transition hover:text-black hover:underline" href="/">
+          <Link
+            className="font-medium text-neutral-600 underline-offset-2 transition hover:text-black hover:underline"
+            href="/products?page=1"
+          >
             Continue shopping
           </Link>
         )}

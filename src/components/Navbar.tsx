@@ -135,7 +135,7 @@ export function Navbar() {
           </div>
         </div>
       </div>
-      <div className="relative flex w-full items-center justify-between gap-3 border-b border-[#F0D3DA] bg-white px-4 py-3 sm:gap-4 sm:px-6 lg:gap-6 lg:px-8 lg:py-4">
+      <div className="relative flex w-full items-center justify-between gap-3 border-b border-[#F0D3DA] bg-white px-4 py-3 sm:gap-4 sm:px-6 lg:gap-3 lg:px-8 lg:py-4 xl:gap-6">
         <button
           aria-controls="mobile-nav-menu"
           aria-expanded={isMobileMenuOpen}
@@ -165,7 +165,7 @@ export function Navbar() {
         >
           <Image
             alt="NS Jewels logo"
-            className="h-auto w-[140px] transition-transform duration-300 hover:scale-[1.06] sm:w-[160px] lg:w-[200px]"
+            className="h-auto w-[140px] transition-transform duration-300 hover:scale-[1.06] sm:w-[160px] lg:w-[170px] xl:w-[200px]"
             height={307}
             loading="eager"
             priority
@@ -178,11 +178,11 @@ export function Navbar() {
           aria-label="Primary"
           className="absolute left-1/2 hidden min-w-0 -translate-x-1/2 lg:static lg:flex lg:translate-x-0 lg:flex-1 lg:justify-center"
         >
-          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[0.65rem] font-black uppercase tracking-[0.14em] text-black sm:gap-x-6 xl:gap-x-8 xl:text-[0.75rem]">
+          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[0.65rem] font-black uppercase tracking-[0.14em] text-black sm:gap-x-6 lg:flex-nowrap lg:gap-x-2 lg:text-[0.6rem] xl:gap-x-6 xl:text-[0.75rem]">
             {NAV_ITEMS.map((item) => (
               <li key={item.label}>
                 <Link
-                  className="border-b-2 border-transparent pb-0.5 text-black outline-none transition-colors duration-200 hover:border-cta hover:text-cta focus-visible:border-cta focus-visible:text-cta"
+                  className="whitespace-nowrap border-b-2 border-transparent pb-0.5 text-black outline-none transition-colors duration-200 hover:border-cta hover:text-cta focus-visible:border-cta focus-visible:text-cta"
                   href={item.href}
                   onClick={handleNavClick(item.href)}
                 >

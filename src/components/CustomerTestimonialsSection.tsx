@@ -51,14 +51,14 @@ export function CustomerTestimonialsSection() {
           >
             <path d="M0 32C120 8 240 56 360 32C480 8 600 56 720 32C840 8 960 56 1080 32C1200 8 1320 56 1400 24" stroke="#C8C1C4" strokeWidth="2" />
           </svg>
-            <div className="mt-2 flex w-full flex-wrap justify-center gap-8 pb-4 sm:flex-nowrap sm:gap-12">
+            <div className="mt-2 flex w-full flex-wrap justify-center gap-5 pb-4 lg:flex-nowrap lg:gap-4">
             {TESTIMONIALS.map((item, index) => (
               <div
                 key={item.name}
                 style={{ animation: `testimonial-slide-in 650ms ease-out ${index * 130}ms both` }}
               >
                 <article
-                  className="group relative w-[320px] border border-[#EFCED7] bg-[#F9E3EA] p-4 shadow-[0_10px_18px_rgba(201,132,149,0.25)] transition-transform duration-300 hover:-translate-y-1"
+                  className="group relative w-[260px] border border-[#EFCED7] bg-[#F9E3EA] p-4 shadow-[0_10px_18px_rgba(201,132,149,0.25)] transition-transform duration-300 hover:-translate-y-1 sm:w-[280px] lg:w-[220px] xl:w-[250px]"
                   style={{ transform: `rotate(${[-6, -2, 2, 5][index] ?? "0"}deg)` }}
                 >
                 <span className="pointer-events-none absolute left-1/2 top-0 z-10 h-8 w-8 -translate-x-1/2 -translate-y-6 rounded-full border border-[#A9ADB3] bg-white shadow-sm">
@@ -73,7 +73,7 @@ export function CustomerTestimonialsSection() {
                     alt={`${item.name} review photo`}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     fill
-                    sizes="320px"
+                    sizes="(max-width: 640px) 260px, (max-width: 1024px) 280px, (max-width: 1280px) 220px, 250px"
                     src={item.imageSrc}
                   />
                 </button>
