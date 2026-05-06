@@ -31,7 +31,7 @@ export function LimitedEditionBanner() {
             fill
             priority={false}
             sizes="(min-width: 1024px) 50vw, 100vw"
-            src="/necklace/necklace-14.jpeg"
+            src="/necklace/golden%20premium%20necklace.jpeg"
           />
         </div>
       </div>

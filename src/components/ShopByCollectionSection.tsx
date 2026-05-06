@@ -10,7 +10,7 @@ const COLLECTIONS: ReadonlyArray<{
 }> = [
   {
     href: productCategoryHref("necklace"),
-    imageSrc: "/necklace/necklace-6.jpeg",
+    imageSrc: "/necklace/heart%20necklace.jpeg",
     label: "Minimal",
   },
   {
@@ -26,7 +26,7 @@ const COLLECTIONS: ReadonlyArray<{
   },
   {
     href: productCategoryHref("necklace"),
-    imageSrc: "/necklace/necklace-11.jpeg",
+    imageSrc: "/necklace/golden%20petal%20necklace.jpeg",
     label: "Layered",
   },
   {

@@ -10,11 +10,15 @@ import { getProductCategoryImages } from "@/lib/get-product-category-images";
 const categoryListingOrder = (slug: ProductCategorySlug): number =>
   PRODUCT_CATEGORY_SLUGS.indexOf(slug);
 
-/** Full storefront listing: every category image SKU plus explicit `SHOP_PRODUCTS` rows (deduped by slug; explicit entries win). */
+/** Full storefront listing: category-scan SKUs plus explicit `SHOP_PRODUCTS` rows (explicit wins slugs; heroes owned by explicit rows skip duplicate catalog cards). */
 export const getAllListingProducts = (): readonly ShopProduct[] => {
+  const explicitHeroSrc = new Set(SHOP_PRODUCTS.map((product) => product.imageSrc));
   const bySlug = new Map<string, ShopProduct>();
 
   for (const product of getAllCatalogProducts()) {
+    if (explicitHeroSrc.has(product.imageSrc)) {
+      continue;
+    }
     bySlug.set(product.slug, product);
   }
 

@@ -236,7 +236,11 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     description:
       "A crystal pendant profile with a soft shine that pairs beautifully with layered chains or solo styling.",
     id: "luna-crystal-pendant",
-    imageSrc: "/necklace/necklace-1.jpeg",
+    imageSrc: "/necklace/twinkle%20necklace.jpeg",
+    additionalImages: [
+      "/necklace/twinkle-necklace-marble-bg.jpeg",
+      "/necklace/twinkle-necklace-velvet-bg.jpeg",
+    ],
     price: "Rs. 699.00 PKR",
     slug: "luna-crystal-pendant",
     title: "Luna Crystal Pendant",
@@ -246,7 +250,11 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     description:
       "A coordinated jewelry set look with balanced sparkle, ideal for gifting and special events.",
     id: "aurora-set",
-    imageSrc: "/necklace/necklace-2.jpeg",
+    imageSrc: "/necklace/golden%20floral%20necklace.jpeg",
+    additionalImages: [
+      "/necklace/golden-floral-necklace-marble-bg.jpeg",
+      "/necklace/golden-floral-necklace-velvet-bg.jpeg",
+    ],
     price: "Rs. 780.00 PKR",
     slug: "aurora-set",
     title: "Aurora Set",
@@ -366,8 +374,6 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     additionalImages: [
       "/rings/butter-fly-ring-marble-bg.jpeg",
       "/rings/butter-fly-ring-velvet-bg.jpeg",
-      "/rings/butterfly-ring-display-2.png",
-      "/rings/butterfly-ring-display-3.png",
     ],
     price: "Rs. 300.00 PKR",
     slug: "butterfly-ring",
@@ -383,8 +389,6 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     additionalImages: [
       "/rings/cartier-stone-ring-marble-bg.jpeg",
       "/rings/cartier-stone-ring-velvet-bg.jpeg",
-      "/rings/cartier-stone-ring-display-2.png",
-      "/rings/cartier-stone-ring-display-3.png",
     ],
     price: "Rs. 399.00 PKR",
     slug: "cartier-stone-ring",
@@ -400,8 +404,6 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     additionalImages: [
       "/rings/chanel-ring-marble-bg.jpeg",
       "/rings/chanel-ring-velvet-bg.jpeg",
-      "/rings/chanel-ring-display-2.png",
-      "/rings/chanel-ring-display-3.png",
     ],
     price: "Rs. 349.00 PKR",
     slug: "chanel-ring",
@@ -417,8 +419,6 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     additionalImages: [
       "/rings/double-butterfly-ring-marble-bg.jpeg",
       "/rings/double-butterfly-ring-velvet-bg.jpeg",
-      "/rings/double-butterfly-ring-display-2.png",
-      "/rings/double-butterfly-ring-display-3.png",
     ],
     price: "Rs. 399.00 PKR",
     slug: "double-butterfly-ring",
@@ -464,8 +464,6 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     additionalImages: [
       "/rings/hreat-rig-marble-bg.jpeg",
       "/rings/hreat-rig-velvet-bg.jpeg",
-      "/rings/heart-ring-display-2.png",
-      "/rings/heart-ring-display-3.png",
     ],
     price: "Rs. 299.00 PKR",
     slug: "heart-ring",
@@ -496,8 +494,6 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     additionalImages: [
       "/rings/nail-ring-marble-bg.jpeg",
       "/rings/nail-ring-velvet-bg.jpeg",
-      "/rings/nail-ring-display-2.png",
-      "/rings/nail-ring-display-3.png",
     ],
     price: "Rs. 399.00 PKR",
     slug: "nail-ring",
@@ -558,7 +554,6 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     additionalImages: [
       "/rings/stone-abd-butterfly-ring-marble-bg.jpeg",
       "/rings/stone-abd-butterfly-ring-velvet-bg.jpeg",
-      "/rings/floral-stone-butterfly-duo-lifestyle-light-2.png",
     ],
     price: "Rs. 399.00 PKR",
     slug: "stone-butterfly-ring",
@@ -622,7 +617,11 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     description:
       "A glow-finish pendant piece that gives subtle brilliance and pairs well with rose or gold tones.",
     id: "pendant-glow",
-    imageSrc: "/necklace/necklace-3.jpeg",
+    imageSrc: "/necklace/golden%20beaded%20necklace.jpeg",
+    additionalImages: [
+      "/necklace/golden-beaded-necklace-marble-bg.jpeg",
+      "/necklace/golden-beaded-necklace-velvet-bg.jpeg",
+    ],
     price: "Rs. 610.00 PKR",
     slug: "pendant-glow",
     title: "Pendant Glow",
@@ -661,7 +660,11 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     description:
       "A two-piece crystal-forward set style that offers balanced brilliance for elevated outfits.",
     id: "crystal-duo-set",
-    imageSrc: "/necklace/necklace-4.jpeg",
+    imageSrc: "/necklace/emerald%20stone%20necklace.jpeg",
+    additionalImages: [
+      "/necklace/emerald-stone-necklace-marble-bg.jpeg",
+      "/necklace/emerald-stone-necklace-velvet-bg.jpeg",
+    ],
     price: "Rs. 720.00 PKR",
     slug: "crystal-duo-set",
     title: "Crystal Duo Set",
@@ -671,7 +674,11 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     description:
       "A twilight-toned pendant expression with a refined chain profile and lightweight daily comfort.",
     id: "twilight-pendant",
-    imageSrc: "/necklace/necklace-5.jpeg",
+    imageSrc: "/necklace/vintage%20rose%20necklace.jpeg",
+    additionalImages: [
+      "/necklace/vintage-rose-necklace-marble-bg.jpeg",
+      "/necklace/vintage-rose-necklace-velvet-bg.jpeg",
+    ],
     price: "Rs. 590.00 PKR",
     slug: "twilight-pendant",
     title: "Twilight Pendant",
