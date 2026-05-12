@@ -13,14 +13,23 @@ export const metadata: Metadata = {
   title: "Sign in | NS Jewels",
 };
 
-export default function LoginPage() {
+type LoginPageProps = {
+  readonly searchParams: Promise<{ callbackUrl?: string }>;
+};
+
+export default async function LoginPage({ searchParams }: LoginPageProps) {
   const googleOAuthConfigured = Boolean(googleId && googleSecret);
+  const params = await searchParams;
+  const callbackUrl = typeof params.callbackUrl === "string" ? params.callbackUrl : undefined;
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-black">
       <Navbar />
       <main className="flex flex-1 flex-col items-center justify-center px-4 py-8 sm:px-6 sm:py-10 lg:py-12">
-        <LoginPageContent googleOAuthConfigured={googleOAuthConfigured} />
+        <LoginPageContent
+          defaultCallbackUrl={callbackUrl}
+          googleOAuthConfigured={googleOAuthConfigured}
+        />
       </main>
       <FooterSection />
       <WhatsAppFloatButton />

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
-import { CheckoutPageContent } from "@/components/checkout/CheckoutPageContent";
+import { CheckoutPageBoundary } from "@/components/checkout/checkout-page-boundary";
 import { FooterSection } from "@/components/FooterSection";
 import { Navbar } from "@/components/Navbar";
 
@@ -19,7 +19,7 @@ export default function CheckoutPage() {
       <Navbar />
       <main className="mx-auto max-w-[1320px] px-5 py-8 sm:px-8 lg:px-12 lg:py-10">
         <Suspense fallback={<p className="text-center text-sm text-neutral-600">Loading checkout…</p>}>
-          <CheckoutPageContent />
+          <CheckoutPageBoundary />
         </Suspense>
       </main>
       <FooterSection />

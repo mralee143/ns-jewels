@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ns-jewels-db
+    restart: unless-stopped
+    ports:
+      # Host:container — use 5433:5432 here if port 5432 is already taken locally.
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ns_app
+      POSTGRES_PASSWORD: ns_app
+      POSTGRES_DB: ns_jewels
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ns_app -d ns_jewels"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

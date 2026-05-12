@@ -8,19 +8,19 @@ import { ProductCrossCategoryRecommendations } from "@/components/product/Produc
 import { ProductImageViewer } from "@/components/product/ProductImageViewer";
 import { ProductPurchasePanel } from "@/components/product/ProductPurchasePanel";
 import { getCrossCategoryRecommendations } from "@/lib/get-cross-category-recommendations";
-import { getAllCatalogProducts, getProductBySlug } from "@/lib/get-product-by-slug";
+import { buildLegacyCatalogProducts, getProductBySlug } from "@/lib/get-product-by-slug";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams(): { slug: string }[] {
-  return getAllCatalogProducts().map((product) => ({ slug: product.slug }));
+  return buildLegacyCatalogProducts().map((product) => ({ slug: product.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
   if (!product) {
     return { title: "Product not found | NS Jewels" };
   }
@@ -32,13 +32,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProductDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();
   }
 
-  const crossCategoryPicks = getCrossCategoryRecommendations(product, 4);
+  const crossCategoryPicks = await getCrossCategoryRecommendations(product, 4);
 
   return (
     <div className="min-h-screen bg-background text-black">

@@ -1,14 +1,17 @@
 "use client";
 
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
 import { FormEvent, useState } from "react";
+
+import { sanitizeCallbackUrl } from "@/lib/sanitize-callback-url";
 
 type AuthMode = "signin" | "signup";
 
 type LoginPageContentProps = {
+  readonly defaultCallbackUrl?: string;
   readonly googleOAuthConfigured: boolean;
   readonly onRequestClose?: () => void;
   readonly onSignedIn?: () => void;
@@ -73,12 +76,14 @@ const plainPillFieldClass =
   "w-full rounded-full border border-neutral-300 bg-slate-100/90 px-4 py-3 text-sm text-black outline-none transition placeholder:text-neutral-500 focus:border-neutral-800 focus:ring-2 focus:ring-neutral-200";
 
 export function LoginPageContent({
+  defaultCallbackUrl,
   googleOAuthConfigured,
   onRequestClose,
   onSignedIn,
   variant = "page",
 }: LoginPageContentProps) {
   const router = useRouter();
+  const callbackUrl = sanitizeCallbackUrl(defaultCallbackUrl, "/");
   const [mode, setMode] = useState<AuthMode>("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -106,7 +111,7 @@ export function LoginPageContent({
     resetMessages();
     setPending(true);
     try {
-      await signIn("google", { callbackUrl: "/" });
+      await signIn("google", { callbackUrl });
     } finally {
       setPending(false);
     }
@@ -129,21 +134,82 @@ export function LoginPageContent({
 
     setPending(true);
     try {
-      const payload =
-        mode === "signup"
-          ? { callbackUrl: "/", email, name: displayName.trim(), password, redirect: false as const }
-          : { callbackUrl: "/", email, password, redirect: false as const };
+      if (mode === "signup") {
+        const registerResponse = await fetch("/api/auth/register", {
+          body: JSON.stringify({
+            email: email.trim().toLowerCase(),
+            marketingOptIn,
+            name: displayName.trim(),
+            password,
+          }),
+          headers: { "Content-Type": "application/json" },
+          method: "POST",
+        });
 
-      const result = await signIn("credentials", payload);
+        const registerPayload: unknown = await registerResponse.json().catch(() => null);
+        const registerMessage =
+          registerPayload &&
+          typeof registerPayload === "object" &&
+          "error" in registerPayload &&
+          typeof (registerPayload as { error: unknown }).error === "string"
+            ? (registerPayload as { error: string }).error
+            : null;
+
+        if (!registerResponse.ok) {
+          setError(
+            registerMessage ??
+              (registerResponse.status === 409
+                ? "An account with this email already exists."
+                : "Could not create your account. Try again."),
+          );
+          return;
+        }
+
+        const needsVerification =
+          registerPayload !== null &&
+          typeof registerPayload === "object" &&
+          "needsVerification" in registerPayload &&
+          (registerPayload as { needsVerification?: unknown }).needsVerification === true;
+
+        if (needsVerification) {
+          const signupEmail = email.trim().toLowerCase();
+          sessionStorage.setItem(
+            "nsj-pending-signup",
+            JSON.stringify({
+              callbackUrl,
+              email: signupEmail,
+              password,
+            }),
+          );
+          const verifyParams = new URLSearchParams();
+          verifyParams.set("email", signupEmail);
+          verifyParams.set("callbackUrl", callbackUrl);
+          onRequestClose?.();
+          router.push(`/verify-email?${verifyParams.toString()}`);
+          router.refresh();
+          return;
+        }
+      }
+
+      const result = await signIn("credentials", {
+        callbackUrl,
+        email: email.trim().toLowerCase(),
+        password,
+        redirect: false,
+      });
 
       if (result?.error) {
-        setError("Could not sign you in. Use a valid email and password (at least 6 characters).");
+        setError(
+          mode === "signup"
+            ? "Account created but sign-in failed. Try signing in manually."
+            : "Could not sign you in. Check your email and password. If you just registered, verify your email first.",
+        );
         return;
       }
 
       if (result?.ok) {
         onSignedIn?.();
-        router.push("/");
+        router.push(callbackUrl);
         router.refresh();
       }
     } finally {

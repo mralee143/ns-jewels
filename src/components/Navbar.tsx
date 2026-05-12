@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -71,9 +72,18 @@ function AnnouncementLineSegment({ text }: { text: string }) {
   );
 }
 
+function IconUserCircle(props: { readonly className?: string }) {
+  return (
+    <svg aria-hidden className={props.className} fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+      <path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function Navbar() {
   const { openLogin } = useAuthModal();
   const { cartCount } = useCart();
+  const { data: session, status: sessionStatus } = useSession();
   const pathname = usePathname();
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -222,16 +232,45 @@ export function Navbar() {
           )}
           {!isSearchOpen ? (
             <>
-              <button
-                aria-label="Sign in"
-                className="text-black transition-colors duration-200 hover:text-neutral-800"
-                onClick={() => openLogin()}
-                type="button"
-              >
-                <svg className="h-6 w-6 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                </svg>
-              </button>
+              {sessionStatus === "loading" ? (
+                <span
+                  aria-busy
+                  aria-label="Loading account"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-black/5"
+                >
+                  <span className="size-4 animate-pulse rounded-full bg-neutral-300" />
+                </span>
+              ) : session?.user ? (
+                <div className="flex items-center gap-2 sm:gap-3">
+                  {session.user.role === "ADMIN" ? (
+                    <Link
+                      aria-label="Admin panel"
+                      className="rounded-full border border-[#F0D3DA] bg-[#FDF2F5] px-2.5 py-1 text-[0.65rem] font-black uppercase tracking-[0.12em] text-[#2B2B2B] transition-colors duration-200 hover:border-cta hover:text-cta md:px-3"
+                      href="/admin"
+                    >
+                      Admin
+                    </Link>
+                  ) : null}
+                  <Link
+                    aria-label="My account"
+                    className={`flex items-center justify-center rounded-md transition-colors duration-200 hover:text-neutral-800 ${
+                      pathname === "/account" ? "text-cta" : "text-black"
+                    }`}
+                    href="/account"
+                  >
+                    <IconUserCircle className="h-6 w-6 stroke-[2.5]" />
+                  </Link>
+                </div>
+              ) : (
+                <button
+                  aria-label="Sign in"
+                  className="text-black transition-colors duration-200 hover:text-neutral-800"
+                  onClick={() => openLogin()}
+                  type="button"
+                >
+                  <IconUserCircle className="h-6 w-6 stroke-[2.5]" />
+                </button>
+              )}
               <Link
                 aria-label="Shopping bag"
                 className="relative text-black transition-colors duration-200 hover:text-neutral-800"

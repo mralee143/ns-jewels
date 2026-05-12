@@ -2,11 +2,11 @@ import { PRODUCT_CATEGORY_SLUGS, type ProductCategorySlug } from "@/data/product
 import type { ShopProduct } from "@/data/shop-products";
 import { getAllCatalogProducts } from "@/lib/get-product-by-slug";
 
-export const getCrossCategoryRecommendations = (
+export const getCrossCategoryRecommendations = async (
   product: ShopProduct,
   limit = 4
-): readonly ShopProduct[] => {
-  const catalog = getAllCatalogProducts();
+): Promise<readonly ShopProduct[]> => {
+  const catalog = await getAllCatalogProducts();
   const firstByCategory = new Map<ProductCategorySlug, ShopProduct>();
 
   for (const entry of catalog) {

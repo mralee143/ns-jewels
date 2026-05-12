@@ -11,8 +11,8 @@ import {
   PRODUCT_CATEGORY_SLUGS,
   productCategoryHref,
 } from "@/data/product-categories";
-import { SHOP_PRODUCTS } from "@/data/shop-products";
 import { filterShopProductsByQuery } from "@/lib/filter-shop-products";
+import { getAllListingProducts } from "@/lib/get-product-by-slug";
 import { resolveSearchToCategorySlug } from "@/lib/resolve-search-to-category-slug";
 
 type PageProps = {
@@ -48,8 +48,8 @@ export default async function SearchPage({ searchParams }: PageProps) {
     }
   }
 
-  const results =
-    trimmed.length > 0 ? filterShopProductsByQuery(trimmed, SHOP_PRODUCTS) : [];
+  const catalog = trimmed.length > 0 ? await getAllListingProducts() : [];
+  const results = trimmed.length > 0 ? filterShopProductsByQuery(trimmed, catalog) : [];
 
   return (
     <div className="min-h-screen bg-background text-black">

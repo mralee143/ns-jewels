@@ -41,7 +41,7 @@ type PageProps = {
 
 export default async function AllProductsPage({ searchParams }: PageProps) {
   const params = await searchParams;
-  const allProducts = getAllListingProducts();
+  const allProducts = await getAllListingProducts();
   const total = allProducts.length;
   const chunkSizes = listingChunkSizes(total, ALL_PRODUCTS_PAGE_COUNT);
   const nonEmptyPageNumbers = chunkSizes

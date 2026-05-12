@@ -77,6 +77,7 @@ export function AuthModalProvider({ children, googleOAuthConfigured }: AuthModal
           <div className="flex flex-1 flex-col overflow-y-auto overscroll-contain px-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6">
             <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col justify-center py-4 sm:py-10">
               <LoginPageContent
+                defaultCallbackUrl="/"
                 googleOAuthConfigured={googleOAuthConfigured}
                 onRequestClose={close}
                 onSignedIn={close}

@@ -2,15 +2,15 @@ import Link from "next/link";
 
 import { CategoryProductCard } from "@/components/CategoryProductCard";
 import type { ProductCategorySlug } from "@/data/product-categories";
-import { getProductFromCategoryImage } from "@/data/shop-products";
+import type { ShopProduct } from "@/data/shop-products";
 
 type CategoryProductGridProps = {
   category: ProductCategorySlug;
   categoryLabel: string;
-  images: readonly string[];
+  products: readonly ShopProduct[];
 };
 
-export function CategoryProductGrid({ category, categoryLabel, images }: CategoryProductGridProps) {
+export function CategoryProductGrid({ category, categoryLabel, products }: CategoryProductGridProps) {
   return (
     <div>
       <nav aria-label="Breadcrumb" className="mb-8 text-sm text-black">
@@ -33,12 +33,9 @@ export function CategoryProductGrid({ category, categoryLabel, images }: Categor
         </h1>
       </header>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {images.map((src) => {
-          const product = getProductFromCategoryImage(category, src);
-          return (
-            <CategoryProductCard category={category} key={src} product={product} />
-          );
-        })}
+        {products.map((product) => (
+          <CategoryProductCard category={category} key={product.slug} product={product} />
+        ))}
       </div>
     </div>
   );

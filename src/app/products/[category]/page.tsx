@@ -11,7 +11,7 @@ import {
   isProductCategorySlug,
   productCategoryHref,
 } from "@/data/product-categories";
-import { getProductCategoryImages } from "@/lib/get-product-category-images";
+import { getCategoryListingProducts } from "@/lib/get-product-by-slug";
 import { resolveSearchToCategorySlug } from "@/lib/resolve-search-to-category-slug";
 
 type PageProps = {
@@ -47,14 +47,14 @@ export default async function ProductCategoryPage({ params }: PageProps) {
     notFound();
   }
 
-  const images = getProductCategoryImages(category);
+  const products = await getCategoryListingProducts(category);
   const label = PRODUCT_CATEGORY_LABELS[category];
 
   return (
     <div className="min-h-screen bg-background text-black">
       <Navbar />
       <main className="mx-auto max-w-[1320px] px-5 py-10 sm:px-8 lg:px-12 lg:py-14">
-        <CategoryProductGrid category={category} categoryLabel={label} images={images} />
+        <CategoryProductGrid category={category} categoryLabel={label} products={products} />
       </main>
       <FooterSection />
       <WhatsAppFloatButton />
