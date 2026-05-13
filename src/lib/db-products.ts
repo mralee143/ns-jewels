@@ -10,7 +10,14 @@ const withImages = {
   },
 } as const;
 
-const recoverableCatalogReadErrorCodes = new Set(["ECONNREFUSED", "P1001", "P2021"]);
+const recoverableCatalogReadErrorCodes = new Set([
+  "ECONNREFUSED",
+  "ECONNRESET",
+  "ENOTFOUND",
+  "ETIMEDOUT",
+  "P1001",
+  "P2021",
+]);
 
 const isRecoverableCatalogReadError = (error: unknown): boolean =>
   error instanceof Prisma.PrismaClientKnownRequestError &&
