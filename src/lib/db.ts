@@ -1,5 +1,12 @@
 const databaseUrl = process.env.DATABASE_URL;
 
+export class DatabaseConfigError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "DatabaseConfigError";
+  }
+}
+
 type MySqlConnectionConfig = {
   readonly host: string;
   readonly port: number;
@@ -15,12 +22,21 @@ const databaseNameFromUrl = (url: URL): string =>
   decodeURIComponent(url.pathname.replace(/^\//, ""));
 
 const mysqlConnectionConfigFromUrl = (rawUrl: string): MySqlConnectionConfig => {
-  const url = new URL(rawUrl);
+  let url: URL;
+
+  try {
+    url = new URL(rawUrl);
+  } catch {
+    throw new DatabaseConfigError(
+      "DATABASE_URL must be a MySQL URL like mysql://user:password@host:3306/database.",
+    );
+  }
+
   const database = databaseNameFromUrl(url);
 
   if (url.protocol !== "mysql:" || !url.hostname || !url.username || !database) {
-    throw new Error(
-      "DATABASE_URL must be a MySQL URL like mysql://ns-app:password@localhost:3306/ns_jewel.",
+    throw new DatabaseConfigError(
+      "DATABASE_URL must be a MySQL URL like mysql://user:password@host:3306/database.",
     );
   }
 
@@ -36,8 +52,8 @@ const mysqlConnectionConfigFromUrl = (rawUrl: string): MySqlConnectionConfig => 
 
 export function getDatabaseConfig(): MySqlConnectionConfig {
   if (!databaseUrl?.trim()) {
-    throw new Error(
-      "DATABASE_URL is not set. Add mysql://ns-app:password@localhost:3306/ns_jewel to .env.local.",
+    throw new DatabaseConfigError(
+      "DATABASE_URL is not set. Add mysql://user:password@host:3306/database to your environment.",
     );
   }
 

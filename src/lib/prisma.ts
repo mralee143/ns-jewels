@@ -39,4 +39,15 @@ function resolvePrismaClient(): PrismaClient {
   return client;
 }
 
-export const prisma: PrismaClient = resolvePrismaClient();
+const createLazyPrismaClient = (): PrismaClient =>
+  new Proxy({} as PrismaClient, {
+    get: (_target, property, receiver) => {
+      const client = resolvePrismaClient();
+      const value = Reflect.get(client, property, receiver);
+
+      return typeof value === "function" ? value.bind(client) : value;
+    },
+    has: (_target, property) => property in resolvePrismaClient(),
+  });
+
+export const prisma: PrismaClient = createLazyPrismaClient();

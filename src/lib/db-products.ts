@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 
 import type { ShopProduct } from "@/data/shop-products";
+import { DatabaseConfigError } from "@/lib/db";
 import { dbProductToShopProduct } from "@/lib/db-product-mapper";
 import { prisma } from "@/lib/prisma";
 
@@ -20,8 +21,9 @@ const recoverableCatalogReadErrorCodes = new Set([
 ]);
 
 const isRecoverableCatalogReadError = (error: unknown): boolean =>
-  error instanceof Prisma.PrismaClientKnownRequestError &&
-  recoverableCatalogReadErrorCodes.has(error.code);
+  error instanceof DatabaseConfigError ||
+  (error instanceof Prisma.PrismaClientKnownRequestError &&
+    recoverableCatalogReadErrorCodes.has(error.code));
 
 export async function findPublishedShopProducts(): Promise<readonly ShopProduct[]> {
   try {
