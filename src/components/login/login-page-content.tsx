@@ -8,7 +8,8 @@ import { FormEvent, useState } from "react";
 
 import { sanitizeCallbackUrl } from "@/lib/sanitize-callback-url";
 
-type AuthMode = "signin" | "signup";
+type AuthMode = "forgotPassword" | "signin" | "signup";
+type ForgotPasswordStep = "email" | "reset";
 
 type LoginPageContentProps = {
   readonly defaultCallbackUrl?: string;
@@ -64,6 +65,34 @@ function IconLock(props: { readonly className?: string }) {
   );
 }
 
+type PasswordVisibilityButtonProps = {
+  readonly controls: string;
+  readonly isVisible: boolean;
+  readonly labelPrefix?: string;
+  readonly onToggle: () => void;
+};
+
+function PasswordVisibilityButton({
+  controls,
+  isVisible,
+  labelPrefix = "password",
+  onToggle,
+}: PasswordVisibilityButtonProps) {
+  const action = isVisible ? "Hide" : "Show";
+
+  return (
+    <button
+      aria-controls={controls}
+      aria-label={`${action} ${labelPrefix}`}
+      className="shrink-0 rounded-full p-1.5 text-neutral-600 outline-none transition-colors hover:bg-neutral-200/80 hover:text-black focus-visible:ring-2 focus-visible:ring-neutral-400"
+      onClick={onToggle}
+      type="button"
+    >
+      {isVisible ? <IconEyeOff className="h-5 w-5" /> : <IconEye className="h-5 w-5" />}
+    </button>
+  );
+}
+
 const labelClass = "mb-2 block text-left text-sm font-medium text-neutral-800";
 
 const inputInnerClass =
@@ -74,6 +103,15 @@ const inputShellClass =
 
 const plainPillFieldClass =
   "w-full rounded-full border border-neutral-300 bg-slate-100/90 px-4 py-3 text-sm text-black outline-none transition placeholder:text-neutral-500 focus:border-neutral-800 focus:ring-2 focus:ring-neutral-200";
+
+function errorFromPayload(payload: unknown): string | null {
+  return payload &&
+    typeof payload === "object" &&
+    "error" in payload &&
+    typeof (payload as { error: unknown }).error === "string"
+    ? (payload as { error: string }).error
+    : null;
+}
 
 export function LoginPageContent({
   defaultCallbackUrl,
@@ -90,20 +128,40 @@ export function LoginPageContent({
   const [confirmPassword, setConfirmPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [marketingOptIn, setMarketingOptIn] = useState(false);
+  const [forgotPasswordStep, setForgotPasswordStep] = useState<ForgotPasswordStep>("email");
+  const [resetOtp, setResetOtp] = useState("");
+  const [resetPassword, setResetPassword] = useState("");
+  const [resetConfirmPassword, setResetConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showResetPassword, setShowResetPassword] = useState(false);
+  const [showResetConfirmPassword, setShowResetConfirmPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [infoMessage, setInfoMessage] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
 
-  const resetMessages = () => setError(null);
+  const resetMessages = () => {
+    setError(null);
+    setInfoMessage(null);
+  };
 
   const switchToSignIn = () => {
     setMode("signin");
+    setForgotPasswordStep("email");
     resetMessages();
   };
 
   const switchToSignUp = () => {
     setMode("signup");
+    resetMessages();
+  };
+
+  const switchToForgotPassword = () => {
+    setMode("forgotPassword");
+    setForgotPasswordStep("email");
+    setResetOtp("");
+    setResetPassword("");
+    setResetConfirmPassword("");
     resetMessages();
   };
 
@@ -117,9 +175,86 @@ export function LoginPageContent({
     }
   };
 
+  const handleForgotPassword = async () => {
+    const emailNorm = email.trim().toLowerCase();
+
+    if (!emailNorm) {
+      setError("Enter your email address.");
+      return;
+    }
+
+    setPending(true);
+    try {
+      if (forgotPasswordStep === "email") {
+        const response = await fetch("/api/auth/forgot-password", {
+          body: JSON.stringify({ email: emailNorm }),
+          headers: { "Content-Type": "application/json" },
+          method: "POST",
+        });
+        const payload: unknown = await response.json().catch(() => null);
+
+        if (!response.ok) {
+          setError(errorFromPayload(payload) ?? "Could not send reset code.");
+          return;
+        }
+
+        setForgotPasswordStep("reset");
+        setInfoMessage("If an account exists for that email, a reset code has been sent.");
+        return;
+      }
+
+      if (!/^\d{6}$/.test(resetOtp.trim())) {
+        setError("Enter the 6-digit code from your email.");
+        return;
+      }
+
+      if (resetPassword.length < 6) {
+        setError("Password must be at least 6 characters.");
+        return;
+      }
+
+      if (resetPassword !== resetConfirmPassword) {
+        setError("Passwords do not match.");
+        return;
+      }
+
+      const response = await fetch("/api/auth/reset-password", {
+        body: JSON.stringify({
+          confirmPassword: resetConfirmPassword,
+          email: emailNorm,
+          otp: resetOtp.trim(),
+          password: resetPassword,
+        }),
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+      });
+      const payload: unknown = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        setError(errorFromPayload(payload) ?? "Could not reset password.");
+        return;
+      }
+
+      setMode("signin");
+      setPassword("");
+      setResetOtp("");
+      setResetPassword("");
+      setResetConfirmPassword("");
+      setForgotPasswordStep("email");
+      setInfoMessage("Password updated. Sign in with your new password.");
+    } finally {
+      setPending(false);
+    }
+  };
+
   const handleCredentials = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     resetMessages();
+
+    if (mode === "forgotPassword") {
+      await handleForgotPassword();
+      return;
+    }
 
     if (mode === "signup") {
       if (displayName.trim().length < 2) {
@@ -147,13 +282,7 @@ export function LoginPageContent({
         });
 
         const registerPayload: unknown = await registerResponse.json().catch(() => null);
-        const registerMessage =
-          registerPayload &&
-          typeof registerPayload === "object" &&
-          "error" in registerPayload &&
-          typeof (registerPayload as { error: unknown }).error === "string"
-            ? (registerPayload as { error: string }).error
-            : null;
+        const registerMessage = errorFromPayload(registerPayload);
 
         if (!registerResponse.ok) {
           setError(
@@ -231,11 +360,25 @@ export function LoginPageContent({
       ? `mx-auto w-full max-w-[420px] ${shellPadding}`
       : `mx-auto w-full max-w-[420px] rounded-2xl border border-neutral-200/90 bg-white shadow-lg ${shellPadding}`;
   const heading =
-    mode === "signup" ? "Create account" : "Sign in";
+    mode === "forgotPassword" ? "Reset password" : mode === "signup" ? "Create account" : "Sign in";
   const subheading =
-    mode === "signup"
-      ? "Join NS Jewels with email or Google."
-      : "Sign in or create an account";
+    mode === "forgotPassword"
+      ? forgotPasswordStep === "email"
+        ? "Enter your email and we will send a reset code."
+        : "Enter the OTP and choose your new password."
+      : mode === "signup"
+        ? "Join NS Jewels with email or Google."
+        : "Sign in or create an account";
+  const submitLabel =
+    pending
+      ? "Please wait..."
+      : mode === "forgotPassword"
+        ? forgotPasswordStep === "email"
+          ? "Send reset code"
+          : "Save new password"
+        : mode === "signup"
+          ? "Create account"
+          : "Continue";
 
   return (
     <div className={shellSurface}>
@@ -275,38 +418,46 @@ export function LoginPageContent({
         )}
       </p>
 
-      <div className="mt-8">
-        <button
-          className="flex w-full items-center justify-center gap-2.5 rounded-full bg-cta py-3.5 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-cta-hover disabled:cursor-not-allowed disabled:opacity-50"
-          disabled={pending || !googleOAuthConfigured}
-          onClick={() => void handleGoogle()}
-          type="button"
-        >
-          <IconGoogle />
-          Continue with Google
-        </button>
-        {!googleOAuthConfigured ? (
-          <p className="mt-2 text-center text-[0.7rem] leading-relaxed text-neutral-500">
-            Add <span className="font-mono">AUTH_GOOGLE_ID</span> and{" "}
-            <span className="font-mono">AUTH_GOOGLE_SECRET</span> to enable Google sign-in.
-          </p>
-        ) : null}
-      </div>
+      {mode !== "forgotPassword" ? (
+        <>
+          <div className="mt-8">
+            <button
+              className="flex w-full items-center justify-center gap-2.5 rounded-full bg-cta py-3.5 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-cta-hover disabled:cursor-not-allowed disabled:opacity-50"
+              disabled={pending || !googleOAuthConfigured}
+              onClick={() => void handleGoogle()}
+              type="button"
+            >
+              <IconGoogle />
+              Continue with Google
+            </button>
+            {!googleOAuthConfigured ? (
+              <p className="mt-2 text-center text-[0.7rem] leading-relaxed text-neutral-500">
+                Add <span className="font-mono">AUTH_GOOGLE_ID</span> and{" "}
+                <span className="font-mono">AUTH_GOOGLE_SECRET</span> to enable Google sign-in.
+              </p>
+            ) : null}
+          </div>
 
-      <div className="relative my-8">
-        <div aria-hidden className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-neutral-200" />
-        </div>
-        <div className="relative flex justify-center">
-          <span
-            className={`px-4 text-sm text-neutral-500 ${variant === "fullscreen" ? "bg-background" : "bg-white"}`}
-          >
-            or
-          </span>
-        </div>
-      </div>
+          <div className="relative my-8">
+            <div aria-hidden className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-neutral-200" />
+            </div>
+            <div className="relative flex justify-center">
+              <span
+                className={`px-4 text-sm text-neutral-500 ${variant === "fullscreen" ? "bg-background" : "bg-white"}`}
+              >
+                or
+              </span>
+            </div>
+          </div>
+        </>
+      ) : null}
 
-      <form className="space-y-4" noValidate onSubmit={(event) => void handleCredentials(event)}>
+      <form
+        className={mode === "forgotPassword" ? "mt-8 space-y-4" : "space-y-4"}
+        noValidate
+        onSubmit={(event) => void handleCredentials(event)}
+      >
         {mode === "signup" ? (
           <div>
             <label className={labelClass} htmlFor="signup-name">
@@ -345,38 +496,117 @@ export function LoginPageContent({
           </div>
         </div>
 
-        <div>
-          <label className={labelClass} htmlFor="auth-password">
-            Password
-          </label>
-          <div className={inputShellClass}>
-            <IconLock className="h-5 w-5 shrink-0 text-neutral-500" />
-            <input
-              autoComplete={mode === "signup" ? "new-password" : "current-password"}
-              className={inputInnerClass}
-              id="auth-password"
-              minLength={6}
-              onChange={(event) => setPassword(event.target.value)}
-              placeholder="Minimum 6 characters"
-              required
-              type={showPassword ? "text" : "password"}
-              value={password}
-            />
+        {mode !== "forgotPassword" ? (
+          <div>
+            <label className={labelClass} htmlFor="auth-password">
+              Password
+            </label>
+            <div className={inputShellClass}>
+              <IconLock className="h-5 w-5 shrink-0 text-neutral-500" />
+              <input
+                autoComplete={mode === "signup" ? "new-password" : "current-password"}
+                className={inputInnerClass}
+                id="auth-password"
+                minLength={6}
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="Minimum 6 characters"
+                required
+                type={showPassword ? "text" : "password"}
+                value={password}
+              />
+              <PasswordVisibilityButton
+                controls="auth-password"
+                isVisible={showPassword}
+                onToggle={() => setShowPassword((previous) => !previous)}
+              />
+            </div>
+          </div>
+        ) : null}
+
+        {mode === "signin" ? (
+          <div className="-mt-1 text-right">
             <button
-              aria-controls="auth-password"
-              aria-label={showPassword ? "Hide password" : "Show password"}
-              className="shrink-0 rounded-full p-1.5 text-neutral-600 outline-none transition-colors hover:bg-neutral-200/80 hover:text-black focus-visible:ring-2 focus-visible:ring-neutral-400"
-              onClick={() => setShowPassword((previous) => !previous)}
+              className="text-sm font-medium text-neutral-600 underline-offset-4 transition hover:text-black hover:underline"
+              onClick={switchToForgotPassword}
               type="button"
             >
-              {showPassword ? (
-                <IconEyeOff className="h-5 w-5" />
-              ) : (
-                <IconEye className="h-5 w-5" />
-              )}
+              Forgot password?
             </button>
           </div>
-        </div>
+        ) : null}
+
+        {mode === "forgotPassword" && forgotPasswordStep === "reset" ? (
+          <>
+            <div>
+              <label className={labelClass} htmlFor="reset-otp">
+                OTP code
+              </label>
+              <input
+                autoComplete="one-time-code"
+                className={plainPillFieldClass}
+                id="reset-otp"
+                inputMode="numeric"
+                maxLength={6}
+                onChange={(event) => setResetOtp(event.target.value.replace(/\D/g, "").slice(0, 6))}
+                placeholder="6-digit code"
+                required
+                type="text"
+                value={resetOtp}
+              />
+            </div>
+
+            <div>
+              <label className={labelClass} htmlFor="reset-password">
+                New password
+              </label>
+              <div className={inputShellClass}>
+                <IconLock className="h-5 w-5 shrink-0 text-neutral-500" />
+                <input
+                  autoComplete="new-password"
+                  className={inputInnerClass}
+                  id="reset-password"
+                  minLength={6}
+                  onChange={(event) => setResetPassword(event.target.value)}
+                  placeholder="Minimum 6 characters"
+                  required
+                  type={showResetPassword ? "text" : "password"}
+                  value={resetPassword}
+                />
+                <PasswordVisibilityButton
+                  controls="reset-password"
+                  isVisible={showResetPassword}
+                  onToggle={() => setShowResetPassword((previous) => !previous)}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className={labelClass} htmlFor="reset-confirm">
+                Confirm password
+              </label>
+              <div className={inputShellClass}>
+                <IconLock className="h-5 w-5 shrink-0 text-neutral-500" />
+                <input
+                  autoComplete="new-password"
+                  className={inputInnerClass}
+                  id="reset-confirm"
+                  minLength={6}
+                  onChange={(event) => setResetConfirmPassword(event.target.value)}
+                  placeholder="Re-enter password"
+                  required
+                  type={showResetConfirmPassword ? "text" : "password"}
+                  value={resetConfirmPassword}
+                />
+                <PasswordVisibilityButton
+                  controls="reset-confirm"
+                  isVisible={showResetConfirmPassword}
+                  labelPrefix="confirm password"
+                  onToggle={() => setShowResetConfirmPassword((previous) => !previous)}
+                />
+              </div>
+            </div>
+          </>
+        ) : null}
 
         {mode === "signup" ? (
           <div>
@@ -396,21 +626,20 @@ export function LoginPageContent({
                 type={showConfirmPassword ? "text" : "password"}
                 value={confirmPassword}
               />
-              <button
-                aria-controls="auth-confirm"
-                aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
-                className="shrink-0 rounded-full p-1.5 text-neutral-600 outline-none transition-colors hover:bg-neutral-200/80 hover:text-black focus-visible:ring-2 focus-visible:ring-neutral-400"
-                onClick={() => setShowConfirmPassword((previous) => !previous)}
-                type="button"
-              >
-                {showConfirmPassword ? (
-                  <IconEyeOff className="h-5 w-5" />
-                ) : (
-                  <IconEye className="h-5 w-5" />
-                )}
-              </button>
+              <PasswordVisibilityButton
+                controls="auth-confirm"
+                isVisible={showConfirmPassword}
+                labelPrefix="confirm password"
+                onToggle={() => setShowConfirmPassword((previous) => !previous)}
+              />
             </div>
           </div>
+        ) : null}
+
+        {infoMessage ? (
+          <p className="rounded-xl bg-[#e8f8ef] px-3 py-2 text-sm text-[#1d6b45]" role="status">
+            {infoMessage}
+          </p>
         ) : null}
 
         {error ? (
@@ -424,27 +653,31 @@ export function LoginPageContent({
           disabled={pending}
           type="submit"
         >
-          {pending ? "Please wait…" : mode === "signup" ? "Create account" : "Continue"}
+          {submitLabel}
         </button>
       </form>
 
-      <label className="mt-5 flex cursor-pointer items-start gap-3 text-sm text-neutral-700">
-        <input
-          checked={marketingOptIn}
-          className="mt-0.5 size-4 shrink-0 rounded border-neutral-400 text-black accent-black focus:ring-neutral-400"
-          onChange={(event) => setMarketingOptIn(event.target.checked)}
-          type="checkbox"
-        />
-        <span>Email me with news and offers</span>
-      </label>
+      {mode === "signup" ? (
+        <>
+          <label className="mt-5 flex cursor-pointer items-start gap-3 text-sm text-neutral-700">
+            <input
+              checked={marketingOptIn}
+              className="mt-0.5 size-4 shrink-0 rounded border-neutral-400 text-black accent-black focus:ring-neutral-400"
+              onChange={(event) => setMarketingOptIn(event.target.checked)}
+              type="checkbox"
+            />
+            <span>Email me with news and offers</span>
+          </label>
 
-      <p className="mt-6 text-center text-xs leading-relaxed text-neutral-500">
-        By continuing, you agree to our{" "}
-        <Link className="font-medium text-black underline underline-offset-2 hover:no-underline" href="/terms">
-          Terms of service
-        </Link>
-        .
-      </p>
+          <p className="mt-6 text-center text-xs leading-relaxed text-neutral-500">
+            By continuing, you agree to our{" "}
+            <Link className="font-medium text-black underline underline-offset-2 hover:no-underline" href="/terms">
+              Terms of service
+            </Link>
+            .
+          </p>
+        </>
+      ) : null}
 
       <p className="mt-5 text-center text-sm text-neutral-600">
         {onRequestClose ? (

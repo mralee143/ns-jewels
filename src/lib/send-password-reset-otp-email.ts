@@ -1,6 +1,6 @@
 import { sendTransactionalEmail } from "@/lib/send-transactional-email";
 
-type SignupOtpEmailContent = {
+type PasswordResetOtpEmailContent = {
   html: string;
   subject: string;
   text: string;
@@ -20,9 +20,9 @@ function otpToDigitCells(otp: string): string {
     .join("");
 }
 
-function createSignupOtpEmailContent(otp: string): SignupOtpEmailContent {
-  const subject = "Your NS Jewels verification code";
-  const text = `Your verification code is ${otp}. It expires in 15 minutes.\n\nIf you did not create an account, you can ignore this email.`;
+function createPasswordResetOtpEmailContent(otp: string): PasswordResetOtpEmailContent {
+  const subject = "Reset your NS Jewels password";
+  const text = `Your password reset code is ${otp}. It expires in 15 minutes.\n\nIf you did not request this, you can ignore this email.`;
   const digitCells = otpToDigitCells(otp);
 
   return {
@@ -36,7 +36,7 @@ function createSignupOtpEmailContent(otp: string): SignupOtpEmailContent {
   </head>
   <body style="margin: 0; background: #fdf2f5; color: #2b2b2b; font-family: Arial, Helvetica, sans-serif;">
     <div style="display: none; max-height: 0; overflow: hidden; opacity: 0;">
-      Your NS Jewels verification code is ${otp}. It expires in 15 minutes.
+      Your NS Jewels password reset code is ${otp}. It expires in 15 minutes.
     </div>
     <table cellpadding="0" cellspacing="0" role="presentation" style="width: 100%; border-collapse: collapse; background: #fdf2f5;">
       <tr>
@@ -50,13 +50,13 @@ function createSignupOtpEmailContent(otp: string): SignupOtpEmailContent {
             <tr>
               <td style="padding: 32px 28px 8px; text-align: center;">
                 <div style="display: inline-block; border: 1px solid #f0d3da; border-radius: 999px; background: #fdf2f5; padding: 8px 14px; color: #e96a7a; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;">
-                  Secure sign-up code
+                  Password reset code
                 </div>
                 <h1 style="margin: 22px 0 0; color: #2b2b2b; font-family: Georgia, 'Times New Roman', serif; font-size: 34px; font-weight: 600; line-height: 1.15;">
-                  Verify your email
+                  Create a new password
                 </h1>
                 <p style="margin: 14px auto 0; max-width: 390px; color: #6e6e6e; font-size: 15px; line-height: 1.7;">
-                  Use this one-time code to finish creating your NS Jewels account.
+                  Use this one-time code to reset your NS Jewels account password.
                 </p>
               </td>
             </tr>
@@ -74,7 +74,7 @@ function createSignupOtpEmailContent(otp: string): SignupOtpEmailContent {
                     This code expires in 15 minutes.
                   </p>
                   <p style="margin: 8px 0 0; color: #6e6e6e; font-size: 13px; line-height: 1.6;">
-                    If you did not create an account, you can safely ignore this email.
+                    If you did not request this reset, you can safely ignore this email.
                   </p>
                 </div>
               </td>
@@ -97,12 +97,12 @@ function createSignupOtpEmailContent(otp: string): SignupOtpEmailContent {
   };
 }
 
-export async function sendSignupOtpEmail(toEmail: string, otp: string): Promise<void> {
-  const { html, subject, text } = createSignupOtpEmailContent(otp);
+export async function sendPasswordResetOtpEmail(toEmail: string, otp: string): Promise<void> {
+  const { html, subject, text } = createPasswordResetOtpEmailContent(otp);
 
   await sendTransactionalEmail({
     fallbackLogMessage: `To ${toEmail}: code=${otp} - ${text.replace(/\n/g, " ")}`,
-    fromLabel: "signup OTP",
+    fromLabel: "password reset OTP",
     html,
     subject,
     text,

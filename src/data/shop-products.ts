@@ -614,6 +614,7 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
   },
   {
     category: "necklace",
+    compareAtPrice: "Rs. 950.00 PKR",
     description:
       "A glow-finish pendant piece that gives subtle brilliance and pairs well with rose or gold tones.",
     id: "pendant-glow",
@@ -622,9 +623,9 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       "/necklace/golden-beaded-necklace-marble-bg.jpeg",
       "/necklace/golden-beaded-necklace-velvet-bg.jpeg",
     ],
-    price: "Rs. 610.00 PKR",
+    price: "Rs. 749.00 PKR",
     slug: "pendant-glow",
-    title: "Pendant Glow",
+    title: "Golden Beaded Necklace",
   },
   {
     category: "bracelets",
@@ -671,17 +672,18 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
   },
   {
     category: "necklace",
+    compareAtPrice: "Rs. 950.00 PKR",
     description:
       "A twilight-toned pendant expression with a refined chain profile and lightweight daily comfort.",
     id: "twilight-pendant",
-    imageSrc: "/necklace/vintage%20rose%20necklace.jpeg",
+    imageSrc: "/necklace/vintage-rose-necklace-marble-bg.jpeg",
     additionalImages: [
-      "/necklace/vintage-rose-necklace-marble-bg.jpeg",
+      "/necklace/vintage%20rose%20necklace.jpeg",
       "/necklace/vintage-rose-necklace-velvet-bg.jpeg",
     ],
-    price: "Rs. 590.00 PKR",
+    price: "Rs. 749.00 PKR",
     slug: "twilight-pendant",
-    title: "Twilight Pendant",
+    title: "Vintage Rose Necklace",
   },
   {
     category: "sets",

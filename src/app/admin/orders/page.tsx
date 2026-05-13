@@ -153,8 +153,13 @@ export default async function AdminOrdersPage() {
                         {order.paymentMethod}
                       </span>
                     </td>
-                    <td className="px-5 py-4 text-right align-top font-semibold text-[#2B2B2B]">
-                      {formatPkrDetailed(order.totalPaisa)}
+                    <td className="px-5 py-4 text-right align-top">
+                      <p className="font-semibold text-[#2B2B2B]">{formatPkrDetailed(order.totalPaisa)}</p>
+                      <p className="mt-1 text-[11px] leading-5 text-[#6E6E6E]">
+                        Subtotal {formatPkrDetailed(order.subtotalPaisa)}
+                        <br />
+                        Tax {formatPkrDetailed(order.taxPaisa)} · Shipping {formatPkrDetailed(order.deliveryPaisa)}
+                      </p>
                     </td>
                   </tr>
                 ))

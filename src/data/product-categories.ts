@@ -66,7 +66,7 @@ export const CATALOGED_CATEGORY_IMAGES: Record<ProductCategorySlug, readonly str
     "/necklace/nail%20necklace.jpeg",
     "/necklace/pink%20stone%20necklace.jpeg",
     "/necklace/twinkle%20necklace.jpeg",
-    "/necklace/vintage%20rose%20necklace.jpeg",
+    "/necklace/vintage-rose-necklace-marble-bg.jpeg",
     "/necklace/watch%20necklace.jpeg",
     "/necklace/white%20stone%20necklace.jpeg",
   ],

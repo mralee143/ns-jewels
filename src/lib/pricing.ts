@@ -26,10 +26,12 @@ export const parsePriceStringToRupees = (price: string): number => {
 export const parsePriceToPaisa = (price: string): number =>
   Math.round(parsePriceStringToRupees(price) * 100);
 
-export const formatPkr = (valuePaisa: number): string => `Rs ${Math.max(0, valuePaisa / 100).toFixed(2)}`;
+export const formatPkrDatasetValue = (valuePaisa: number): string =>
+  (Math.max(0, valuePaisa) / 100).toFixed(2);
 
-export const formatPkrDetailed = (valuePaisa: number): string =>
-  `Rs ${Math.max(0, valuePaisa / 100).toFixed(2)}`;
+export const formatPkr = (valuePaisa: number): string => `Rs ${formatPkrDatasetValue(valuePaisa)}`;
+
+export const formatPkrDetailed = (valuePaisa: number): string => `Rs ${formatPkrDatasetValue(valuePaisa)}`;
 
 export const calculateOrderTotals = (items: readonly CartLikeItem[]): OrderTotals => {
   const subtotalPaisa = items.reduce(

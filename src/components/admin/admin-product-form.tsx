@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState, type ChangeEvent } from "react";
+import { useEffect, useId, useState, type ChangeEvent } from "react";
 
 import {
   PRODUCT_CATEGORY_LABELS,
@@ -22,6 +23,12 @@ export type AdminProductFormValues = {
   title: string;
 };
 
+type GalleryImage = {
+  readonly url: string;
+};
+
+type ImageTarget = "additional" | "main";
+
 const defaultValues: AdminProductFormValues = {
   additionalImageLines: "",
   category: "rings",
@@ -33,6 +40,51 @@ const defaultValues: AdminProductFormValues = {
   published: true,
   slug: "",
   title: "",
+};
+
+const imagePathLinesToArray = (value: string): readonly string[] =>
+  value
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
+
+const appendUniqueImagePath = (value: string, imagePath: string): string =>
+  [...new Set([...imagePathLinesToArray(value), imagePath])].join("\n");
+
+const galleryImagesFromResponse = (data: unknown): readonly GalleryImage[] => {
+  if (!data || typeof data !== "object") {
+    return [];
+  }
+
+  const images = (data as { images?: unknown }).images;
+  if (!Array.isArray(images)) {
+    return [];
+  }
+
+  return images
+    .map((image): GalleryImage | null => {
+      if (!image || typeof image !== "object") {
+        return null;
+      }
+
+      const url = (image as { url?: unknown }).url;
+      return typeof url === "string" && url.startsWith("/") ? { url } : null;
+    })
+    .filter((image): image is GalleryImage => image !== null);
+};
+
+const uploadedImageUrlFromResponse = (data: unknown): string | null => {
+  if (!data || typeof data !== "object") {
+    return null;
+  }
+
+  const image = (data as { image?: unknown }).image;
+  if (!image || typeof image !== "object") {
+    return null;
+  }
+
+  const url = (image as { url?: unknown }).url;
+  return typeof url === "string" && url.startsWith("/") ? url : null;
 };
 
 export type AdminProductFormProps = {
@@ -48,7 +100,50 @@ export function AdminProductForm({ initial, mode, productId }: AdminProductFormP
     ...initial,
   });
   const [error, setError] = useState<string | null>(null);
+  const [galleryError, setGalleryError] = useState<string | null>(null);
+  const [galleryImages, setGalleryImages] = useState<readonly GalleryImage[]>([]);
+  const [galleryPending, setGalleryPending] = useState(true);
   const [pending, setPending] = useState(false);
+  const [uploadingTarget, setUploadingTarget] = useState<ImageTarget | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadGalleryImages = async () => {
+      setGalleryPending(true);
+      setGalleryError(null);
+
+      try {
+        const response = await fetch("/api/admin/product-images", {
+          headers: { Accept: "application/json" },
+        });
+
+        if (!response.ok) {
+          setGalleryError("Gallery images could not be loaded.");
+          return;
+        }
+
+        const data = (await response.json().catch(() => null)) as unknown;
+        if (!cancelled) {
+          setGalleryImages(galleryImagesFromResponse(data));
+        }
+      } catch {
+        if (!cancelled) {
+          setGalleryError("Gallery images could not be loaded.");
+        }
+      } finally {
+        if (!cancelled) {
+          setGalleryPending(false);
+        }
+      }
+    };
+
+    void loadGalleryImages();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const update =
     (field: keyof AdminProductFormValues) =>
@@ -61,6 +156,48 @@ export function AdminProductForm({ initial, mode, productId }: AdminProductFormP
       setValues((previous) => ({ ...previous, [field]: target.value }));
     };
 
+  const selectImage = (target: ImageTarget, url: string) => {
+    setValues((previous) =>
+      target === "main"
+        ? { ...previous, imageSrc: url }
+        : { ...previous, additionalImageLines: appendUniqueImagePath(previous.additionalImageLines, url) },
+    );
+  };
+
+  const uploadImage = async (target: ImageTarget, file: File) => {
+    setError(null);
+    setUploadingTarget(target);
+
+    const formData = new FormData();
+    formData.set("image", file);
+
+    try {
+      const response = await fetch("/api/admin/product-images", {
+        body: formData,
+        method: "POST",
+      });
+
+      const data = (await response.json().catch(() => null)) as unknown;
+      if (!response.ok) {
+        setError((data as { error?: string } | null)?.error ?? "Image upload failed.");
+        return;
+      }
+
+      const url = uploadedImageUrlFromResponse(data);
+      if (!url) {
+        setError("Image upload failed.");
+        return;
+      }
+
+      setGalleryImages((previous) => [{ url }, ...previous.filter((image) => image.url !== url)]);
+      selectImage(target, url);
+    } catch {
+      setError("Image upload failed.");
+    } finally {
+      setUploadingTarget(null);
+    }
+  };
+
   return (
     <form
       className="mx-auto max-w-2xl space-y-6"
@@ -69,10 +206,7 @@ export function AdminProductForm({ initial, mode, productId }: AdminProductFormP
         setError(null);
         setPending(true);
 
-        const additionalImageUrls = values.additionalImageLines
-          .split("\n")
-          .map((line) => line.trim())
-          .filter((line) => line.length > 0);
+        const additionalImageUrls = imagePathLinesToArray(values.additionalImageLines);
 
         const payload: Record<string, unknown> = {
           additionalImageUrls,
@@ -211,7 +345,7 @@ export function AdminProductForm({ initial, mode, productId }: AdminProductFormP
 
       <div className="space-y-2">
         <label className="text-sm font-medium text-[#2B2B2B]" htmlFor="imageSrc">
-          Main image path
+          Main image
         </label>
         <input
           className="w-full rounded-xl border border-[#F0D3DA] bg-white px-4 py-2.5 font-mono text-sm text-[#2B2B2B] outline-none focus:border-cta"
@@ -221,12 +355,35 @@ export function AdminProductForm({ initial, mode, productId }: AdminProductFormP
           required
           value={values.imageSrc}
         />
-        <p className="text-xs text-[#6E6E6E]">Place files in `public/` and reference them like `/rings/photo.jpeg`.</p>
+        <p className="text-xs text-[#6E6E6E]">
+          Paste a path, pick an existing gallery image, or upload from your device.
+        </p>
+        {values.imageSrc ? (
+          <div className="relative aspect-square w-32 overflow-hidden rounded-2xl border border-[#F0D3DA] bg-[#FDF2F5]">
+            <Image
+              alt="Selected main product image"
+              className="object-cover"
+              fill
+              sizes="128px"
+              src={values.imageSrc}
+            />
+          </div>
+        ) : null}
+        <AdminProductImagePicker
+          galleryError={galleryError}
+          galleryImages={galleryImages}
+          galleryPending={galleryPending}
+          onSelect={(url) => selectImage("main", url)}
+          onUpload={(file) => uploadImage("main", file)}
+          selectLabel="Use as main image"
+          uploadLabel="Choose file or gallery photo"
+          uploading={uploadingTarget === "main"}
+        />
       </div>
 
       <div className="space-y-2">
         <label className="text-sm font-medium text-[#2B2B2B]" htmlFor="additional">
-          Extra gallery images (one path per line)
+          Extra product gallery images
         </label>
         <textarea
           className="min-h-[88px] w-full rounded-xl border border-[#F0D3DA] bg-white px-4 py-2.5 font-mono text-sm text-[#2B2B2B] outline-none focus:border-cta"
@@ -234,6 +391,19 @@ export function AdminProductForm({ initial, mode, productId }: AdminProductFormP
           onChange={update("additionalImageLines")}
           placeholder={`/rings/detail-1.jpeg\n/rings/detail-2.jpeg`}
           value={values.additionalImageLines}
+        />
+        <p className="text-xs text-[#6E6E6E]">
+          Keep one image path per line. Selecting or uploading below adds the image here.
+        </p>
+        <AdminProductImagePicker
+          galleryError={galleryError}
+          galleryImages={galleryImages}
+          galleryPending={galleryPending}
+          onSelect={(url) => selectImage("additional", url)}
+          onUpload={(file) => uploadImage("additional", file)}
+          selectLabel="Add to gallery"
+          uploadLabel="Upload extra image"
+          uploading={uploadingTarget === "additional"}
         />
       </div>
 
@@ -277,5 +447,100 @@ export function AdminProductForm({ initial, mode, productId }: AdminProductFormP
         </button>
       </div>
     </form>
+  );
+}
+
+type AdminProductImagePickerProps = {
+  readonly galleryError: string | null;
+  readonly galleryImages: readonly GalleryImage[];
+  readonly galleryPending: boolean;
+  readonly onSelect: (url: string) => void;
+  readonly onUpload: (file: File) => void;
+  readonly selectLabel: string;
+  readonly uploadLabel: string;
+  readonly uploading: boolean;
+};
+
+function AdminProductImagePicker({
+  galleryError,
+  galleryImages,
+  galleryPending,
+  onSelect,
+  onUpload,
+  selectLabel,
+  uploadLabel,
+  uploading,
+}: AdminProductImagePickerProps) {
+  const fileInputId = useId();
+
+  return (
+    <div className="space-y-4 rounded-2xl border border-[#F0D3DA] bg-[#FDF2F5]/50 p-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p className="text-sm font-semibold text-[#2B2B2B]">Image gallery</p>
+          <p className="text-xs text-[#6E6E6E]">Pick an uploaded image or add a new one from your device.</p>
+        </div>
+        <label
+          className={`rounded-full bg-cta px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-cta-hover ${
+            uploading ? "pointer-events-none opacity-60" : "cursor-pointer"
+          }`}
+          htmlFor={fileInputId}
+        >
+          {uploading ? "Uploading..." : uploadLabel}
+          <input
+            accept="image/avif,image/jpeg,image/png,image/webp"
+            className="sr-only"
+            disabled={uploading}
+            id={fileInputId}
+            onChange={(event) => {
+              const file = event.target.files?.[0];
+              if (file) {
+                onUpload(file);
+              }
+              event.target.value = "";
+            }}
+            type="file"
+          />
+        </label>
+      </div>
+
+      {galleryError ? (
+        <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-800">
+          {galleryError}
+        </p>
+      ) : null}
+
+      {galleryPending ? (
+        <p className="text-xs text-[#6E6E6E]">Loading gallery images...</p>
+      ) : galleryImages.length === 0 ? (
+        <p className="rounded-xl border border-dashed border-[#F0D3DA] bg-white px-3 py-4 text-xs text-[#6E6E6E]">
+          No uploaded product images yet. Use the file button to add your first image.
+        </p>
+      ) : (
+        <div className="grid max-h-72 grid-cols-2 gap-3 overflow-y-auto pr-1 sm:grid-cols-3">
+          {galleryImages.map((image) => (
+            <button
+              className="group overflow-hidden rounded-2xl border border-[#F0D3DA] bg-white text-left shadow-sm transition hover:border-cta"
+              key={image.url}
+              onClick={() => onSelect(image.url)}
+              type="button"
+            >
+              <span className="relative block aspect-square bg-[#FDF2F5]">
+                <Image
+                  alt=""
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  fill
+                  sizes="(min-width: 640px) 160px, 45vw"
+                  src={image.url}
+                />
+              </span>
+              <span className="block truncate px-2 py-2 text-xs font-semibold text-cta">
+                {selectLabel}
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
