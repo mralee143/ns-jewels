@@ -10,8 +10,11 @@ const withImages = {
   },
 } as const;
 
-const isCatalogTableMissing = (error: unknown): boolean =>
-  error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2021";
+const recoverableCatalogReadErrorCodes = new Set(["ECONNREFUSED", "P1001", "P2021"]);
+
+const isRecoverableCatalogReadError = (error: unknown): boolean =>
+  error instanceof Prisma.PrismaClientKnownRequestError &&
+  recoverableCatalogReadErrorCodes.has(error.code);
 
 export async function findPublishedShopProducts(): Promise<readonly ShopProduct[]> {
   try {
@@ -24,7 +27,7 @@ export async function findPublishedShopProducts(): Promise<readonly ShopProduct[
       .map(dbProductToShopProduct)
       .filter((product): product is ShopProduct => product !== null);
   } catch (error) {
-    if (isCatalogTableMissing(error)) {
+    if (isRecoverableCatalogReadError(error)) {
       return [];
     }
     throw error;
@@ -44,7 +47,7 @@ export async function findPublishedShopProductsByCategory(
       .map(dbProductToShopProduct)
       .filter((product): product is ShopProduct => product !== null);
   } catch (error) {
-    if (isCatalogTableMissing(error)) {
+    if (isRecoverableCatalogReadError(error)) {
       return [];
     }
     throw error;
@@ -60,7 +63,7 @@ export async function findShopProductBySlugFromDb(slug: string): Promise<ShopPro
 
     return row ? dbProductToShopProduct(row) : null;
   } catch (error) {
-    if (isCatalogTableMissing(error)) {
+    if (isRecoverableCatalogReadError(error)) {
       return null;
     }
     throw error;
