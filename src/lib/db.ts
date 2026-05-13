@@ -1,29 +1,45 @@
-import { Pool } from "pg";
-
 const databaseUrl = process.env.DATABASE_URL;
 
-type GlobalWithPool = typeof globalThis & {
-  __nsJewelsPgPool?: Pool;
+type MySqlConnectionConfig = {
+  readonly host: string;
+  readonly port: number;
+  readonly user: string;
+  readonly password: string;
+  readonly database: string;
+  readonly connectionLimit: number;
 };
 
-const globalWithPool = globalThis as GlobalWithPool;
+const mysqlPortFromUrl = (url: URL): number => Number.parseInt(url.port || "3306", 10);
 
-function createPool(): Pool {
-  if (!databaseUrl?.trim()) {
+const databaseNameFromUrl = (url: URL): string =>
+  decodeURIComponent(url.pathname.replace(/^\//, ""));
+
+const mysqlConnectionConfigFromUrl = (rawUrl: string): MySqlConnectionConfig => {
+  const url = new URL(rawUrl);
+  const database = databaseNameFromUrl(url);
+
+  if (url.protocol !== "mysql:" || !url.hostname || !url.username || !database) {
     throw new Error(
-      "DATABASE_URL is not set. Copy .env.example to .env.local and run npm run db:up.",
+      "DATABASE_URL must be a MySQL URL like mysql://ns-app:password@localhost:3306/ns_jewel.",
     );
   }
-  return new Pool({
-    connectionString: databaseUrl,
-    connectionTimeoutMillis: 10_000,
-    idleTimeoutMillis: 30_000,
-    max: 10,
-  });
-}
 
-/** Singleton pool — reuse connections across requests (Next.js dev HMR safe). */
-export function getPool(): Pool {
-  globalWithPool.__nsJewelsPgPool ??= createPool();
-  return globalWithPool.__nsJewelsPgPool;
+  return {
+    host: url.hostname,
+    port: mysqlPortFromUrl(url),
+    user: decodeURIComponent(url.username),
+    password: decodeURIComponent(url.password),
+    database,
+    connectionLimit: 10,
+  };
+};
+
+export function getDatabaseConfig(): MySqlConnectionConfig {
+  if (!databaseUrl?.trim()) {
+    throw new Error(
+      "DATABASE_URL is not set. Add mysql://ns-app:password@localhost:3306/ns_jewel to .env.local.",
+    );
+  }
+
+  return mysqlConnectionConfigFromUrl(databaseUrl);
 }

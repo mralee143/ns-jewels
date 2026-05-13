@@ -62,7 +62,7 @@ export async function GET(): Promise<Response> {
     orderBy: { createdAt: "desc" },
     take: 50,
     where: {
-      OR: [{ userId: session.user.id }, { email: { equals: user.email, mode: "insensitive" } }],
+      OR: [{ userId: session.user.id }, { email: { equals: user.email } }],
     },
   });
 

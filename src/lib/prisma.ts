@@ -1,7 +1,7 @@
-import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 import { PrismaClient } from "@prisma/client";
 
-import { getPool } from "@/lib/db";
+import { getDatabaseConfig } from "@/lib/db";
 
 type GlobalWithPrisma = typeof globalThis & {
   prisma?: PrismaClient;
@@ -14,7 +14,7 @@ const globalWithPrisma = globalThis as GlobalWithPrisma;
 const PRISMA_SCHEMA_GEN = 2;
 
 function createPrismaClient(): PrismaClient {
-  const adapter = new PrismaPg(getPool());
+  const adapter = new PrismaMariaDb(getDatabaseConfig());
   return new PrismaClient({ adapter });
 }
 

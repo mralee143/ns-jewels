@@ -1,22 +1,23 @@
 services:
-  postgres:
-    image: postgres:16-alpine
+  mysql:
+    image: mysql:8.4
     container_name: ns-jewels-db
     restart: unless-stopped
     ports:
-      # Host:container — use 5433:5432 here if port 5432 is already taken locally.
-      - "5432:5432"
+      # Host:container - use 3307:3306 here if port 3306 is already taken locally.
+      - "3306:3306"
     environment:
-      POSTGRES_USER: ns_app
-      POSTGRES_PASSWORD: ns_app
-      POSTGRES_DB: ns_jewels
+      MYSQL_ROOT_PASSWORD: ns_root
+      MYSQL_USER: u439477325_ns_app
+      MYSQL_PASSWORD: Mralee_143
+      MYSQL_DATABASE: u439477325_ns_jewel
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ns_app -d ns_jewels"]
+      test: ["CMD-SHELL", "mysqladmin ping --host=127.0.0.1 --user=u439477325_ns_app --password=Mralee_143 --silent"]
       interval: 5s
       timeout: 5s
       retries: 5
 
 volumes:
-  postgres_data:
+  mysql_data:

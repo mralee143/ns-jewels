@@ -78,6 +78,16 @@ npm run start  # serve production build
 npm run lint   # ESLint
 ```
 
+### Database
+
+Set the local MySQL connection in `.env.local`:
+
+```bash
+DATABASE_URL="mysql://ns-app:<password>@localhost:3306/ns_jewel"
+```
+
+If you use the included Docker database, the default password is `ns_app`.
+
 ## Learn More
 
 - [Next.js Documentation](https://nextjs.org/docs)

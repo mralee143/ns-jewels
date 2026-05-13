@@ -58,7 +58,7 @@ export default async function AccountPage() {
     orderBy: { createdAt: "desc" },
     take: 50,
     where: {
-      OR: [{ userId: session.user.id }, { email: { equals: user.email, mode: "insensitive" } }],
+      OR: [{ userId: session.user.id }, { email: { equals: user.email } }],
     },
   });
 
