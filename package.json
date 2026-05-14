@@ -12,7 +12,7 @@
     "db:down": "docker compose down",
     "db:logs": "docker compose logs -f mysql",
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma migrate deploy && next build",
     "start": "next start",
     "generate-logo": "node scripts/generate-transparent-logo.cjs",
     "lint": "eslint",
