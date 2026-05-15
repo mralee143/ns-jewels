@@ -78,15 +78,47 @@ npm run start  # serve production build
 npm run lint   # ESLint
 ```
 
-### Database
+### Database (Docker MySQL)
 
-Set the local MySQL connection in `.env.local`:
+Start the database (maps host **3307** to MySQL **3306** inside the container so it does not conflict with another service already using **3306** on your machine):
 
 ```bash
-DATABASE_URL="mysql://ns-app:<password>@localhost:3306/ns_jewel"
+docker compose up -d mysql
 ```
 
-If you use the included Docker database, the default password is `ns_app`.
+Set the app connection in `.env.local` (matches `docker-compose.yml`):
+
+```bash
+DATABASE_URL="mysql://ns_app:ns_app@localhost:3307/ns_jewels"
+```
+
+If nothing else uses **3306**, you can change the compose `ports` line to `"3306:3306"` and use `:3306` in the URL instead.
+
+**DBeaver (Connect by URL):** choose **URL**, then use:
+
+`jdbc:mysql://localhost:3307/ns_jewels`
+
+Use **Username** `ns_app` and **Password** `ns_app` (same as `DATABASE_URL`). Check **Save password** if you want.
+
+If you previously created the volume with different MySQL users, reset the data volume once:
+
+```bash
+docker compose down -v
+docker compose up -d mysql
+```
+
+**Prisma: `Unknown authentication plugin 'sha256_password'`** — the account on that server uses a plugin Prisma’s migration engine does not speak. Either:
+
+1. **Use local Docker for migrations:** put the `DATABASE_URL` line above in **`.env.local`** (it overrides `.env` for Prisma). Then run `npm run db:migrate:deploy` again.
+
+2. **Stay on that MySQL server:** change the account’s auth plugin (Prisma cannot use `sha256_password`). In DBeaver or your host’s SQL console, run as an admin — see commented steps in [`prisma/fix-mysql-auth-plugin.sql`](./prisma/fix-mysql-auth-plugin.sql). Typical form:
+
+```sql
+ALTER USER 'your_user'@'your_host' IDENTIFIED WITH caching_sha2_password BY 'your_password';
+FLUSH PRIVILEGES;
+```
+
+If the server rejects `caching_sha2_password`, use `mysql_native_password` instead (when your MySQL version still allows it).
 
 ## Learn More
 

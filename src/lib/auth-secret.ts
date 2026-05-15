@@ -1,9 +1,10 @@
-/** Same fallback NextAuth uses when `AUTH_SECRET` is unset (dev only). */
-export function getAuthSecret(): string {
-  return (
-    process.env.AUTH_SECRET ??
-    (process.env.NODE_ENV === "production"
-      ? "placeholder-auth-secret-set-env-AUTH_SECRET"
-      : "development-auth-secret-not-for-production")
-  );
+export function resolveAuthSecret(): string {
+  const fromEnv = process.env.AUTH_SECRET;
+  if (fromEnv && fromEnv.length > 0) {
+    return fromEnv;
+  }
+  if (process.env.NODE_ENV === "production") {
+    return "placeholder-auth-secret-set-env-AUTH_SECRET";
+  }
+  return "development-auth-secret-not-for-production";
 }
