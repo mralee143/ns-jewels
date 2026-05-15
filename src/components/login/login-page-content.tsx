@@ -386,10 +386,10 @@ export function LoginPageContent({
         <Image
           alt="NS Jewels"
           className="h-9 w-auto sm:h-10"
-          height={307}
+          height={400}
           priority={isOverlay}
           src="/brand_logo.png"
-          width={1024}
+          width={603}
         />
       </div>
 

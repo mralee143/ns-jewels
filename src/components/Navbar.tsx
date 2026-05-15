@@ -169,18 +169,18 @@ export function Navbar() {
         </button>
 
         <Link
-          className="absolute left-1/2 z-10 shrink-0 -translate-x-1/2 transition-opacity duration-200 lg:static lg:z-auto lg:translate-x-0"
+          className="absolute left-1/2 z-10 flex max-h-10 shrink-0 -translate-x-1/2 items-center transition-opacity duration-200 lg:static lg:z-auto lg:max-h-11 lg:translate-x-0 xl:max-h-12"
           href="/"
           onClick={handleNavClick("/")}
         >
           <Image
             alt="NS Jewels logo"
-            className="h-auto w-[140px] transition-transform duration-300 hover:scale-[1.06] sm:w-[160px] lg:w-[170px] xl:w-[200px]"
-            height={307}
+            className="h-full w-auto max-w-[132px] object-contain transition-transform duration-300 hover:scale-[1.06] sm:max-w-[150px] lg:max-w-[158px] xl:max-w-[180px]"
+            height={400}
             loading="eager"
             priority
             src="/brand_logo.png"
-            width={1024}
+            width={603}
           />
         </Link>
 

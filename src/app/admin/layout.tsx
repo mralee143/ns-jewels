@@ -26,10 +26,10 @@ export default async function AdminLayout({
           <Image
             alt="NS Jewels logo"
             className="h-auto w-full"
-            height={307}
+            height={400}
             priority
             src="/brand_logo.png"
-            width={1024}
+            width={603}
           />
         </Link>
         <p className="mt-3 text-center text-xs font-semibold uppercase tracking-[0.32em] text-[#6E6E6E]">

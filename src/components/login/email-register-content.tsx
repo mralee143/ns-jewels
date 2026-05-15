@@ -139,7 +139,7 @@ export function EmailRegisterContent({ email }: EmailRegisterContentProps) {
   return (
     <div className="mx-auto w-full max-w-[420px] rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-lg sm:p-8">
       <div className="mb-8 flex justify-center">
-        <Image alt="NS Jewels" className="h-9 w-auto sm:h-10" height={307} src="/brand_logo.png" width={1024} />
+        <Image alt="NS Jewels" className="h-9 w-auto sm:h-10" height={400} src="/brand_logo.png" width={603} />
       </div>
 
       <h1 className="text-left text-2xl font-bold tracking-tight text-black sm:text-[1.65rem]">

@@ -16,6 +16,7 @@
     "build": "next build",
     "start": "next start",
     "generate-logo": "node scripts/generate-transparent-logo.cjs",
+    "generate-logo:grey-source": "node scripts/generate-brand-logo-from-grey-source.cjs",
     "lint": "eslint",
     "postinstall": "prisma generate"
   },
