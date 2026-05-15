@@ -78,47 +78,45 @@ npm run start  # serve production build
 npm run lint   # ESLint
 ```
 
-### Database (Docker MySQL)
+### Database (PostgreSQL)
 
-Start the database (maps host **3307** to MySQL **3306** inside the container so it does not conflict with another service already using **3306** on your machine):
-
-```bash
-docker compose up -d mysql
-```
-
-Set the app connection in `.env.local` (matches `docker-compose.yml`):
+Start PostgreSQL locally (Docker):
 
 ```bash
-DATABASE_URL="mysql://ns_app:ns_app@localhost:3307/ns_jewels"
+docker compose up -d postgres
 ```
 
-If nothing else uses **3306**, you can change the compose `ports` line to `"3306:3306"` and use `:3306` in the URL instead.
+Set the app connection in `.env.local` (matches `docker-compose.yml` when using Docker):
 
-**DBeaver (Connect by URL):** choose **URL**, then use:
+```bash
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=nsjewels
+DB_PASSWORD=ns-app
+DB_NAME=ns-jewels
+```
 
-`jdbc:mysql://localhost:3307/ns_jewels`
+Or a single URL:
 
-Use **Username** `ns_app` and **Password** `ns_app` (same as `DATABASE_URL`). Check **Save password** if you want.
+```bash
+DATABASE_URL="postgresql://nsjewels:ns-app@localhost:5432/ns-jewels"
+```
 
-If you previously created the volume with different MySQL users, reset the data volume once:
+**DBeaver:** Host `localhost`, Port `5432`, Database `ns-jewels`, Username `nsjewels`, and the same password as `DB_PASSWORD`.
+
+Apply schema:
+
+```bash
+npm run db:migrate:deploy
+npm run db:seed
+```
+
+Reset the Docker volume if you need a clean database:
 
 ```bash
 docker compose down -v
-docker compose up -d mysql
+docker compose up -d postgres
 ```
-
-**Prisma: `Unknown authentication plugin 'sha256_password'`** — the account on that server uses a plugin Prisma’s migration engine does not speak. Either:
-
-1. **Use local Docker for migrations:** put the `DATABASE_URL` line above in **`.env.local`** (it overrides `.env` for Prisma). Then run `npm run db:migrate:deploy` again.
-
-2. **Stay on that MySQL server:** change the account’s auth plugin (Prisma cannot use `sha256_password`). In DBeaver or your host’s SQL console, run as an admin — see commented steps in [`prisma/fix-mysql-auth-plugin.sql`](./prisma/fix-mysql-auth-plugin.sql). Typical form:
-
-```sql
-ALTER USER 'your_user'@'your_host' IDENTIFIED WITH caching_sha2_password BY 'your_password';
-FLUSH PRIVILEGES;
-```
-
-If the server rejects `caching_sha2_password`, use `mysql_native_password` instead (when your MySQL version still allows it).
 
 ## Learn More
 

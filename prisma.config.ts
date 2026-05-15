@@ -1,12 +1,13 @@
 import { config } from "dotenv";
 import { defineConfig } from "prisma/config";
 
-import { resolveMysqlDatabaseUrl } from "./src/lib/resolve-mysql-database-url";
+import { resolveDatabaseUrl } from "./src/lib/resolve-database-url";
 
 config();
 config({ path: ".env.local", override: true });
+config({ path: ".env.prod", override: true });
 
-const databaseUrl = resolveMysqlDatabaseUrl();
+const databaseUrl = resolveDatabaseUrl();
 
 if (!databaseUrl?.trim()) {
   throw new Error(

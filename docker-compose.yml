@@ -1,23 +1,21 @@
 services:
-  mysql:
-    image: mysql:8.4
+  postgres:
+    image: postgres:16
     container_name: ns-jewels-db
     restart: unless-stopped
     ports:
-      # Host 3307 avoids clashing with another MySQL (or XAMPP) on 3306. MySQL in the container stays on 3306.
-      - "3307:3306"
+      - "5432:5432"
     environment:
-      MYSQL_ROOT_PASSWORD: ns_root
-      MYSQL_USER: ns_app
-      MYSQL_PASSWORD: ns_app
-      MYSQL_DATABASE: ns_jewels
+      POSTGRES_USER: nsjewels
+      POSTGRES_PASSWORD: ns-app
+      POSTGRES_DB: ns-jewels
     volumes:
-      - mysql_data:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping --host=127.0.0.1 --user=ns_app --password=ns_app --silent"]
+      test: ["CMD-SHELL", "pg_isready -U nsjewels -d ns-jewels"]
       interval: 5s
       timeout: 5s
       retries: 5
 
 volumes:
-  mysql_data:
+  postgres_data:

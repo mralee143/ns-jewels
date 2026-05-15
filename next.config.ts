@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   images: {
     /** Next 16 defaults to [75] only; higher values are snapped to 75 without this */
     qualities: [75, 80, 85, 90, 92, 95, 100],
