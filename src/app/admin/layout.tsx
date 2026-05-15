@@ -24,12 +24,12 @@ export default async function AdminLayout({
       <aside className="hidden w-64 shrink-0 border-r border-[#F0D3DA] bg-white/95 px-5 py-6 shadow-[8px_0_30px_rgba(216,92,108,0.06)] md:flex md:flex-col">
         <Link aria-label="NS Jewels admin dashboard" className="block rounded-3xl bg-white p-2" href="/admin">
           <Image
-            alt="NS Jewels logo"
-            className="h-auto w-full"
-            height={400}
+            alt="NS JEWELS logo"
+            className="h-auto w-full rounded-md"
+            height={918}
             priority
-            src="/brand_logo.png"
-            width={603}
+            src="/brand-logo.png"
+            width={3058}
           />
         </Link>
         <p className="mt-3 text-center text-xs font-semibold uppercase tracking-[0.32em] text-[#6E6E6E]">

@@ -45,11 +45,11 @@ export function FooterSection() {
         <div className="text-left">
           <Link className="inline-block" href="/">
             <Image
-              alt="NS Jewels logo"
-              className="h-auto w-[200px] mix-blend-multiply sm:w-[220px]"
-              height={400}
-              src="/brand_logo.png"
-              width={603}
+              alt="NS JEWELS logo"
+              className="h-auto w-[220px] rounded-md sm:w-[260px]"
+              height={918}
+              src="/brand-logo.png"
+              width={3058}
             />
           </Link>
           <div className="mt-5 flex items-center gap-4 text-black">

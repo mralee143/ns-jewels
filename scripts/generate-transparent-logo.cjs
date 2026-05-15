@@ -1,6 +1,6 @@
 /**
  * Reads scripts/logo-source.png (preferred) or scripts/logo-source.jpg — gold logo on
- * near-black — removes dark background pixels, writes public/brand_logo.png with alpha.
+ * near-black — removes dark background pixels, writes public/brand-logo.png with alpha.
  * Tune BG_* constants if edges look harsh.
  */
 
@@ -15,7 +15,7 @@ const ROOT = path.join(__dirname, "..");
 const LOGO_PNG = path.join(ROOT, "scripts", "logo-source.png");
 const LOGO_JPG = path.join(ROOT, "scripts", "logo-source.jpg");
 const INPUT = fs.existsSync(LOGO_PNG) ? LOGO_PNG : LOGO_JPG;
-const OUTPUT = path.join(ROOT, "public", "brand_logo.png");
+const OUTPUT = path.join(ROOT, "public", "brand-logo.png");
 
 /** Pixels with max(R,G,B) at or below this are treated as background. */
 const BG_MAX = 22;

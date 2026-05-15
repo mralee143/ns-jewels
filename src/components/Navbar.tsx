@@ -169,22 +169,18 @@ export function Navbar() {
         </button>
 
         <Link
-<<<<<<< HEAD
-          className="absolute left-1/2 z-10 flex h-10 shrink-0 -translate-x-1/2 items-center justify-center transition-opacity duration-200 lg:static lg:z-auto lg:h-11 lg:translate-x-0 xl:h-12"
-=======
-          className="absolute left-1/2 z-10 flex max-h-10 shrink-0 -translate-x-1/2 items-center transition-opacity duration-200 lg:static lg:z-auto lg:max-h-11 lg:translate-x-0 xl:max-h-12"
->>>>>>> 66d7f60ff7a3ffc6a98513dcabe4e8bae97c939c
+          className="absolute left-1/2 z-10 flex max-h-8 shrink-0 -translate-x-1/2 items-center justify-center transition-opacity duration-200 sm:max-h-9 lg:static lg:z-auto lg:max-h-9 lg:translate-x-0 xl:max-h-10"
           href="/"
           onClick={handleNavClick("/")}
         >
           <Image
-            alt="NS Jewels logo"
-            className="h-full w-auto max-w-[132px] object-contain transition-transform duration-300 hover:scale-[1.06] sm:max-w-[150px] lg:max-w-[158px] xl:max-w-[180px]"
-            height={400}
+            alt="NS JEWELS logo"
+            className="h-full w-auto max-w-[110px] rounded-md object-contain transition-transform duration-300 hover:scale-[1.06] sm:max-w-[128px] lg:max-w-[138px] xl:max-w-[148px]"
+            height={918}
             loading="eager"
             priority
-            src="/brand_logo.png"
-            width={603}
+            src="/brand-logo.png"
+            width={3058}
           />
         </Link>
 

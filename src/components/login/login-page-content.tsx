@@ -384,12 +384,12 @@ export function LoginPageContent({
     <div className={shellSurface}>
       <div className="mb-8 flex justify-center">
         <Image
-          alt="NS Jewels"
-          className="h-9 w-auto sm:h-10"
-          height={400}
+          alt="NS JEWELS"
+          className="h-9 w-auto rounded-md sm:h-10"
+          height={918}
           priority={isOverlay}
-          src="/brand_logo.png"
-          width={603}
+          src="/brand-logo.png"
+          width={3058}
         />
       </div>
 

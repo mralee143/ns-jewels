@@ -1,6 +1,6 @@
 /**
  * Reads public/ns-logo-new-source.png (flat light-grey studio background),
- * removes low-chroma pixels near the sampled corner key, writes public/brand_logo.png
+ * removes low-chroma pixels near the sampled corner key, writes public/brand-logo.png
  * with alpha and trims empty margins.
  */
 
@@ -12,7 +12,7 @@ const sharp = require("sharp");
 
 const ROOT = path.join(__dirname, "..");
 const INPUT = path.join(ROOT, "public", "ns-logo-new-source.png");
-const OUTPUT = path.join(ROOT, "public", "brand_logo.png");
+const OUTPUT = path.join(ROOT, "public", "brand-logo.png");
 
 /** Treat as background when chroma is low and RGB is close to the corner key. */
 const MAX_CHROMA = 22;
