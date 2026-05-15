@@ -1,6 +1,6 @@
 import { createHash, timingSafeEqual } from "crypto";
 
-import { getAuthSecret } from "@/lib/auth-secret";
+import { resolveAuthSecret } from "@/lib/auth-secret";
 
 const PASSWORD_RESET_IDENTIFIER_PREFIX = "password-reset-otp:";
 
@@ -9,7 +9,7 @@ export function passwordResetOtpIdentifier(email: string): string {
 }
 
 export function hashPasswordResetOtp(email: string, otp: string): string {
-  const secret = getAuthSecret();
+  const secret = resolveAuthSecret();
   const normalizedEmail = email.trim().toLowerCase();
   return createHash("sha256")
     .update(`${secret}:password-reset-otp:${normalizedEmail}:${otp}`)

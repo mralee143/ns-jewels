@@ -3,7 +3,7 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 
-import { getAuthSecret } from "@/lib/auth-secret";
+import { resolveAuthSecret } from "@/lib/auth-secret";
 import { verifyPassword } from "@/lib/password";
 import { adapterWithoutUserImage } from "@/lib/prisma-auth-adapter";
 import { prisma } from "@/lib/prisma";
@@ -13,7 +13,7 @@ const googleSecret = process.env.AUTH_GOOGLE_SECRET;
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: adapterWithoutUserImage(PrismaAdapter(prisma)),
-  secret: getAuthSecret(),
+  secret: resolveAuthSecret(),
   trustHost: true,
   session: {
     strategy: "jwt",

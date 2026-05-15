@@ -245,10 +245,10 @@ export function VerifyEmailForm({
             <Image
               alt="NS Jewels"
               className="h-auto w-12"
-              height={307}
+              height={400}
               priority
               src="/brand_logo.png"
-              width={1024}
+              width={603}
             />
           </div>
           <div className="rounded-full border border-[#F0D3DA] bg-white/80 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-cta shadow-sm">

@@ -47,9 +47,9 @@ export function FooterSection() {
             <Image
               alt="NS Jewels logo"
               className="h-auto w-[200px] mix-blend-multiply sm:w-[220px]"
-              height={307}
+              height={400}
               src="/brand_logo.png"
-              width={1024}
+              width={603}
             />
           </Link>
           <div className="mt-5 flex items-center gap-4 text-black">

@@ -1,6 +1,6 @@
 import { createHash, randomInt, timingSafeEqual } from "crypto";
 
-import { getAuthSecret } from "@/lib/auth-secret";
+import { resolveAuthSecret } from "@/lib/auth-secret";
 
 const OTP_IDENTIFIER_PREFIX = "signup-otp:";
 
@@ -13,7 +13,7 @@ export function generateSixDigitOtp(): string {
 }
 
 export function hashSignupOtp(email: string, otp: string): string {
-  const secret = getAuthSecret();
+  const secret = resolveAuthSecret();
   const normalizedEmail = email.trim().toLowerCase();
   return createHash("sha256")
     .update(`${secret}:signup-otp:${normalizedEmail}:${otp}`)

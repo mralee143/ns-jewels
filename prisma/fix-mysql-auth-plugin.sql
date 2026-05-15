@@ -1,0 +1,15 @@
+-- Prisma (migrate / db push) does not support MySQL's sha256_password plugin.
+-- Run this once on your MySQL server as a user with permission to ALTER USER
+-- (often root, or use your host's "Change password" / SQL console as admin).
+--
+-- 1) See how your login is registered (pick the row you use to connect):
+--    SELECT user, host, plugin FROM mysql.user WHERE user = 'YOUR_MYSQL_USERNAME';
+--
+-- 2) Replace YOUR_MYSQL_USERNAME, YOUR_MYSQL_HOST, and YOUR_PASSWORD below.
+--    YOUR_MYSQL_HOST is often 'localhost', '127.0.0.1', or '%'.
+--
+-- 3) If caching_sha2_password is rejected on your server version, try
+--    IDENTIFIED WITH mysql_native_password BY 'YOUR_PASSWORD' instead.
+
+-- ALTER USER 'YOUR_MYSQL_USERNAME'@'YOUR_MYSQL_HOST' IDENTIFIED WITH caching_sha2_password BY 'YOUR_PASSWORD';
+-- FLUSH PRIVILEGES;

@@ -1,4 +1,4 @@
-const databaseUrl = process.env.DATABASE_URL;
+import { resolveMysqlDatabaseUrl } from "@/lib/resolve-mysql-database-url";
 
 export class DatabaseConfigError extends Error {
   constructor(message: string) {
@@ -51,9 +51,11 @@ const mysqlConnectionConfigFromUrl = (rawUrl: string): MySqlConnectionConfig => 
 };
 
 export function getDatabaseConfig(): MySqlConnectionConfig {
+  const databaseUrl = resolveMysqlDatabaseUrl();
+
   if (!databaseUrl?.trim()) {
     throw new DatabaseConfigError(
-      "DATABASE_URL is not set. Add mysql://user:password@host:3306/database to your environment.",
+      "Set DATABASE_URL or DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, and DB_NAME for MySQL.",
     );
   }
 
