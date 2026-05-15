@@ -1,16 +1,20 @@
 /**
- * Reads scripts/logo-source.jpg (gold logo on black), removes near-black pixels,
- * writes public/brand_logo.png with alpha. Tune BG_* constants if edges look harsh.
+ * Reads scripts/logo-source.png (preferred) or scripts/logo-source.jpg — gold logo on
+ * near-black — removes dark background pixels, writes public/brand_logo.png with alpha.
+ * Tune BG_* constants if edges look harsh.
  */
 
 /* eslint-disable @typescript-eslint/no-require-imports -- CommonJS script */
 
+const fs = require("fs");
 const path = require("path");
 
 const sharp = require("sharp");
 
 const ROOT = path.join(__dirname, "..");
-const INPUT = path.join(ROOT, "scripts", "logo-source.jpg");
+const LOGO_PNG = path.join(ROOT, "scripts", "logo-source.png");
+const LOGO_JPG = path.join(ROOT, "scripts", "logo-source.jpg");
+const INPUT = fs.existsSync(LOGO_PNG) ? LOGO_PNG : LOGO_JPG;
 const OUTPUT = path.join(ROOT, "public", "brand_logo.png");
 
 /** Pixels with max(R,G,B) at or below this are treated as background. */

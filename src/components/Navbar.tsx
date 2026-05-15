@@ -169,7 +169,7 @@ export function Navbar() {
         </button>
 
         <Link
-          className="absolute left-1/2 z-10 shrink-0 -translate-x-1/2 transition-opacity duration-200 lg:static lg:z-auto lg:translate-x-0"
+          className="absolute left-1/2 z-10 flex h-10 shrink-0 -translate-x-1/2 items-center justify-center transition-opacity duration-200 lg:static lg:z-auto lg:h-11 lg:translate-x-0 xl:h-12"
           href="/"
           onClick={handleNavClick("/")}
         >
