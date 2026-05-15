@@ -4,17 +4,17 @@ services:
     container_name: ns-jewels-db
     restart: unless-stopped
     ports:
-      # Host:container - use 3307:3306 here if port 3306 is already taken locally.
-      - "3306:3306"
+      # Host 3307 avoids clashing with another MySQL (or XAMPP) on 3306. MySQL in the container stays on 3306.
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ns_root
-      MYSQL_USER: u439477325_ns_app
-      MYSQL_PASSWORD: Mralee_143
-      MYSQL_DATABASE: u439477325_ns_jewel
+      MYSQL_USER: ns_app
+      MYSQL_PASSWORD: ns_app
+      MYSQL_DATABASE: ns_jewels
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping --host=127.0.0.1 --user=u439477325_ns_app --password=Mralee_143 --silent"]
+      test: ["CMD-SHELL", "mysqladmin ping --host=127.0.0.1 --user=ns_app --password=ns_app --silent"]
       interval: 5s
       timeout: 5s
       retries: 5

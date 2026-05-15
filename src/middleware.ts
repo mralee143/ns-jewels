@@ -2,7 +2,7 @@ import { getToken } from "next-auth/jwt";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-import { getAuthSecret } from "@/lib/auth-secret";
+import { resolveAuthSecret } from "@/lib/auth-secret";
 import { sanitizeCallbackUrl } from "@/lib/sanitize-callback-url";
 
 export async function middleware(request: NextRequest): Promise<NextResponse> {
@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
 
   const token = await getToken({
     req: request,
-    secret: getAuthSecret(),
+    secret: resolveAuthSecret(),
     secureCookie: process.env.NODE_ENV === "production",
   });
 
