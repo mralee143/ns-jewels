@@ -148,14 +148,14 @@ export default async function AdminDashboardPage() {
           const Icon = stat.icon;
 
           return (
-            <section className="rounded-3xl border border-[#F0D3DA] bg-white p-5 shadow-[0_18px_40px_rgba(216,92,108,0.08)]" key={stat.label}>
-              <div className="flex items-center gap-4">
-                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#FDF2F5] text-cta ring-1 ring-[#F0D3DA]">
+            <section className="rounded-3xl border border-[#F0D3DA] bg-white p-4 shadow-[0_18px_40px_rgba(216,92,108,0.08)] sm:p-5" key={stat.label}>
+              <div className="flex items-center gap-3 sm:gap-4">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#FDF2F5] text-cta ring-1 ring-[#F0D3DA] sm:h-16 sm:w-16">
                   <Icon />
                 </span>
                 <div className="min-w-0">
-                  <p className="text-sm font-semibold text-[#2B2B2B]">{stat.label}</p>
-                  <p className="mt-1 truncate font-display text-3xl font-semibold text-[#2B2B2B]">{stat.value}</p>
+                  <p className="text-xs font-semibold text-[#2B2B2B] sm:text-sm">{stat.label}</p>
+                  <p className="mt-1 truncate font-display text-2xl font-semibold text-[#2B2B2B] sm:text-3xl">{stat.value}</p>
                   <p className="mt-1 text-xs text-[#6E6E6E]">
                     <span className="font-semibold text-emerald-600">↑</span> {stat.detail}
                   </p>
@@ -169,7 +169,7 @@ export default async function AdminDashboardPage() {
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_340px]">
         <section className="overflow-hidden rounded-3xl border border-[#F0D3DA] bg-white shadow-[0_18px_40px_rgba(216,92,108,0.08)]">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#F0D3DA] px-5 py-4">
-            <h1 className="font-display text-2xl font-semibold tracking-tight text-[#2B2B2B]">Recent Orders</h1>
+            <h1 className="font-display text-xl font-semibold tracking-tight text-[#2B2B2B] sm:text-2xl">Recent Orders</h1>
             <Link
               className="rounded-xl border border-[#F0D3DA] px-4 py-2 text-xs font-semibold text-cta transition-colors hover:bg-[#FDF2F5]"
               href="/admin/orders"

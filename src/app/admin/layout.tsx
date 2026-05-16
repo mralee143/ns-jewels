@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
 
 import { auth } from "@/auth";
+import { AdminMobileHeader } from "@/components/admin/admin-mobile-header";
 import { AdminDesktopNavigation, AdminMobileNavigation } from "@/components/admin/admin-navigation";
 
 export default async function AdminLayout({
@@ -20,7 +21,7 @@ export default async function AdminLayout({
   const label = session.user.email ?? session.user.name ?? "Admin";
 
   return (
-    <div className="flex min-h-screen bg-[#FDF2F5] text-[#2B2B2B]">
+    <div className="flex min-h-screen overflow-x-hidden bg-[#FDF2F5] text-[#2B2B2B]">
       <aside className="hidden w-64 shrink-0 border-r border-[#F0D3DA] bg-white/95 px-5 py-6 shadow-[8px_0_30px_rgba(216,92,108,0.06)] md:flex md:flex-col">
         <Link aria-label="NS Jewels admin dashboard" className="block rounded-3xl bg-white p-2" href="/admin">
           <Image
@@ -58,10 +59,12 @@ export default async function AdminLayout({
         </div>
       </aside>
 
-      <div className="min-w-0 flex-1">
-        <header className="border-b border-[#F0D3DA] bg-white/85 px-4 py-4 backdrop-blur md:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <label className="relative min-w-0 flex-1 md:max-w-md">
+      <div className="flex min-w-0 flex-1 flex-col">
+        <header className="sticky top-0 z-20 border-b border-[#F0D3DA] bg-white/95 px-4 py-3 backdrop-blur md:px-8 md:py-4">
+          <AdminMobileHeader label={label} />
+
+          <div className="hidden flex-wrap items-center justify-between gap-4 md:flex">
+            <label className="relative min-w-0 max-w-md flex-1">
               <span className="sr-only">Search admin panel</span>
               <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#6E6E6E]">
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24">
@@ -103,16 +106,17 @@ export default async function AdminLayout({
                     <path d="M4.5 20a7.5 7.5 0 0 1 15 0" stroke="currentColor" strokeLinecap="round" strokeWidth="1.7" />
                   </svg>
                 </span>
-                <div className="hidden sm:block">
+                <div>
                   <p className="max-w-[180px] truncate text-sm font-semibold text-[#2B2B2B]">{label}</p>
                   <p className="text-xs text-[#6E6E6E]">Super Admin</p>
                 </div>
               </div>
             </div>
           </div>
+
           <AdminMobileNavigation />
         </header>
-        <main className="p-4 md:p-8">{children}</main>
+        <main className="min-w-0 flex-1 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] md:p-8">{children}</main>
       </div>
     </div>
   );

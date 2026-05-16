@@ -123,22 +123,25 @@ export function AdminMobileNavigation() {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Admin sections" className="mt-4 flex gap-2 overflow-x-auto pb-1 md:hidden">
+    <nav
+      aria-label="Admin sections"
+      className="-mx-4 mt-3 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] md:hidden [&::-webkit-scrollbar]:hidden"
+    >
       {NAV_ITEMS.map((item) => {
         const active = isActivePath(pathname, item);
         const Icon = iconByName[item.icon];
 
         return (
           <Link
-            className={`flex shrink-0 items-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold transition-colors ${
+            className={`flex shrink-0 snap-start items-center gap-2 rounded-full border px-3.5 py-2.5 text-xs font-semibold transition-colors ${
               active
-                ? "border-[#E96A7A] bg-[#FDF2F5] text-cta"
+                ? "border-[#E96A7A] bg-[#FDF2F5] text-cta shadow-sm"
                 : "border-[#F0D3DA] bg-white text-[#2B2B2B] hover:bg-[#FDF2F5]"
             }`}
             href={item.href}
             key={item.href}
           >
-            <Icon className="h-4 w-4" />
+            <Icon className="h-4 w-4 shrink-0" />
             {item.label}
           </Link>
         );
