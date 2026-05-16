@@ -5,7 +5,8 @@ import { resolveDatabaseUrl } from "./src/lib/resolve-database-url";
 
 config();
 config({ path: ".env.local", override: true });
-config({ path: ".env.prod", override: true });
+// Do not override shell/Docker env (e.g. DB_HOST=76.13.152.159 for remote migrate).
+config({ path: ".env.prod", override: false });
 
 const databaseUrl = resolveDatabaseUrl();
 

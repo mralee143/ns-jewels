@@ -17,5 +17,23 @@ services:
       timeout: 5s
       retries: 5
 
+  # Optional: run the built image locally with correct DB networking (not for `npm run dev` on the host).
+  # app:
+  #   image: aleehaider045/ns-jewels:latest
+  #   build: .
+  #   restart: unless-stopped
+  #   ports:
+  #     - "4000:4000"
+  #   environment:
+  #     DB_HOST: postgres
+  #     DB_PORT: 5432
+  #     DB_USER: nsjewels
+  #     DB_PASSWORD: ns-app
+  #     DB_NAME: ns-jewels
+  #     AUTH_SECRET: change-me
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+
 volumes:
   postgres_data:

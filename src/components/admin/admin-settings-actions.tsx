@@ -1,7 +1,8 @@
 "use client";
 
-import { signOut } from "next-auth/react";
 import Link from "next/link";
+
+import { signOutToHome } from "@/lib/sign-out-client";
 
 export function AdminSettingsActions() {
   return (
@@ -18,7 +19,7 @@ export function AdminSettingsActions() {
       </Link>
       <button
         className="inline-flex items-center justify-center rounded-2xl bg-cta px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-cta-hover"
-        onClick={() => void signOut({ callbackUrl: "/" })}
+        onClick={signOutToHome}
         type="button"
       >
         <svg aria-hidden="true" className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24">

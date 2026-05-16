@@ -1,7 +1,7 @@
 "use client";
 
 import type { OrderStatus } from "@prisma/client";
-import { signOut } from "next-auth/react";
+import { signOutToHome } from "@/lib/sign-out-client";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
@@ -131,7 +131,7 @@ export function AccountPageContent({ initialOrders, initialProfile }: AccountPag
           </Link>
           <button
             className="rounded-full bg-cta px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-cta-hover"
-            onClick={() => void signOut({ callbackUrl: "/" })}
+            onClick={signOutToHome}
             type="button"
           >
             Sign out

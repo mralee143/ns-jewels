@@ -1,4 +1,12 @@
+import { existsSync } from "node:fs";
+
 import { resolveDatabaseUrl } from "@/lib/resolve-database-url";
+
+const LOCAL_DB_HOSTS = new Set(["localhost", "127.0.0.1", "::1"]);
+
+function isRunningInDocker(): boolean {
+  return existsSync("/.dockerenv");
+}
 
 export class DatabaseConfigError extends Error {
   constructor(message: string) {
@@ -35,6 +43,12 @@ export function getDatabaseUrl(): string {
   if (!url.hostname || !url.username || !url.pathname.replace(/^\//, "")) {
     throw new DatabaseConfigError(
       "DATABASE_URL must include host, user, and database name.",
+    );
+  }
+
+  if (isRunningInDocker() && LOCAL_DB_HOSTS.has(url.hostname)) {
+    throw new DatabaseConfigError(
+      "DB_HOST or DATABASE_URL uses localhost inside Docker; that points at this app container, not PostgreSQL. Set DB_HOST to your Postgres service name on the Docker network (e.g. websites_ns-db or the compose service name postgres).",
     );
   }
 

@@ -14,9 +14,10 @@
     "db:logs": "docker compose logs -f postgres",
     "docker:pull": "bash docker-pull.sh",
     "docker:push": "bash docker-login.sh",
-    "dev": "next dev",
+    "docker:migrate": "bash docker-migrate.sh",
+    "dev": "next dev -p 3000 -H 0.0.0.0",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3000 -H 0.0.0.0",
     "generate-logo": "node scripts/generate-transparent-logo.cjs",
     "generate-logo:grey-source": "node scripts/generate-brand-logo-from-grey-source.cjs",
     "lint": "eslint",
@@ -37,6 +38,7 @@
     "nodemailer": "^7.0.13",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4"
   },
   "devDependencies": {
@@ -50,7 +52,6 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "prisma": "^7.8.0",
-    "sharp": "^0.34.5",
     "tsx": "^4.21.0",
     "typescript": "^5"
   }

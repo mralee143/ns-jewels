@@ -26,7 +26,10 @@ const playfairDisplay = Playfair_Display({
   variable: "--font-display",
 });
 
+const siteUrl = "https://nsjewelspk.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "NS Jewels",
     template: "%s | NS Jewels",
@@ -39,7 +42,7 @@ export const metadata: Metadata = {
       "Waterproof, tarnish-resistant jewelry for everyday luxury across Pakistan.",
     siteName: "NS Jewels",
     type: "website",
-    url: "https://nsjewelspk.com",
+    url: siteUrl,
   },
 };
 
